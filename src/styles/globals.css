@@ -1,0 +1,69 @@
+.pixel-border {
+  box-shadow: 0 0 0 2px #000, -4px -4px 0 4px rgba(0, 0, 0, 0.1) inset;
+  image-rendering: pixelated;
+}
+
+.pixel-bg {
+  background-image: linear-gradient(45deg, #4da8da 25%, transparent 25%),
+    linear-gradient(-45deg, #4da8da 25%, transparent 25%),
+    linear-gradient(45deg, transparent 75%, #4da8da 75%),
+    linear-gradient(-45deg, transparent 75%, #4da8da 75%);
+  background-size: 20px 20px;
+  background-position: 0 0, 0 10px, 10px -10px, -10px 0px;
+  animation: pixel-move 20s linear infinite;
+  opacity: 0.1;
+}
+
+.pixel-overlay {
+  background-image: repeating-linear-gradient(
+    0deg,
+    rgba(0, 0, 0, 0.1) 0px,
+    rgba(0, 0, 0, 0.1) 1px,
+    transparent 1px,
+    transparent 2px
+  );
+}
+
+.pixel-text {
+  text-shadow: 2px 2px 0 rgba(0, 0, 0, 0.2),
+    -2px -2px 0 rgba(255, 255, 255, 0.1);
+}
+
+@keyframes pixel-move {
+  from {
+    background-position: 0 0, 0 10px, 10px -10px, -10px 0px;
+  }
+  to {
+    background-position: -20px -20px, -20px -10px, -10px -30px, -30px -20px;
+  }
+}
+
+@keyframes slideIn {
+  from {
+    transform: translateX(-100%);
+    opacity: 0;
+  }
+  to {
+    transform: translateX(0);
+    opacity: 1;
+  }
+}
+
+.tab-switch-enter {
+  animation: slideIn 0.5s ease-in-out forwards;
+}
+
+.tab-switch-exit {
+  animation: slideIn 0.5s ease-in-out reverse forwards;
+}
+
+/* Smooth tab transitions */
+.transition-transform {
+  transition-property: transform;
+  transition-timing-function: cubic-bezier(0.4, 0, 0.2, 1);
+}
+
+/* Optional: Add a subtle hover effect for inactive tabs */
+button:hover:not(.active) {
+  opacity: 0.8;
+}

@@ -1,0 +1,11 @@
+@import "tailwindcss";
+
+@custom-variant dark (&:where([data-theme=dark], [data-theme=dark] *));
+
+@theme {
+  --color-primary: #2980b9;
+  --color-secondary: #45b7a1;
+  --color-accent: #e6b94d;
+  --color-light: #e5e5e5;
+  --font-sketch: "Architects Daughter", cursive;
+}
