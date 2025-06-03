@@ -10,11 +10,15 @@ const NavItem: React.FC<{ href: string; label: string }> = ({
     smooth
     duration={500}
     to={href}
-    activeClass="text-secondary font-medium"
-    className="text-primary hover:text-secondary transition-colors cursor-pointer relative group"
+    activeClass="text-secondary-light dark:text-secondary-dark font-medium underline"
+    className="text-primary-light dark:text-primary-dark hover:text-secondary-light dark:hover:text-secondary-dark 
+              transition-colors cursor-pointer relative group"
   >
     {label}
-    <span className="absolute bottom-0 left-0 w-0 h-0.5 bg-secondary transition-all group-[.active]:w-full"></span>
+    <span
+      className="absolute bottom-0 left-0 w-0 h-0.5 bg-secondary-light dark:bg-secondary-dark 
+                    transition-all group-[.active]:w-full"
+    ></span>
   </Link>
 );
 
@@ -30,7 +34,12 @@ const pages = [
 
 export const Navigation = () => {
   return (
-    <nav className="fixed top-0 left-0 right-0 z-50 bg-background-light/80 dark:bg-background-dark/80 backdrop-blur-sm shadow-sm">
+    <nav
+      className="fixed top-0 left-0 right-0 z-50 
+                bg-background-light/80 dark:bg-background-dark/80 
+                backdrop-blur-sm border-b 
+                border-primary-light/20 dark:border-primary-dark/20"
+    >
       <div className="container mx-auto px-4">
         <div className="flex items-center justify-between h-16">
           <Link
@@ -39,7 +48,9 @@ export const Navigation = () => {
             smooth
             duration={500}
             activeClass="!text-secondary-light dark:!text-secondary-dark"
-            className="text-primary-light dark:text-primary-dark font-bold text-xl cursor-pointer transition-all"
+            className="text-primary-light dark:text-primary-dark font-bold text-xl 
+                     cursor-pointer transition-all hover:text-secondary-light 
+                     dark:hover:text-secondary-dark"
           >
             Portfolio
           </Link>

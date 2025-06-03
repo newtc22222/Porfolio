@@ -96,34 +96,36 @@ const SkillNote = ({
 
   return (
     <div
-      className={`mb-6 p-5 relative ${color || "bg-white"} font-sketch
-        before:absolute before:inset-0 before:border-2 before:border-gray-800/80 
+      className={`mb-6 p-5 relative ${
+        color || "bg-white dark:bg-gray-800"
+      } font-sketch
+        before:absolute before:inset-0 before:border-2 before:border-gray-800/80 dark:before:border-gray-200/80
         before:rounded-lg before:transform before:rotate-[-0.5deg] before:-z-10
-        after:absolute after:inset-0 after:border-2 after:border-gray-800/60 
+        after:absolute after:inset-0 after:border-2 after:border-gray-800/60 dark:after:border-gray-200/60
         after:rounded-lg after:transform after:rotate-[1deg] after:-z-20
         hover:scale-[1.02] transition-all duration-300 cursor-pointer
-        shadow-[4px_4px_0_0_rgba(0,0,0,0.1)]
+        shadow-[4px_4px_0_0_rgba(0,0,0,0.1)] dark:shadow-[4px_4px_0_0_rgba(255,255,255,0.1)]
       `}
       onClick={() => setIsExpanded(!isExpanded)}
     >
       {/* Updated pins with gradients */}
-      <div className="absolute -top-3 -left-2 w-6 h-6 bg-gradient-to-br from-accent-light to-accent-light/70 rounded-full border-2 border-gray-800 shadow-md"></div>
+      <div className="absolute -top-3 -left-2 w-6 h-6 bg-gradient-to-br from-accent-light to-accent-light/70 dark:from-accent-dark dark:to-accent-dark/70 rounded-full border-2 border-gray-800 dark:border-gray-200 shadow-md"></div>
       {subSkills && subSkills.length > 1 && (
-        <div className="absolute -top-2 -right-1 w-5 h-5 bg-gradient-to-br from-secondary-light to-secondary-light/70 rounded-full border-2 border-gray-800 shadow-md"></div>
+        <div className="absolute -top-2 -right-1 w-5 h-5 bg-gradient-to-br from-secondary-light to-secondary-light/70 dark:from-secondary-dark dark:to-secondary-dark/70 rounded-full border-2 border-gray-800 dark:border-gray-200 shadow-md"></div>
       )}
 
       <div className="relative z-10">
-        <div className="flex justify-between items-center border-b-2 border-dashed border-gray-600/40 pb-2 mb-4">
-          <h4 className="text-xl font-bold text-gray-800 drop-shadow-sm">
+        <div className="flex justify-between items-center border-b-2 border-dashed border-gray-600/40 dark:border-gray-400/40 pb-2 mb-4">
+          <h4 className="text-xl font-bold text-gray-800 dark:text-gray-200 drop-shadow-sm">
             {name}
           </h4>
           {subSkills && subSkills.length > 0 && (
-            <div className="flex items-center gap-2 text-sm text-gray-600">
+            <div className="flex items-center gap-2 text-sm text-gray-600 dark:text-gray-400">
               <span className="font-medium">
                 {isExpanded ? "Collapse" : "Expand"}
               </span>
               <svg
-                className={`w-5 h-5 transform transition-transform ${
+                className={`w-5 h-5 transform transition-transform duration-300 ${
                   isExpanded ? "rotate-180" : ""
                 }`}
                 fill="none"
@@ -141,38 +143,48 @@ const SkillNote = ({
           )}
         </div>
 
-        {isExpanded && subSkills && (
-          <div className="space-y-3 transition-all duration-300">
-            {subSkills.map((subSkill) => (
-              <div
-                key={subSkill.name}
-                className="flex justify-between items-center p-3
-                  bg-white/90 rounded-lg border-2 border-gray-800/40
-                  transform hover:rotate-[0.5deg] transition-transform
-                  shadow-[2px_2px_0_0_rgba(0,0,0,0.1)]
-                  hover:shadow-[4px_4px_0_0_rgba(0,0,0,0.1)]"
-              >
-                <span className="text-gray-800 font-medium">
-                  {subSkill.name}
-                </span>
-                <span
-                  className={`px-3 py-1 rounded-full text-sm border-2 border-gray-800/40
+        <div
+          className={`grid transition-all duration-300 ease-in-out ${
+            isExpanded ? "grid-rows-[1fr]" : "grid-rows-[0fr]"
+          }`}
+        >
+          <div className="overflow-hidden">
+            {subSkills && (
+              <div className="space-y-3 py-2">
+                {subSkills.map((subSkill) => (
+                  <div
+                    key={subSkill.name}
+                    className="flex justify-between items-center p-3
+                      bg-white/90 dark:bg-gray-800/90 rounded-lg border-2 
+                      border-gray-800/40 dark:border-gray-200/40
+                      transform hover:rotate-[0.5deg] transition-transform
+                      shadow-[2px_2px_0_0_rgba(0,0,0,0.1)] dark:shadow-[2px_2px_0_0_rgba(255,255,255,0.1)]
+                      hover:shadow-[4px_4px_0_0_rgba(0,0,0,0.1)] dark:hover:shadow-[4px_4px_0_0_rgba(255,255,255,0.1)]"
+                  >
+                    <span className="text-gray-800 dark:text-gray-200 font-medium">
+                      {subSkill.name}
+                    </span>
+                    <span
+                      className={`px-3 py-1 rounded-full text-sm border-2 
+                    border-gray-800/40 dark:border-gray-200/40
                     ${
                       subSkill.proficiency === "Advanced"
-                        ? "bg-gradient-to-r from-accent-light/30 to-accent-light/20 text-gray-800"
+                        ? "bg-gradient-to-r from-accent-light/30 to-accent-light/20 dark:from-accent-dark/30 dark:to-accent-dark/20 text-gray-800 dark:text-gray-200"
                         : subSkill.proficiency === "Intermediate"
-                        ? "bg-gradient-to-r from-secondary-light/30 to-secondary-light/20 text-gray-800"
-                        : "bg-gradient-to-r from-primary-light/30 to-primary-light/20 text-gray-800"
+                        ? "bg-gradient-to-r from-secondary-light/30 to-secondary-light/20 dark:from-secondary-dark/30 dark:to-secondary-dark/20 text-gray-800 dark:text-gray-200"
+                        : "bg-gradient-to-r from-primary-light/30 to-primary-light/20 dark:from-primary-dark/30 dark:to-primary-dark/20 text-gray-800 dark:text-gray-200"
                     }
                     font-medium shadow-sm
                   `}
-                >
-                  {subSkill.proficiency}
-                </span>
+                    >
+                      {subSkill.proficiency}
+                    </span>
+                  </div>
+                ))}
               </div>
-            ))}
+            )}
           </div>
-        )}
+        </div>
       </div>
     </div>
   );

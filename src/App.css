@@ -7,5 +7,13 @@
   --color-secondary: #45b7a1;
   --color-accent: #e6b94d;
   --color-light: #e5e5e5;
+  --color-background-light: #f0f0f0;
+  --color-background-dark: #121212;
+  --color-primary-light: #333333;
+  --color-primary-dark: #f0f0f0;
+  --color-secondary-light: #666666;
+  --color-secondary-dark: #b0b0b0;
+  --color-accent-light: #b0b0b0;
+  --color-accent-dark: #333333;
   --font-sketch: "Architects Daughter", cursive;
 }

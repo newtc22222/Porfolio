@@ -19,7 +19,7 @@ export const Contact = () => {
       <section
         id="contact"
         className="py-20 bg-gradient-to-b from-background-light/90 to-background-light/70 
-                                     dark:from-background-dark/90 dark:to-background-dark/70 backdrop-blur-sm"
+                  dark:from-background-dark/90 dark:to-background-dark/70 backdrop-blur-sm"
       >
         <div className="container mx-auto px-4 max-w-4xl">
           <motion.div
@@ -35,7 +35,7 @@ export const Contact = () => {
             <p className="text-secondary-light dark:text-secondary-dark mb-2">
               Feel free to reach out for collaborations or just a friendly hello
             </p>
-            <p className="text-accent-light dark:text-accent-dark font-medium">
+            <p className="text-primary-light dark:text-primary-dark font-medium">
               {EMAIL}
             </p>
           </motion.div>
@@ -45,52 +45,84 @@ export const Contact = () => {
             whileInView={{ opacity: 1, y: 0 }}
             viewport={{ once: true }}
             transition={{ duration: 0.5, delay: 0.2 }}
-            className="bg-white dark:bg-gray-800 rounded-2xl p-8 shadow-lg max-w-2xl mx-auto"
+            className="bg-white dark:bg-gray-800/50 rounded-lg border border-gray-200 dark:border-gray-800 p-8 shadow-lg backdrop-blur-sm"
           >
             <form className="space-y-6">
-              <div>
+              <div className="space-y-2">
+                <label
+                  htmlFor="name"
+                  className="text-sm font-medium text-gray-700 dark:text-gray-300"
+                >
+                  Name
+                </label>
                 <input
+                  id="name"
                   type="text"
-                  placeholder="Your Name"
+                  placeholder="John Doe"
                   value={name}
                   onChange={(e) => setName(e.target.value)}
-                  className="w-full p-4 rounded-lg border border-gray-200 dark:border-gray-700 
-                           bg-gray-50 dark:bg-gray-900 text-gray-900 dark:text-white
-                           focus:ring-2 focus:ring-primary-light dark:focus:ring-primary-dark
-                           focus:border-transparent outline-none transition-all"
+                  className="w-full px-3 py-2 rounded-md border border-gray-300 dark:border-gray-700
+                           bg-white dark:bg-gray-900 text-gray-900 dark:text-gray-100
+                           placeholder-gray-500 dark:placeholder-gray-400
+                           focus:outline-none focus:ring-2 focus:ring-primary-light/20 dark:focus:ring-primary-dark/20
+                           focus:border-primary-light dark:focus:border-primary-dark
+                           transition-shadow duration-200"
                 />
               </div>
-              <div>
+
+              <div className="space-y-2">
+                <label
+                  htmlFor="email"
+                  className="text-sm font-medium text-gray-700 dark:text-gray-300"
+                >
+                  Email
+                </label>
                 <input
+                  id="email"
                   type="email"
-                  placeholder="Your Email"
+                  placeholder="john@example.com"
                   value={email}
                   onChange={(e) => setEmail(e.target.value)}
-                  className="w-full p-4 rounded-lg border border-gray-200 dark:border-gray-700 
-                           bg-gray-50 dark:bg-gray-900 text-gray-900 dark:text-white
-                           focus:ring-2 focus:ring-primary-light dark:focus:ring-primary-dark
-                           focus:border-transparent outline-none transition-all"
+                  className="w-full px-3 py-2 rounded-md border border-gray-300 dark:border-gray-700
+                           bg-white dark:bg-gray-900 text-gray-900 dark:text-gray-100
+                           placeholder-gray-500 dark:placeholder-gray-400
+                           focus:outline-none focus:ring-2 focus:ring-primary-light/20 dark:focus:ring-primary-dark/20
+                           focus:border-primary-light dark:focus:border-primary-dark
+                           transition-shadow duration-200"
                 />
               </div>
-              <div>
+
+              <div className="space-y-2">
+                <label
+                  htmlFor="message"
+                  className="text-sm font-medium text-gray-700 dark:text-gray-300"
+                >
+                  Message
+                </label>
                 <textarea
-                  placeholder="Your Message"
+                  id="message"
+                  placeholder="Your message here..."
                   value={message}
                   onChange={(e) => setMessage(e.target.value)}
                   rows={5}
-                  className="w-full p-4 rounded-lg border border-gray-200 dark:border-gray-700 
-                           bg-gray-50 dark:bg-gray-900 text-gray-900 dark:text-white
-                           focus:ring-2 focus:ring-primary-light dark:focus:ring-primary-dark
-                           focus:border-transparent outline-none transition-all resize-none"
-                ></textarea>
+                  className="w-full px-3 py-2 rounded-md border border-gray-300 dark:border-gray-700
+                           bg-white dark:bg-gray-900 text-gray-900 dark:text-gray-100
+                           placeholder-gray-500 dark:placeholder-gray-400
+                           focus:outline-none focus:ring-2 focus:ring-primary-light/20 dark:focus:ring-primary-dark/20
+                           focus:border-primary-light dark:focus:border-primary-dark
+                           transition-shadow duration-200 resize-none"
+                />
               </div>
+
               <button
+                type="submit"
                 onClick={handleSubmit}
-                className="w-full bg-primary-light dark:bg-primary-dark dark:text-white border py-4 px-8 hover:cursor-pointer
-                         rounded-lg font-medium hover:bg-secondary-light dark:hover:bg-secondary-dark 
-                         transform hover:scale-[1.02] transition-all duration-300 
-                         focus:outline-none focus:ring-2 focus:ring-offset-2 
-                         focus:ring-primary-light dark:focus:ring-primary-dark"
+                className="w-full px-3 py-2 rounded-md border border-gray-300 dark:border-gray-700
+                         bg-white dark:bg-gray-900 text-gray-900 dark:text-gray-100
+                         hover:bg-gray-50 dark:hover:bg-gray-800 hover:cursor-pointer
+                         focus:outline-none focus:ring-2 focus:ring-primary-light/20 dark:focus:ring-primary-dark/20
+                         focus:border-primary-light dark:focus:border-primary-dark
+                         transition-all duration-200 font-medium"
               >
                 Send Message
               </button>

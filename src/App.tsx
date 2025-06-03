@@ -14,7 +14,7 @@ import "./App.css";
 
 function App() {
   return (
-    <div className="bg-light">
+    <>
       <Navigation />
       <Home />
       <Projects />
@@ -24,7 +24,7 @@ function App() {
       <Achievements />
       <Contact />
       <Footer />
-    </div>
+    </>
   );
 }
 

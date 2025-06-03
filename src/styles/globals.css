@@ -1,43 +1,3 @@
-.pixel-border {
-  box-shadow: 0 0 0 2px #000, -4px -4px 0 4px rgba(0, 0, 0, 0.1) inset;
-  image-rendering: pixelated;
-}
-
-.pixel-bg {
-  background-image: linear-gradient(45deg, #4da8da 25%, transparent 25%),
-    linear-gradient(-45deg, #4da8da 25%, transparent 25%),
-    linear-gradient(45deg, transparent 75%, #4da8da 75%),
-    linear-gradient(-45deg, transparent 75%, #4da8da 75%);
-  background-size: 20px 20px;
-  background-position: 0 0, 0 10px, 10px -10px, -10px 0px;
-  animation: pixel-move 20s linear infinite;
-  opacity: 0.1;
-}
-
-.pixel-overlay {
-  background-image: repeating-linear-gradient(
-    0deg,
-    rgba(0, 0, 0, 0.1) 0px,
-    rgba(0, 0, 0, 0.1) 1px,
-    transparent 1px,
-    transparent 2px
-  );
-}
-
-.pixel-text {
-  text-shadow: 2px 2px 0 rgba(0, 0, 0, 0.2),
-    -2px -2px 0 rgba(255, 255, 255, 0.1);
-}
-
-@keyframes pixel-move {
-  from {
-    background-position: 0 0, 0 10px, 10px -10px, -10px 0px;
-  }
-  to {
-    background-position: -20px -20px, -20px -10px, -10px -30px, -30px -20px;
-  }
-}
-
 @keyframes slideIn {
   from {
     transform: translateX(-100%);
@@ -66,4 +26,53 @@
 /* Optional: Add a subtle hover effect for inactive tabs */
 button:hover:not(.active) {
   opacity: 0.8;
+}
+
+.retro-grid {
+  background-image: linear-gradient(
+      90deg,
+      rgba(77, 168, 218, 0.1) 1px,
+      transparent 1px
+    ),
+    linear-gradient(rgba(77, 168, 218, 0.1) 1px, transparent 1px);
+  background-size: 20px 20px;
+}
+
+[data-theme="dark"] .retro-grid {
+  background-image: linear-gradient(
+      90deg,
+      rgba(128, 216, 195, 0.3) 1px,
+      transparent 1px
+    ),
+    linear-gradient(rgba(77, 168, 218, 0.3) 1px, transparent 1px);
+  background-size: 20px 20px;
+  animation: gridPulse 8s ease-in-out infinite;
+}
+
+.retro-gradient {
+  background: linear-gradient(
+    45deg,
+    rgba(77, 168, 218, 0.1) 0%,
+    rgba(128, 216, 195, 0.1) 100%
+  );
+}
+
+[data-theme="dark"] .retro-gradient {
+  background: linear-gradient(
+    45deg,
+    rgba(18, 18, 18, 0.95) 0%,
+    rgba(24, 24, 24, 0.95) 100%
+  );
+}
+
+@keyframes gridPulse {
+  0% {
+    opacity: 0.2;
+  }
+  50% {
+    opacity: 0.4;
+  }
+  100% {
+    opacity: 0.2;
+  }
 }

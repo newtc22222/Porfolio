@@ -15,7 +15,8 @@ export const Home = () => {
     <Element name="#home">
       <section
         id="home"
-        className="min-h-screen bg-light flex items-center justify-center relative overflow-hidden mt-[64px]"
+        className="min-h-screen bg-background-light dark:bg-background-dark 
+                   flex items-center justify-center relative overflow-hidden mt-[64px]"
       >
         <Particles
           id="tsparticles"
@@ -26,7 +27,7 @@ export const Home = () => {
             },
             background: {
               color: {
-                value: "#F5F5F5", // matches bg-light
+                value: "transparent",
               },
             },
             particles: {
@@ -38,12 +39,12 @@ export const Home = () => {
                 },
               },
               color: {
-                value: "#4DA8DA", // primary color
+                value: ["#4DA8DA", "#80D8C3"], // primary and secondary colors
               },
               links: {
                 enable: true,
-                color: "#80D8C3", // secondary color
-                opacity: 0.3,
+                color: "#80D8C3",
+                opacity: 0.2,
               },
               move: {
                 enable: true,
@@ -65,15 +66,23 @@ export const Home = () => {
           className="absolute inset-0 w-full h-full"
         />
         <div className="text-center z-10">
-          <h1 className="text-5xl font-bold mb-4 text-primary">
+          <h1 className="text-5xl font-bold mb-4 text-primary-light dark:text-primary-dark">
             Hi guys, I am {FULLNAME}!
           </h1>
-          <p className="text-2xl mb-6 text-secondary">{JOB_TITLE}</p>
+          <p className="text-2xl mb-6 text-secondary-light dark:text-secondary-dark">
+            {JOB_TITLE}
+          </p>
           <Link
             smooth
             duration={500}
             to="#projects"
-            className="text-primary px-6 py-3 border rounded hover:bg-secondary hover:text-white hover:cursor-pointer transition-all"
+            className="px-6 py-3 border-2 rounded-lg
+                     border-primary-light dark:border-primary-dark
+                     text-primary-light dark:text-primary-dark
+                     hover:bg-secondary-light hover:border-secondary-light
+                     dark:hover:bg-secondary-dark dark:hover:border-secondary-dark
+                     hover:text-white dark:hover:text-white
+                     hover:cursor-pointer transition-all duration-300"
           >
             Explore My Projects
           </Link>

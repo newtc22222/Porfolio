@@ -1,5 +1,6 @@
 import { Element } from "react-scroll";
 import { useState } from "react";
+import { motion } from "framer-motion";
 
 import "../styles/globals.css";
 
@@ -40,7 +41,6 @@ const TabSwitch = ({
   activeTopic: string;
   setActiveTopic: (topic: string) => void;
 }) => {
-  // Calculate the position and width for the sliding indicator
   const activeIndex = topics.indexOf(activeTopic);
   const indicatorStyles = {
     transform: `translateX(${activeIndex * 100}%)`,
@@ -48,11 +48,19 @@ const TabSwitch = ({
   };
 
   return (
-    <div className="relative flex p-1 bg-gray-200 dark:bg-gray-800 rounded-xl mb-12 max-w-2xl mx-auto shadow-inner">
-      {/* Sliding indicator */}
+    <div
+      className="relative flex p-1.5 bg-white/5 dark:bg-gray-800/5 rounded-xl mb-12 
+                    max-w-2xl mx-auto backdrop-blur-sm border-2 border-white/10 
+                    dark:border-gray-700/20 shadow-lg hover:border-white/20 
+                    dark:hover:border-gray-600/30 transition-all duration-300"
+    >
+      {/* Glowing indicator */}
       <div
-        className="absolute left-0 top-1 bottom-1 bg-white dark:bg-gray-700 rounded-lg shadow-md 
-                   transition-transform duration-300 ease-in-out"
+        className="absolute left-0 top-1 bottom-1 rounded-lg
+                   bg-gradient-to-r from-primary-light/20 to-secondary-light/20
+                   dark:from-primary-dark/20 dark:to-secondary-dark/20
+                   shadow-[0_0_15px_rgba(77,168,218,0.3)] dark:shadow-[0_0_15px_rgba(128,216,195,0.3)]
+                   transition-transform duration-300 ease-out backdrop-blur-sm"
         style={indicatorStyles}
       />
 
@@ -60,14 +68,25 @@ const TabSwitch = ({
         <button
           key={topic}
           onClick={() => setActiveTopic(topic)}
-          className={`relative flex-1 py-2 text-sm transition-colors duration-300 z-10 hover:cursor-pointer
+          className={`relative flex-1 py-2.5 text-sm font-medium transition-all duration-300 z-10 hover:cursor-pointer
             ${
               activeTopic === topic
-                ? "text-gray-800 dark:text-white font-medium"
-                : "text-gray-600 dark:text-gray-400"
-            }`}
+                ? "text-primary-light dark:text-primary-dark scale-105"
+                : "text-secondary-light/80 dark:text-secondary-dark/80 hover:text-primary-light/90 dark:hover:text-primary-dark/90"
+            }
+            hover:scale-105`}
         >
-          <span className="relative">{topic}</span>
+          <span className="relative">
+            {topic}
+            {activeTopic === topic && (
+              <span
+                className="absolute -bottom-1 left-0 right-0 h-0.5 bg-gradient-to-r 
+                             from-primary-light to-secondary-light
+                             dark:from-primary-dark dark:to-secondary-dark
+                             rounded-full"
+              ></span>
+            )}
+          </span>
         </button>
       ))}
     </div>
@@ -129,16 +148,28 @@ export const Blog = () => {
   return (
     <Element name="#blog">
       <section id="blog" className="relative py-20 overflow-hidden">
-        {/* Pixel art background */}
-        <div className="absolute inset-0 pixel-bg"></div>
+        {/* Retro background layers */}
+        <div className="absolute inset-0 retro-gradient"></div>
+        <div className="absolute inset-0 retro-grid"></div>
 
         <div className="relative container mx-auto px-4 z-10">
-          <h2 className="text-4xl font-bold text-center mb-4 text-primary-light dark:text-primary-dark pixel-text">
-            Blog Posts
-          </h2>
-          <p className="text-secondary-light dark:text-secondary-dark text-center mb-10">
-            Sharing knowledge and experiences
-          </p>
+          <motion.div
+            initial={{ opacity: 0, y: 20 }}
+            whileInView={{ opacity: 1, y: 0 }}
+            viewport={{ once: true }}
+            transition={{ duration: 0.5 }}
+          >
+            <h2
+              className="text-4xl font-bold text-center mb-4 bg-clip-text text-transparent 
+                       bg-gradient-to-r from-primary-light to-secondary-light
+                       dark:from-primary-dark dark:to-secondary-dark"
+            >
+              Blog Posts
+            </h2>
+            <p className="text-secondary-light dark:text-secondary-dark text-center mb-10 text-lg">
+              Sharing knowledge and experiences
+            </p>
+          </motion.div>
 
           <TabSwitch
             topics={topics}
@@ -146,11 +177,25 @@ export const Blog = () => {
             setActiveTopic={setActiveTopic}
           />
 
-          <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-8">
-            {filteredPosts.map((post) => (
-              <BlogCard key={post.title} post={post} />
+          <motion.div
+            className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-8"
+            initial={{ opacity: 0, y: 20 }}
+            whileInView={{ opacity: 1, y: 0 }}
+            viewport={{ once: true }}
+            transition={{ duration: 0.5, delay: 0.2 }}
+          >
+            {filteredPosts.map((post, index) => (
+              <motion.div
+                key={post.title}
+                initial={{ opacity: 0, y: 20 }}
+                whileInView={{ opacity: 1, y: 0 }}
+                viewport={{ once: true }}
+                transition={{ duration: 0.5, delay: index * 0.1 }}
+              >
+                <BlogCard post={post} />
+              </motion.div>
             ))}
-          </div>
+          </motion.div>
         </div>
       </section>
     </Element>
