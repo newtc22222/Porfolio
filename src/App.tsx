@@ -1,16 +1,12 @@
-import { Navigation } from "./layout/Navigation";
-import { Footer } from "./layout/Footer";
-import {
-  Home,
-  Projects,
-  Skills,
-  Blog,
-  About,
-  Achievements,
-  Contact,
-} from "./pages";
+import { Navigation } from './layout/Navigation';
+import { Footer } from './layout/Footer';
+import { Home, Projects, Skills, Blog, About, Achievements } from './pages';
+import { lazy, Suspense } from 'react';
 
-import "./App.css";
+import './App.css';
+
+// Use dynamic imports for heavy components
+const Contact = lazy(() => import('./pages/Contact'));
 
 function App() {
   return (
@@ -22,7 +18,9 @@ function App() {
       <Blog />
       <About />
       <Achievements />
-      <Contact />
+      <Suspense fallback={<div>Loading...</div>}>
+        <Contact />
+      </Suspense>
       <Footer />
     </>
   );

@@ -1,4 +1,4 @@
-@import "tailwindcss";
+@import 'tailwindcss';
 
 @custom-variant dark (&:where([data-theme=dark], [data-theme=dark] *));
 
@@ -15,5 +15,31 @@
   --color-secondary-dark: #b0b0b0;
   --color-accent-light: #333333;
   --color-accent-dark: #b0b0b0;
-  --font-sketch: "Architects Daughter", cursive;
+  --font-sketch: 'Architects Daughter', cursive;
+}
+
+.nav-item {
+  @apply cursor-pointer;
+  @apply text-primary-light hover:text-secondary-light;
+  @variant dark {
+    @apply text-primary-dark hover:text-secondary-dark;
+  }
+}
+
+.section-background {
+  @apply py-20;
+  /* @apply backdrop-blur-sm; */
+  @apply bg-gradient-to-b;
+  @apply from-background-light/90 to-background-light/70;
+  @variant dark {
+    @apply from-background-dark/90 to-background-dark/70;
+  }
+}
+
+.pin-note {
+  @apply rounded-full;
+  @apply border-2 border-gray-800 dark:border-gray-200;
+  @apply bg-gradient-to-br;
+  @apply shadow-md;
+  @apply absolute;
 }

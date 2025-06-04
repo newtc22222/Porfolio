@@ -1,10 +1,10 @@
-import { Element, Link } from "react-scroll";
-import { useCallback } from "react";
-import Particles from "react-tsparticles";
-import { loadSlim } from "tsparticles-slim";
-import type { Engine } from "tsparticles-engine";
+import { useCallback } from 'react';
+import { Element, Link } from 'react-scroll';
+import Particles from 'react-tsparticles';
+import { loadSlim } from 'tsparticles-slim';
+import type { Engine } from 'tsparticles-engine';
 
-import { FULLNAME, JOB_TITLE } from "../constants/self-information";
+import { FULLNAME, JOB_TITLE } from '../constants/self-information';
 
 export const Home = () => {
   const particlesInit = useCallback(async (engine: Engine) => {
@@ -15,8 +15,7 @@ export const Home = () => {
     <Element name="#home">
       <section
         id="home"
-        className="min-h-screen bg-background-light dark:bg-background-dark 
-                   flex items-center justify-center relative overflow-hidden mt-[64px]"
+        className="bg-background-light dark:bg-background-dark relative mt-[64px] flex min-h-screen items-center justify-center overflow-hidden"
       >
         <Particles
           id="tsparticles"
@@ -27,7 +26,7 @@ export const Home = () => {
             },
             background: {
               color: {
-                value: "transparent",
+                value: 'transparent',
               },
             },
             particles: {
@@ -39,11 +38,11 @@ export const Home = () => {
                 },
               },
               color: {
-                value: ["#4DA8DA", "#80D8C3"], // primary and secondary colors
+                value: ['#4DA8DA', '#80D8C3'], // primary and secondary colors
               },
               links: {
                 enable: true,
-                color: "#80D8C3",
+                color: '#80D8C3',
                 opacity: 0.2,
               },
               move: {
@@ -58,31 +57,25 @@ export const Home = () => {
               events: {
                 onHover: {
                   enable: true,
-                  mode: "repulse",
+                  mode: 'repulse',
                 },
               },
             },
           }}
-          className="absolute inset-0 w-full h-full"
+          className="absolute inset-0 h-full w-full"
         />
-        <div className="text-center z-10">
-          <h1 className="text-5xl font-bold mb-4 text-primary-light dark:text-primary-dark">
+        <div className="z-10 text-center">
+          <h1 className="text-primary-light dark:text-primary-dark mb-4 text-5xl font-bold">
             Hi guys, I am {FULLNAME}!
           </h1>
-          <p className="text-2xl mb-6 text-secondary-light dark:text-secondary-dark">
+          <p className="text-secondary-light dark:text-secondary-dark mb-6 text-2xl">
             {JOB_TITLE}
           </p>
           <Link
             smooth
             duration={500}
             to="#projects"
-            className="px-6 py-3 border-2 rounded-lg
-                     border-primary-light dark:border-primary-dark
-                     text-primary-light dark:text-primary-dark
-                     hover:bg-secondary-light hover:border-secondary-light
-                     dark:hover:bg-secondary-dark dark:hover:border-secondary-dark
-                     hover:text-white dark:hover:text-white
-                     hover:cursor-pointer transition-all duration-300"
+            className="border-primary-light dark:border-primary-dark text-primary-light dark:text-primary-dark hover:bg-secondary-light hover:border-secondary-light dark:hover:bg-secondary-dark dark:hover:border-secondary-dark rounded-lg border-2 px-6 py-3 transition-all duration-300 hover:cursor-pointer hover:text-white dark:hover:text-white"
           >
             Explore My Projects
           </Link>
