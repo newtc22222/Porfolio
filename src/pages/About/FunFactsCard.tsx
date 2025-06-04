@@ -1,4 +1,5 @@
 import { motion } from 'framer-motion';
+import { FUN_FACTS } from '../../mocks/facts';
 
 export const FunFactsCard = () => (
   <motion.div
@@ -12,22 +13,12 @@ export const FunFactsCard = () => (
       Fun Facts.json
     </h3>
     <ul className="text-secondary-light dark:text-secondary-dark space-y-3">
-      <li className="flex items-center">
-        <span className="mr-2 text-xl">🎮</span>
-        <span>Casual gamer who believes in "just one more turn"</span>
-      </li>
-      <li className="flex items-center">
-        <span className="mr-2 text-xl">☕</span>
-        <span>Powered by coffee and curiosity</span>
-      </li>
-      <li className="flex items-center">
-        <span className="mr-2 text-xl">🐛</span>
-        <span>Bug hunter by day, bug creator by night</span>
-      </li>
-      <li className="flex items-center">
-        <span className="mr-2 text-xl">🎵</span>
-        <span>Coding playlist: Lofi beats + Keyboard clicks</span>
-      </li>
+      {FUN_FACTS.map((fact, index) => (
+        <li key={index} className="flex items-center">
+          <span className="mr-2 text-xl">{fact.icon}</span>
+          <span>{fact.text}</span>
+        </li>
+      ))}
     </ul>
   </motion.div>
 );

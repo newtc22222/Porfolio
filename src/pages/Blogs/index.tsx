@@ -7,7 +7,7 @@ import '../../styles/globals.css';
 import { BLOG_POSTS } from '../../mocks/blogs';
 import { BlogCard } from './BlogCard';
 
-const TOPICS = ['All', 'Frontend', 'Backend', 'DevOps', 'Database'];
+const TOPICS = ['All', 'Frontend', 'Backend', 'Database', 'Principle'];
 
 export const Blog = () => {
   const [activeTopic, setActiveTopic] = useState('All');

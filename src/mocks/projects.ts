@@ -1,17 +1,63 @@
 export const PROJECTS = [
   {
-    title: 'E-commerce Website',
+    title: 'Laptech - Management platform',
     description:
-      'A modern e-commerce platform with real-time inventory management.',
-    technologies: ['React', 'Next.js', 'Tailwind CSS'],
-    link: 'https://github.com/yourusername/ecommerce',
+      'UI for a management platform for Laptech Store, a leading electronics retailer.',
+    technologies: [
+      'React',
+      'Redux',
+      'Webpack',
+      'Bootstrap',
+      'React Hook Form',
+      'React Router',
+      'React Quill',
+      'React Toastify',
+      'Chart.js',
+    ],
+    link: 'https://github.com/newtc22222/laptech-ui-admin',
   },
   {
-    title: 'Student Management',
+    title: 'Laptech - Mobile platform',
     description:
-      'Comprehensive student management system with attendance tracking.',
-    technologies: ['React', 'Node.js', 'MongoDB'],
-    link: 'https://github.com/yourusername/student-management',
+      'UI for the client-facing mobile platform of Laptech Store, providing a seamless shopping experience.',
+    technologies: [
+      'React Native',
+      'Redux',
+      'Expo',
+      'Axios',
+      'React Navigation',
+    ],
+    link: 'https://github.com/newtc22222/laptech-ui-mobile',
   },
-  // Add more projects as needed
+  {
+    title: 'Laptech - REST API',
+    description:
+      'REST API for Laptech Store, providing backend services for the management platform.',
+    technologies: [
+      'Java',
+      'Maven',
+      'Spring Boot',
+      'Spring Data JDBC',
+      'MySQL',
+      'Swagger',
+      'Spring Security',
+      'JWT',
+    ],
+    link: 'https://github.com/newtc22222/laptech-rest-api-jdbc',
+  },
+  {
+    title: 'Web Notes',
+    description:
+      'I learn to document my learning journey and share knowledge with others.',
+    technologies: [
+      'Docusaurus',
+      'Prism',
+      'Markdown',
+      'GitHub',
+      'Github Pages',
+      'Github Actions',
+      'Algolia',
+    ],
+    link: 'https://sunflynf.github.io/web-notes/',
+  },
 ];

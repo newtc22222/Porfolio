@@ -66,7 +66,7 @@ export const Home = () => {
         />
         <div className="z-10 text-center">
           <h1 className="text-primary-light dark:text-primary-dark mb-4 text-5xl font-bold">
-            Hi guys, I am {FULLNAME}!
+            Hi there! I'm {FULLNAME}
           </h1>
           <p className="text-secondary-light dark:text-secondary-dark mb-6 text-2xl">
             {JOB_TITLE}

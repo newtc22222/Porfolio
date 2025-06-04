@@ -1,4 +1,5 @@
 import { motion } from 'framer-motion';
+import { FACTS } from '../../mocks/facts';
 
 export const AboutTextCard = () => (
   <motion.div
@@ -19,18 +20,12 @@ export const AboutTextCard = () => (
       </span>
     </div>
     <div className="text-secondary-light dark:text-secondary-dark space-y-2 font-mono">
-      <p>
-        <span className="text-accent-light dark:text-accent-dark">&gt;_</span>{' '}
-        Passionate developer who loves creating cool stuff
-      </p>
-      <p>
-        <span className="text-accent-light dark:text-accent-dark">&gt;_</span>{' '}
-        Believes in writing code that humans can understand
-      </p>
-      <p>
-        <span className="text-accent-light dark:text-accent-dark">&gt;_</span>{' '}
-        Always learning, forever curious
-      </p>
+      {FACTS.map((fact, index) => (
+        <p key={index}>
+          <span className="text-accent-light dark:text-accent-dark">&gt;_</span>{' '}
+          {fact}
+        </p>
+      ))}
     </div>
   </motion.div>
 );
