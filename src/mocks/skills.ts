@@ -99,7 +99,7 @@ const BACK_END: Skill[] = [
     subSkills: [
       { name: 'Express.js', proficiency: 'Intermediate' },
       { name: 'Fastify', proficiency: 'Basic' },
-      { name: 'NestJS', proficiency: 'Basic' },
+      { name: 'NestJS', proficiency: 'Intermediate' },
       { name: 'Flask', proficiency: 'Basic' },
       { name: 'Django', proficiency: 'Basic' },
       { name: 'FastAPI', proficiency: 'Basic' },
