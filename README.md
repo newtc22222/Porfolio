@@ -1,23 +1,25 @@
 # Introduce
 
+> **UPDATE**: Github Actions is removed because I react to the limit 😔
+
 This portfolio repository highlights a selection of my projects, demonstrating my expertise in full-stack development. It features web applications built with **React**, **Redux**, and **Spring Boot**, integrating **MySQL** for database management and secure authentication using **JWT**. Each project showcases different aspects of my skills, from `front-end` design to `back-end` architecture.
 
 The portfolio is continuously updated with new projects and refinements. Contributions and feedback are always appreciated!
 
 ## Dependencies
 
-| Package           | Version  | Description                                      |
-| ----------------- | -------- | ------------------------------------------------ |
-| react             | ^19.1.0  | JavaScript library for building user interfaces  |
-| react-dom         | ^19.1.0  | React package for working with the DOM           |
-| react-scroll      | ^1.9.3   | React component for animating vertical scrolling |
-| react-confetti    | ^6.4.0   | Confetti animation for React applications        |
-| framer-motion     | ^12.15.0 | Production-ready motion library for React        |
-| tailwindcss       | ^4.1.8   | Utility-first CSS framework                      |
-| react-tsparticles | ^2.12.2  | React components for particle animations         |
-| tsparticles-slim  | ^2.12.0  | Lightweight particle animation library           |
-| react-hook-form   | ^7.57.0  | Tools for building forms in React                |
-| yup               | ^1.6.1   | Build validation rules for form                  |
+| Package            | Version  | Description                                      |
+| ------------------ | -------- | ------------------------------------------------ |
+| react              | ^19.1.0  | JavaScript library for building user interfaces  |
+| react-dom          | ^19.1.0  | React package for working with the DOM           |
+| react-scroll       | ^1.9.3   | React component for animating vertical scrolling |
+| react-confetti     | ^6.4.0   | Confetti animation for React applications        |
+| framer-motion      | ^12.15.0 | Production-ready motion library for React        |
+| tailwindcss        | ^4.1.8   | Utility-first CSS framework                      |
+| @tsparticles/react | ^3.0.0   | React components for particle animations         |
+| @tsparticles/slim  | ^3.8.1   | Lightweight particle animation library           |
+| react-hook-form    | ^7.57.0  | Tools for building forms in React                |
+| yup                | ^1.6.1   | Build validation rules for form                  |
 
 ## Development Dependencies
 
