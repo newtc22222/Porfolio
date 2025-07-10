@@ -60,4 +60,21 @@ export const PROJECTS = [
     ],
     link: 'https://sunflynf.github.io/web-notes/',
   },
+  {
+    title: 'Natours',
+    description:
+      'A Fullstack Web (MVC) for booking Tour with Express, includes Security features, email, file handler, NoSQL Database and Payment with Stripe',
+    technologies: [
+      'GitLab',
+      'Express',
+      'Mongoose',
+      'Nodemailer',
+      'Multer',
+      'Sharp',
+      'Pug template',
+      'Stripe',
+      'Deployment',
+    ],
+    link: 'https://gitlab.com/fee-fight-learning-lab/nodejs/natours',
+  },
 ];

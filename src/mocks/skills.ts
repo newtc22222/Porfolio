@@ -128,8 +128,8 @@ const DATABASE: Skill[] = [
     color: 'bg-gradient-to-br from-accent-light/20 to-accent-light/10',
     subSkills: [
       { name: 'Schema Design', proficiency: 'Intermediate' },
-      { name: 'Aggregation Framework', proficiency: 'Basic' },
-      { name: 'Indexes', proficiency: 'Basic' },
+      { name: 'Aggregation Framework', proficiency: 'Intermediate' },
+      { name: 'Indexes', proficiency: 'Intermediate' },
       { name: 'Replication', proficiency: 'Basic' },
       { name: 'Sharding', proficiency: 'Basic' },
       { name: 'Transactions', proficiency: 'Basic' },

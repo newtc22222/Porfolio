@@ -1,6 +1,6 @@
 export const ACHIEVEMENTS = [
   {
-    title: '3 React Projects',
+    title: '3+ React Projects',
     description: 'Great work',
     icon: '🎯',
     color: 'from-blue-500/20 to-purple-500/20',
