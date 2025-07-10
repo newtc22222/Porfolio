@@ -14,7 +14,7 @@ export default defineConfig({
           vendor: ['react', 'react-dom', 'react-scroll', 'framer-motion'],
           // Split large dependencies into separate chunks
           emailjs: ['@emailjs/browser'],
-          particles: ['react-tsparticles'],
+          particles: ['@tsparticles/react'],
         },
       },
     },
