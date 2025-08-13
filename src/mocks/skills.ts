@@ -13,7 +13,7 @@ const FRONT_END: Skill[] = [
       { name: 'Redux Toolkit', proficiency: 'Intermediate' },
       { name: 'Redux Toolkit Query', proficiency: 'Intermediate' },
       { name: 'TanStack Query', proficiency: 'Intermediate' },
-      { name: 'TanStack Table', proficiency: 'Advanced' },
+      { name: 'TanStack Table', proficiency: 'Intermediate' },
       { name: 'React Testing Library', proficiency: 'Intermediate' },
       { name: 'React Native', proficiency: 'Intermediate' },
     ],
@@ -23,15 +23,43 @@ const FRONT_END: Skill[] = [
     category: 'Frontend',
     color: 'bg-gradient-to-br from-primary-light/20 to-primary-light/10',
     subSkills: [
-      { name: 'Sass', proficiency: 'Advanced' },
+      { name: 'Scss', proficiency: 'Advanced' },
       { name: 'Less', proficiency: 'Intermediate' },
+      { name: 'PostCSS', proficiency: 'Basic' },
+    ],
+  },
+  {
+    name: 'CSS Frameworks',
+    category: 'Frontend',
+    color: 'bg-gradient-to-br from-primary-light/10 to-primary-light/5',
+    subSkills: [
       { name: 'Bootstrap', proficiency: 'Advanced' },
       { name: 'Tailwind CSS', proficiency: 'Intermediate' },
-      { name: 'Styled Components', proficiency: 'Basic' },
-      { name: 'Material-UI', proficiency: 'Basic' },
+      { name: 'Bulma', proficiency: 'Basic' },
+      { name: 'Semantic UI', proficiency: 'Basic' },
+      // { name: 'Foundation', proficiency: 'Basic' },
+      // { name: 'Materialize CSS', proficiency: 'Basic' },
+      // { name: 'UIKit', proficiency: 'Basic' },
+    ],
+  },
+  {
+    name: 'UI Libraries & CSS-in-JS',
+    category: 'Frontend',
+    color: 'bg-gradient-to-br from-primary-light/20 to-transparent',
+    subSkills: [
+      { name: 'Material UI', proficiency: 'Intermediate' },
       { name: 'Ant Design', proficiency: 'Basic' },
       { name: 'Shadcn UI', proficiency: 'Basic' },
+      // { name: 'Headless UI', proficiency: 'Basic' },
+      // { name: 'Radix UI', proficiency: 'Basic' },
+      { name: 'Styled Components', proficiency: 'Basic' },
     ],
+  },
+  {
+    name: 'CSS Architecture / Scoping',
+    category: 'Frontend',
+    color: 'bg-gradient-to-br from-primary-light/15 to-primary-light/5',
+    subSkills: [{ name: 'CSS Modules', proficiency: 'Intermediate' }],
   },
   {
     name: 'Frameworks',
@@ -40,11 +68,12 @@ const FRONT_END: Skill[] = [
     subSkills: [
       { name: 'Docusaurus', proficiency: 'Intermediate' },
       { name: 'Next.js', proficiency: 'Intermediate' },
-      { name: 'Astro', proficiency: 'Basic' },
-      { name: 'Vue.js', proficiency: 'Intermediate' },
+      { name: 'Vue.js', proficiency: 'Basic' },
       { name: 'Nuxt.js', proficiency: 'Basic' },
       { name: 'Angular', proficiency: 'Basic' },
-      { name: 'Svelte', proficiency: 'Basic' },
+      // { name: 'Astro', proficiency: 'Basic' },
+      // { name: 'Svelte', proficiency: 'Basic' },
+      // { name: 'Redwood', proficiency: 'Basic' },
     ],
   },
 ];
@@ -55,16 +84,20 @@ const BACK_END: Skill[] = [
     category: 'Backend',
     color: 'bg-gradient-to-br from-secondary-light/20 to-secondary-light/10',
     subSkills: [
-      { name: 'Spring Boot', proficiency: 'Intermediate' },
+      { name: 'Spring Boot', proficiency: 'Advanced' },
       { name: 'Spring REST', proficiency: 'Intermediate' },
       { name: 'Spring MVC', proficiency: 'Intermediate' },
+      { name: 'Spring Test', proficiency: 'Intermediate' },
+      { name: 'Spring Boot Actuator', proficiency: 'Intermediate' },
       { name: 'Spring Data JPA', proficiency: 'Intermediate' },
       { name: 'Spring Data JDBC', proficiency: 'Intermediate' },
+      { name: 'Spring Security', proficiency: 'Intermediate' },
+      { name: 'OpenAPI', proficiency: 'Intermediate' },
       // { name: 'Spring GraphQL', proficiency: 'Basic' },
-      { name: 'Spring Security', proficiency: 'Basic' },
       // { name: 'Spring Cloud', proficiency: 'Basic' },
       // { name: 'Spring Batch', proficiency: 'Basic' },
       // { name: 'Spring WebFlux', proficiency: 'Basic' },
+      // { name: 'Spring AI', proficiency: 'Basic' },
     ],
   },
   {
@@ -105,6 +138,44 @@ const BACK_END: Skill[] = [
       { name: 'FastAPI', proficiency: 'Basic' },
       { name: 'Laravel', proficiency: 'Basic' },
     ],
+  },
+  {
+    name: 'Architecture & Deployment Models',
+    category: 'Backend',
+    color: 'bg-gradient-to-br from-secondary-light/20 to-secondary-light/10',
+    subSkills: [
+      { name: 'Monoliths', proficiency: 'Advanced' },
+      { name: 'Serverless', proficiency: 'Basic' },
+      { name: 'Microservices', proficiency: 'Basic' },
+    ],
+  },
+  {
+    name: 'Communication & API',
+    category: 'Backend',
+    color: 'bg-gradient-to-br from-secondary-light/20 to-secondary-light/10',
+    subSkills: [
+      { name: 'REST', proficiency: 'Advanced' },
+      { name: 'SOAP', proficiency: 'Basic' },
+      { name: 'GraphQL', proficiency: 'Basic' },
+      { name: 'WebSockets', proficiency: 'Basic' },
+      { name: 'Message Brokers', proficiency: 'Basic' },
+    ],
+  },
+  {
+    name: 'DevOps & Infrastructure',
+    category: 'Backend',
+    color: 'bg-gradient-to-br from-secondary-light/20 to-secondary-light/10',
+    subSkills: [
+      { name: 'Docker', proficiency: 'Intermediate' },
+      { name: 'Kubernetes', proficiency: 'Basic' },
+      { name: 'CI/CD', proficiency: 'Basic' },
+    ],
+  },
+  {
+    name: 'API Management & Documentation',
+    category: 'Backend',
+    color: 'bg-gradient-to-br from-secondary-light/20 to-secondary-light/10',
+    subSkills: [{ name: 'API Documentation', proficiency: 'Intermediate' }],
   },
 ];
 
@@ -150,6 +221,41 @@ const DATABASE: Skill[] = [
       { name: 'Full-Text Search', proficiency: 'Basic' },
     ],
   },
+  {
+    name: 'SQLite',
+    category: 'Database',
+    color: 'bg-gradient-to-br from-accent-light/20 to-accent-light/10',
+    subSkills: [
+      { name: 'Table Design', proficiency: 'Intermediate' },
+      { name: 'Queries', proficiency: 'Intermediate' },
+      { name: 'Transactions', proficiency: 'Basic' },
+      { name: 'Indexes', proficiency: 'Basic' },
+    ],
+  },
+  {
+    name: 'Redis',
+    category: 'Database',
+    color: 'bg-gradient-to-br from-accent-light/20 to-accent-light/10',
+    subSkills: [
+      { name: 'Data Structures', proficiency: 'Intermediate' },
+      { name: 'Caching', proficiency: 'Intermediate' },
+      { name: 'Pub/Sub', proficiency: 'Basic' },
+      { name: 'Transactions', proficiency: 'Basic' },
+      { name: 'Persistence', proficiency: 'Basic' },
+    ],
+  },
+  // {
+  //   name: 'Elasticsearch',
+  //   category: 'Database',
+  //   color: 'bg-gradient-to-br from-accent-light/20 to-accent-light/10',
+  //   subSkills: [
+  //     { name: 'Indexing', proficiency: 'Intermediate' },
+  //     { name: 'Queries', proficiency: 'Intermediate' },
+  //     { name: 'Aggregations', proficiency: 'Basic' },
+  //     { name: 'Full-Text Search', proficiency: 'Basic' },
+  //     { name: 'Cluster Management', proficiency: 'Basic' },
+  //   ],
+  // }
 ];
 
 export const SKILLS: Skill[] = [...FRONT_END, ...BACK_END, ...DATABASE];
