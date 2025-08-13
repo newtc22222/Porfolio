@@ -23,4 +23,12 @@ export const FUN_FACTS = [
     icon: '🎵',
     text: 'Coding playlist: House beats + Keyboard clicks',
   },
+  {
+    icon: '🌍',
+    text: 'World traveler in dreams, explorer in code',
+  },
+  {
+    icon: '📚',
+    text: 'Bookworm with a penchant for tech thrillers',
+  },
 ];
