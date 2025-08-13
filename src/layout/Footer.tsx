@@ -2,7 +2,7 @@ import { FULLNAME, SOCIAL_LINKS } from '../constants/self-information';
 
 export const Footer = () => (
   <footer className="bg-background-light dark:bg-background-dark border-t border-gray-200 dark:border-gray-800">
-    <div className="container-fluid flex flex-col items-center justify-center py-4">
+    <div className="container mx-auto flex flex-col items-center justify-center py-4">
       <div className="mb-4 flex items-center space-x-6">
         <a
           href={SOCIAL_LINKS.LINKEDIN}
