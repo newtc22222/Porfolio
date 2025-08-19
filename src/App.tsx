@@ -8,6 +8,7 @@ import {
   About,
   Achievements,
   Experiences,
+  Education,
 } from './pages';
 import { lazy, Suspense } from 'react';
 
@@ -25,6 +26,7 @@ function App() {
       <Skills />
       <Blog />
       <Experiences />
+      <Education />
       <About />
       <Achievements />
       <Suspense fallback={<div>Loading...</div>}>
