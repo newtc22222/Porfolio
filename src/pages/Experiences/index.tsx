@@ -29,11 +29,11 @@ export const Experiences = () => {
                   <span className="text-2xl font-extrabold text-blue-700 dark:text-blue-400">
                     {exp.company}
                   </span>
-                  {exp.department && (
+                  {/* {exp.department && (
                     <span className="text-lg font-semibold text-gray-600 dark:text-gray-300">
                       {' | ' + exp.department}
                     </span>
-                  )}
+                  )} */}
                 </h3>
                 <small className="text-sm text-gray-500 dark:text-gray-400">
                   {exp.location} | Team size: {exp.teamSize}
