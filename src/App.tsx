@@ -1,6 +1,14 @@
 import { Navigation } from './layout/Navigation';
 import { Footer } from './layout/Footer';
-import { Home, Projects, Skills, Blog, About, Achievements } from './pages';
+import {
+  Home,
+  Projects,
+  Skills,
+  Blog,
+  About,
+  Achievements,
+  Experiences,
+} from './pages';
 import { lazy, Suspense } from 'react';
 
 import './App.css';
@@ -16,6 +24,7 @@ function App() {
       <Projects />
       <Skills />
       <Blog />
+      <Experiences />
       <About />
       <Achievements />
       <Suspense fallback={<div>Loading...</div>}>
