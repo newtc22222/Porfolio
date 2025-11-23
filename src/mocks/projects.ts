@@ -15,6 +15,8 @@ export const PROJECTS = [
       'Chart.js',
     ],
     link: 'https://github.com/newtc22222/laptech-ui-admin',
+    // image: '/assets/projects/laptech-admin.png',
+    image: '/assets/projects/default.png',
   },
   {
     title: 'Laptech - Mobile platform',
@@ -28,6 +30,8 @@ export const PROJECTS = [
       'React Navigation',
     ],
     link: 'https://github.com/newtc22222/laptech-ui-mobile',
+    // image: '/assets/projects/laptech-mobile.png',
+    image: '/assets/projects/default.png',
   },
   {
     title: 'Laptech - REST API',
@@ -44,6 +48,8 @@ export const PROJECTS = [
       'JWT',
     ],
     link: 'https://github.com/newtc22222/laptech-rest-api-jdbc',
+    // image: '/assets/projects/laptech-api.png',
+    image: '/assets/projects/default.png',
   },
   {
     title: 'Web Notes',
@@ -59,6 +65,7 @@ export const PROJECTS = [
       'Algolia',
     ],
     link: 'https://sunflynf.github.io/web-notes/',
+    image: '/assets/projects/web-notes.png',
   },
   {
     title: 'Natours',
@@ -76,5 +83,6 @@ export const PROJECTS = [
       'Deployment',
     ],
     link: 'https://gitlab.com/fee-fight-learning-lab/nodejs/natours',
+    image: '/assets/projects/natours.png',
   },
 ];

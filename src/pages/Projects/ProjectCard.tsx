@@ -5,8 +5,19 @@ export const ProjectCard = ({
   description,
   technologies,
   link,
+  image,
 }: ProjectProps) => (
   <div className="group hover:border-primary-light dark:hover:border-primary-dark relative overflow-hidden rounded-xl border border-gray-200 bg-white transition-all duration-300 hover:shadow-xl dark:border-gray-700 dark:bg-gray-800">
+    {image && (
+      <div className="min-h-[247px] w-full overflow-hidden bg-gray-100 dark:bg-gray-900">
+        <img
+          src={image}
+          alt={`${title} screenshot`}
+          loading="lazy"
+          className="h-full w-full object-cover transition-transform duration-300"
+        />
+      </div>
+    )}
     <div className="p-6">
       <h3 className="group-hover:text-primary-light dark:group-hover:text-primary-dark mb-3 text-2xl font-semibold text-gray-800 transition-colors duration-300 dark:text-white">
         {title}
