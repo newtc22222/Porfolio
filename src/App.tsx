@@ -1,5 +1,6 @@
 import { Navigation } from './layout/Navigation';
 import { Footer } from './layout/Footer';
+import { Layout } from './layout';
 import {
   Home,
   Projects,
@@ -9,29 +10,44 @@ import {
   Achievements,
   Experiences,
   Education,
+  Contact,
 } from './pages';
-import { lazy, Suspense } from 'react';
 
 import './App.css';
-
-// Use dynamic imports for heavy components
-const Contact = lazy(() => import('./pages/Contact'));
 
 function App() {
   return (
     <>
       <Navigation />
-      <Home />
-      <Projects />
-      <Skills />
-      <Blog />
-      <Experiences />
-      <Education />
-      <About />
-      <Achievements />
-      <Suspense fallback={<div>Loading...</div>}>
-        <Contact />
-      </Suspense>
+      <main className="container mx-auto px-4">
+        <Layout>
+          <Home />
+        </Layout>
+        <Layout>
+          <Projects />
+        </Layout>
+        <Layout>
+          <Skills />
+        </Layout>
+        <Layout>
+          <Blog />
+        </Layout>
+        <Layout>
+          <Experiences />
+        </Layout>
+        <Layout>
+          <Education />
+        </Layout>
+        <Layout>
+          <About />
+        </Layout>
+        <Layout>
+          <Achievements />
+        </Layout>
+        <Layout>
+          <Contact />
+        </Layout>
+      </main>
       <Footer />
     </>
   );

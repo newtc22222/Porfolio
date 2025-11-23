@@ -1,45 +1,13 @@
-@import 'tailwindcss';
-
-@custom-variant dark (&:where([data-theme=dark], [data-theme=dark] *));
-
-@theme {
-  --color-primary: #2980b9;
-  --color-secondary: #45b7a1;
-  --color-accent: #e6b94d;
-  --color-light: #e5e5e5;
-  --color-background-light: #f0f0f0;
-  --color-background-dark: #121212;
-  --color-primary-light: #333333;
-  --color-primary-dark: #f0f0f0;
-  --color-secondary-light: #666666;
-  --color-secondary-dark: #b0b0b0;
-  --color-accent-light: #333333;
-  --color-accent-dark: #b0b0b0;
-  --font-sketch: 'Architects Daughter', cursive;
-}
-
-.nav-item {
-  @apply cursor-pointer;
-  @apply text-primary-light hover:text-secondary-light;
-  @variant dark {
-    @apply text-primary-dark hover:text-secondary-dark;
+@layer components {
+  .nav-item {
+    @apply cursor-pointer text-primary-light hover:text-secondary-light dark:text-primary-dark dark:hover:text-secondary-dark;
   }
-}
 
-.section-background {
-  @apply py-20;
-  /* @apply backdrop-blur-sm; */
-  @apply bg-gradient-to-b;
-  @apply from-background-light/90 to-background-light/70;
-  @variant dark {
-    @apply from-background-dark/90 to-background-dark/70;
+  .section-background {
+    @apply bg-gradient-to-b from-background-light/90 to-background-light/70 py-20 dark:from-background-dark/90 dark:to-background-dark/70;
   }
-}
 
-.pin-note {
-  @apply rounded-full;
-  @apply border-2 border-gray-800 dark:border-gray-200;
-  @apply bg-gradient-to-br;
-  @apply shadow-md;
-  @apply absolute;
+  .pin-note {
+    @apply absolute rounded-full border-2 border-gray-800 bg-gradient-to-br shadow-md dark:border-gray-200;
+  }
 }
