@@ -10,11 +10,11 @@ export const BlogCard = ({ post }: { post: BlogPost }) => (
       />
       <div className="pixel-overlay absolute inset-0"></div>
     </div>
-    <div className="p-6">
-      <h3 className="text-primary-light dark:text-primary-dark mb-2 text-xl font-semibold">
+    <div className="p-4 sm:p-6">
+      <h3 className="text-primary-light dark:text-primary-dark mb-2 text-lg font-semibold sm:text-xl">
         {post.title}
       </h3>
-      <p className="mb-4 text-gray-600 dark:text-gray-300">
+      <p className="mb-4 text-sm text-gray-600 dark:text-gray-300 sm:text-base">
         {post.description}
       </p>
       <a

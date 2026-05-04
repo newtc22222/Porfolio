@@ -18,7 +18,7 @@ export const Blog = () => {
 
   return (
     <Element name="#blog">
-      <section id="blog" className="relative overflow-hidden py-20">
+      <section id="blog" className="relative z-20 py-12 md:py-20">
         {/* Retro background layers */}
         <div className="retro-gradient absolute inset-0"></div>
         <div className="retro-grid absolute inset-0"></div>
@@ -30,22 +30,24 @@ export const Blog = () => {
             viewport={{ once: true }}
             transition={{ duration: 0.5 }}
           >
-            <h2 className="from-primary-light to-secondary-light dark:from-primary-dark dark:to-secondary-dark mb-4 bg-gradient-to-r bg-clip-text text-center text-4xl font-bold text-transparent">
+            <h2 className="from-primary-light to-secondary-light dark:from-primary-dark dark:to-secondary-dark mb-3 bg-gradient-to-r bg-clip-text text-center text-3xl font-bold text-transparent md:mb-4 md:text-4xl">
               Blog Posts
             </h2>
-            <p className="text-secondary-light dark:text-secondary-dark mb-10 text-center text-lg">
+            <p className="text-secondary-light dark:text-secondary-dark mb-8 text-center text-base md:mb-10 md:text-lg">
               Sharing knowledge and experiences
             </p>
           </motion.div>
 
-          <TabSwitch
-            topics={TOPICS}
-            activeTopic={activeTopic}
-            setActiveTopic={setActiveTopic}
-          />
+          <div className="relative z-50">
+            <TabSwitch
+              topics={TOPICS}
+              activeTopic={activeTopic}
+              setActiveTopic={setActiveTopic}
+            />
+          </div>
 
           <motion.div
-            className="grid grid-cols-1 gap-8 md:grid-cols-2 lg:grid-cols-3"
+            className="grid grid-cols-1 gap-6 sm:gap-8 md:grid-cols-2 lg:grid-cols-3"
             initial={{ opacity: 0, y: 20 }}
             whileInView={{ opacity: 1, y: 0 }}
             viewport={{ once: true }}
