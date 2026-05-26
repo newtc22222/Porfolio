@@ -1,6 +1,8 @@
 import { Element } from 'react-scroll';
 import { SkillNote } from './SkillNote';
 import { SKILLS } from '../../mocks/skills';
+import { SkillRadarChart } from './SkillRadarChart';
+import { SkillBar } from './SkillBar';
 
 const categories = ['Frontend', 'Backend', 'Database'];
 const categoryStyles = {
@@ -35,6 +37,15 @@ export const Skills = () => {
           <p className="mb-10 text-center text-gray-600 dark:text-gray-300">
             Here's what I've been working with
           </p>
+
+          <div className="mx-auto mb-12 grid max-w-4xl grid-cols-1 gap-8 md:grid-cols-2">
+            <div>
+              <SkillRadarChart />
+            </div>
+            <div>
+              <SkillBar />
+            </div>
+          </div>
 
           <div className="grid grid-cols-1 gap-8 md:grid-cols-3">
             {categories.map((category) => (
