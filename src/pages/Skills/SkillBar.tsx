@@ -1,4 +1,4 @@
-import { useMemo, useState } from 'react';
+import { useEffect, useMemo, useRef, useState } from 'react';
 import {
   BarChart,
   Bar,
@@ -60,6 +60,22 @@ const buildData = (category: string) => {
 
 export const SkillBar = ({ max = 8 }: { max?: number }) => {
   const [selectedCategory, setSelectedCategory] = useState('All');
+  const [isOpen, setIsOpen] = useState(false);
+  const dropdownRef = useRef<HTMLDivElement | null>(null);
+
+  useEffect(() => {
+    const handleClickOutside = (event: MouseEvent) => {
+      if (
+        dropdownRef.current &&
+        !dropdownRef.current.contains(event.target as Node)
+      ) {
+        setIsOpen(false);
+      }
+    };
+
+    document.addEventListener('mousedown', handleClickOutside);
+    return () => document.removeEventListener('mousedown', handleClickOutside);
+  }, []);
 
   const data = useMemo(
     () => buildData(selectedCategory).slice(0, max),
@@ -77,24 +93,45 @@ export const SkillBar = ({ max = 8 }: { max?: number }) => {
             Filter by category to compare strengths.
           </p>
         </div>
-        <div className="flex flex-wrap gap-2">
-          {categories.map((category) => {
-            const isActive = selectedCategory === category;
-            return (
-              <button
-                key={category}
-                type="button"
-                onClick={() => setSelectedCategory(category)}
-                className={`rounded-full px-3 py-1.5 text-sm font-medium transition ${
-                  isActive
-                    ? 'bg-[#4DA8DA] text-white shadow-sm shadow-[#4DA8DA]/20'
-                    : 'bg-gray-200 text-gray-700 hover:bg-gray-300 dark:bg-gray-700 dark:text-gray-200 dark:hover:bg-gray-600'
-                }`}
-              >
-                {category}
-              </button>
-            );
-          })}
+        <div ref={dropdownRef} className="relative w-full sm:w-auto">
+          <button
+            type="button"
+            aria-haspopup="listbox"
+            aria-expanded={isOpen}
+            onClick={() => setIsOpen((current) => !current)}
+            className="inline-flex w-full items-center justify-between rounded-full border border-gray-300 bg-white px-4 py-2 text-left text-sm text-gray-700 shadow-sm transition hover:border-gray-400 focus:border-[#4DA8DA] focus:ring-2 focus:ring-[#4DA8DA]/20 focus:outline-none dark:border-gray-600 dark:bg-gray-900 dark:text-gray-100 dark:hover:border-gray-500 dark:focus:border-[#80D8C3] dark:focus:ring-[#80D8C3]/20"
+          >
+            <span>{selectedCategory}</span>
+            <span className="ml-3 text-gray-500 dark:text-gray-300">▾</span>
+          </button>
+
+          {isOpen && (
+            <ul
+              role="listbox"
+              aria-label="Select skill category"
+              tabIndex={-1}
+              className="absolute right-0 z-20 mt-2 w-full min-w-[172px] rounded-2xl border border-gray-200 bg-white shadow-lg shadow-slate-200/40 dark:border-gray-700 dark:bg-slate-900"
+            >
+              {categories.map((category) => (
+                <li
+                  key={category}
+                  role="option"
+                  aria-selected={selectedCategory === category}
+                  onClick={() => {
+                    setSelectedCategory(category);
+                    setIsOpen(false);
+                  }}
+                  className={`cursor-pointer px-4 py-2 text-sm transition ${
+                    selectedCategory === category
+                      ? 'bg-[#4DA8DA]/10 text-[#0f172a] dark:text-white'
+                      : 'text-gray-600 hover:bg-gray-100 hover:text-gray-900 dark:text-gray-300 dark:hover:bg-gray-800 dark:hover:text-white'
+                  }`}
+                >
+                  {category}
+                </li>
+              ))}
+            </ul>
+          )}
         </div>
       </div>
 
