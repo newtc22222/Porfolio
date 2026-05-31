@@ -3,10 +3,27 @@ import { Element, Link } from 'react-scroll';
 import Particles, { initParticlesEngine } from '@tsparticles/react';
 import { loadSlim } from '@tsparticles/slim';
 
-import { FULLNAME, JOB_TITLE } from '../constants/self-information';
+import { FULLNAME, JOB_TITLE, GREETINGS } from '../constants/self-information';
 
 export const Home = () => {
   const [init, setInit] = useState(false);
+  const [greetingPrefix] = useState(() => {
+    const hour = new Date().getHours();
+    let timeGreeting = 'Good day! ☀️';
+    if (hour >= 5 && hour < 12) {
+      timeGreeting = 'Good morning! 🌅';
+    } else if (hour >= 12 && hour < 17) {
+      timeGreeting = 'Good afternoon! 🌤️';
+    } else if (hour >= 17 && hour < 22) {
+      timeGreeting = 'Good evening! 🌆';
+    } else {
+      timeGreeting = "Hope you're having a great night!  🌌";
+    }
+
+    const allGreetings = [...GREETINGS, timeGreeting];
+    const randomIndex = Math.floor(Math.random() * allGreetings.length);
+    return allGreetings[randomIndex];
+  });
 
   useEffect(() => {
     initParticlesEngine(async (engine) => {
@@ -73,10 +90,13 @@ export const Home = () => {
           />
         )}
         <div className="z-10 text-center">
-          <h1 className="text-primary-light dark:text-primary-dark mb-4 text-5xl font-bold">
-            Hi there! I'm {FULLNAME}
+          <h1 className="text-primary-light dark:text-primary-dark my-2 text-3xl font-bold">
+            {greetingPrefix}
           </h1>
-          <p className="text-secondary-light dark:text-secondary-dark mb-6 text-2xl">
+          <p className="text-primary-light dark:text-primary-dark my-4 text-5xl font-bold">
+            I&apos;m {FULLNAME}
+          </p>
+          <p className="text-secondary-light dark:text-secondary-dark my-8 text-2xl">
             {JOB_TITLE}
           </p>
           <Link
