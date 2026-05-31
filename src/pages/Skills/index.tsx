@@ -4,7 +4,7 @@ import { SKILLS } from '../../mocks/skills';
 import { SkillRadarChart } from './SkillRadarChart';
 import { SkillBar } from './SkillBar';
 
-const categories = ['Frontend', 'Backend', 'Database'];
+const categories = ['Frontend', 'Backend', 'Database', 'AI'];
 const categoryStyles = {
   Frontend: {
     border: 'border-[#4DA8DA]/20 dark:border-[#4DA8DA]/20',
@@ -23,6 +23,12 @@ const categoryStyles = {
     background:
       'from-[#6C63FF]/5 to-[#4DA8DA]/5 dark:from-[#6C63FF]/10 dark:to-[#4DA8DA]/10',
     icon: '🗄️',
+  },
+  AI: {
+    border: 'border-[#ff7900]/20 dark:border-[#ff7900]/20',
+    background:
+      'from-[#ff7900]/5 to-[#ff7900]/5 dark:from-[#ff7900]/10 dark:to-[#ff7900]/10',
+    icon: '🤖',
   },
 };
 
@@ -47,7 +53,7 @@ export const Skills = () => {
             </div>
           </div>
 
-          <div className="grid grid-cols-1 gap-8 md:grid-cols-3">
+          <div className="grid grid-cols-1 gap-8 md:grid-cols-4">
             {categories.map((category) => (
               <div
                 key={category}

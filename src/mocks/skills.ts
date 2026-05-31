@@ -34,9 +34,9 @@ const FRONT_END: Skill[] = [
     color: 'bg-gradient-to-br from-primary-light/10 to-primary-light/5',
     subSkills: [
       { name: 'Bootstrap', proficiency: 'Advanced' },
-      { name: 'Tailwind CSS', proficiency: 'Intermediate' },
+      { name: 'Tailwind CSS', proficiency: 'Advanced' },
       { name: 'Bulma', proficiency: 'Basic' },
-      { name: 'Semantic UI', proficiency: 'Basic' },
+      // { name: 'Semantic UI', proficiency: 'Basic' },
       // { name: 'Foundation', proficiency: 'Basic' },
       // { name: 'Materialize CSS', proficiency: 'Basic' },
       // { name: 'UIKit', proficiency: 'Basic' },
@@ -48,11 +48,11 @@ const FRONT_END: Skill[] = [
     color: 'bg-gradient-to-br from-primary-light/20 to-transparent',
     subSkills: [
       { name: 'Material UI', proficiency: 'Intermediate' },
-      { name: 'Ant Design', proficiency: 'Basic' },
-      { name: 'Shadcn UI', proficiency: 'Basic' },
+      { name: 'Ant Design', proficiency: 'Intermediate' },
+      { name: 'Shadcn UI', proficiency: 'Intermediate' },
+      { name: 'Styled Components', proficiency: 'Intermediate' },
       // { name: 'Headless UI', proficiency: 'Basic' },
       // { name: 'Radix UI', proficiency: 'Basic' },
-      { name: 'Styled Components', proficiency: 'Basic' },
     ],
   },
   {
@@ -68,9 +68,9 @@ const FRONT_END: Skill[] = [
     subSkills: [
       { name: 'Docusaurus', proficiency: 'Intermediate' },
       { name: 'Next.js', proficiency: 'Intermediate' },
-      { name: 'Vue.js', proficiency: 'Basic' },
-      { name: 'Nuxt.js', proficiency: 'Basic' },
-      { name: 'Angular', proficiency: 'Basic' },
+      { name: 'Vue.js', proficiency: 'Intermediate' },
+      // { name: 'Nuxt.js', proficiency: 'Basic' },
+      // { name: 'Angular', proficiency: 'Basic' },
       // { name: 'Astro', proficiency: 'Basic' },
       // { name: 'Svelte', proficiency: 'Basic' },
       // { name: 'Redwood', proficiency: 'Basic' },
@@ -85,7 +85,7 @@ const BACK_END: Skill[] = [
     color: 'bg-gradient-to-br from-secondary-light/20 to-secondary-light/10',
     subSkills: [
       { name: 'Spring Boot', proficiency: 'Advanced' },
-      { name: 'Spring REST', proficiency: 'Intermediate' },
+      { name: 'Spring REST', proficiency: 'Advanced' },
       { name: 'Spring MVC', proficiency: 'Intermediate' },
       { name: 'Spring Test', proficiency: 'Intermediate' },
       { name: 'Spring Boot Actuator', proficiency: 'Intermediate' },
@@ -97,7 +97,7 @@ const BACK_END: Skill[] = [
       // { name: 'Spring Cloud', proficiency: 'Basic' },
       // { name: 'Spring Batch', proficiency: 'Basic' },
       // { name: 'Spring WebFlux', proficiency: 'Basic' },
-      // { name: 'Spring AI', proficiency: 'Basic' },
+      { name: 'Spring AI', proficiency: 'Basic' },
     ],
   },
   {
@@ -106,11 +106,11 @@ const BACK_END: Skill[] = [
     color: 'bg-gradient-to-br from-secondary-light/20 to-secondary-light/10',
     subSkills: [
       { name: 'JavaScript', proficiency: 'Advanced' },
-      { name: 'TypeScript', proficiency: 'Intermediate' },
+      { name: 'TypeScript', proficiency: 'Advanced' },
       { name: 'Java', proficiency: 'Intermediate' },
       { name: 'Python', proficiency: 'Basic' },
       { name: 'Go', proficiency: 'Basic' },
-      { name: 'PHP', proficiency: 'Basic' },
+      // { name: 'PHP', proficiency: 'Basic' },
     ],
   },
   {
@@ -118,11 +118,11 @@ const BACK_END: Skill[] = [
     category: 'Backend',
     color: 'bg-gradient-to-br from-secondary-light/20 to-secondary-light/10',
     subSkills: [
-      { name: 'Node.js', proficiency: 'Intermediate' },
+      { name: 'Node.js', proficiency: 'Advanced' },
       { name: 'Deno', proficiency: 'Basic' },
       { name: 'Bun', proficiency: 'Basic' },
-      { name: 'Maven', proficiency: 'Intermediate' },
-      { name: 'Gradle', proficiency: 'Basic' },
+      { name: 'Maven', proficiency: 'Advanced' },
+      { name: 'Gradle', proficiency: 'Intermediate' },
     ],
   },
   {
@@ -130,13 +130,13 @@ const BACK_END: Skill[] = [
     category: 'Backend',
     color: 'bg-gradient-to-br from-secondary-light/20 to-secondary-light/10',
     subSkills: [
-      { name: 'Express.js', proficiency: 'Intermediate' },
+      { name: 'Express.js', proficiency: 'Advanced' },
       { name: 'Fastify', proficiency: 'Basic' },
       { name: 'NestJS', proficiency: 'Intermediate' },
-      { name: 'Flask', proficiency: 'Basic' },
-      { name: 'Django', proficiency: 'Basic' },
+      // { name: 'Flask', proficiency: 'Basic' },
+      // { name: 'Django', proficiency: 'Basic' },
       { name: 'FastAPI', proficiency: 'Basic' },
-      { name: 'Laravel', proficiency: 'Basic' },
+      // { name: 'Laravel', proficiency: 'Basic' },
     ],
   },
   {
@@ -145,8 +145,8 @@ const BACK_END: Skill[] = [
     color: 'bg-gradient-to-br from-secondary-light/20 to-secondary-light/10',
     subSkills: [
       { name: 'Monoliths', proficiency: 'Advanced' },
-      { name: 'Serverless', proficiency: 'Basic' },
-      { name: 'Microservices', proficiency: 'Basic' },
+      { name: 'Microservices', proficiency: 'Intermediate' },
+      { name: 'Serverless', proficiency: 'Intermediate' },
     ],
   },
   {
@@ -155,10 +155,13 @@ const BACK_END: Skill[] = [
     color: 'bg-gradient-to-br from-secondary-light/20 to-secondary-light/10',
     subSkills: [
       { name: 'REST', proficiency: 'Advanced' },
-      { name: 'SOAP', proficiency: 'Basic' },
-      { name: 'GraphQL', proficiency: 'Basic' },
-      { name: 'WebSockets', proficiency: 'Basic' },
-      { name: 'Message Brokers', proficiency: 'Basic' },
+      // { name: 'SOAP', proficiency: 'Intermediate' },
+      { name: 'GraphQL', proficiency: 'Intermediate' },
+      { name: 'WebSockets', proficiency: 'Intermediate' },
+      // { name: 'gRPC', proficiency: 'Basic' },
+      { name: 'RabbitMQ', proficiency: 'Intermediate' },
+      { name: 'Kafka', proficiency: 'Basic' },
+      // { name: 'Message Brokers', proficiency: 'Intermediate' },
     ],
   },
   {
@@ -168,29 +171,29 @@ const BACK_END: Skill[] = [
     subSkills: [
       { name: 'Docker', proficiency: 'Intermediate' },
       { name: 'Kubernetes', proficiency: 'Basic' },
-      { name: 'CI/CD', proficiency: 'Basic' },
+      { name: 'CI/CD', proficiency: 'Intermediate' },
     ],
   },
   {
     name: 'API Management & Documentation',
     category: 'Backend',
     color: 'bg-gradient-to-br from-secondary-light/20 to-secondary-light/10',
-    subSkills: [{ name: 'API Documentation', proficiency: 'Intermediate' }],
+    subSkills: [{ name: 'API Documentation', proficiency: 'Advanced' }],
   },
 ];
 
 const DATABASE: Skill[] = [
   {
-    name: 'MySQL',
+    name: 'MySQL / MariaDB',
     category: 'Database',
     color: 'bg-gradient-to-br from-accent-light/20 to-accent-light/10',
     subSkills: [
-      { name: 'Table Design', proficiency: 'Intermediate' },
-      { name: 'Stored Procedures', proficiency: 'Intermediate' },
-      { name: 'Triggers', proficiency: 'Intermediate' },
-      { name: 'Views', proficiency: 'Intermediate' },
-      { name: 'Transactions', proficiency: 'Intermediate' },
-      { name: 'Indexes', proficiency: 'Intermediate' },
+      { name: 'Table Design', proficiency: 'Advanced' },
+      { name: 'Stored Procedures', proficiency: 'Advanced' },
+      { name: 'Triggers', proficiency: 'Advanced' },
+      { name: 'Views', proficiency: 'Advanced' },
+      { name: 'Transactions', proficiency: 'Advanced' },
+      { name: 'Indexes', proficiency: 'Advanced' },
     ],
   },
   {
@@ -228,8 +231,8 @@ const DATABASE: Skill[] = [
     subSkills: [
       { name: 'Table Design', proficiency: 'Intermediate' },
       { name: 'Queries', proficiency: 'Intermediate' },
-      { name: 'Transactions', proficiency: 'Basic' },
-      { name: 'Indexes', proficiency: 'Basic' },
+      { name: 'Transactions', proficiency: 'Intermediate' },
+      { name: 'Indexes', proficiency: 'Intermediate' },
     ],
   },
   {
@@ -239,7 +242,7 @@ const DATABASE: Skill[] = [
     subSkills: [
       { name: 'Data Structures', proficiency: 'Intermediate' },
       { name: 'Caching', proficiency: 'Intermediate' },
-      { name: 'Pub/Sub', proficiency: 'Basic' },
+      { name: 'Pub/Sub', proficiency: 'Intermediate' },
       { name: 'Transactions', proficiency: 'Basic' },
       { name: 'Persistence', proficiency: 'Basic' },
     ],
@@ -258,4 +261,60 @@ const DATABASE: Skill[] = [
   // }
 ];
 
-export const SKILLS: Skill[] = [...FRONT_END, ...BACK_END, ...DATABASE];
+const AI_LLM: Skill[] = [
+  {
+    name: 'Large Language Models',
+    category: 'AI',
+    color: 'bg-gradient-to-br from-purple-500/20 to-purple-500/10',
+    subSkills: [
+      { name: 'Gemini', proficiency: 'Intermediate' },
+      { name: 'ChatGPT', proficiency: 'Intermediate' },
+      { name: 'Copilot', proficiency: 'Intermediate' },
+      { name: 'Claude', proficiency: 'Intermediate' },
+      { name: 'Grok', proficiency: 'Basic' },
+    ],
+  },
+  {
+    name: 'AI Practicing Area',
+    category: 'AI',
+    color: 'bg-gradient-to-br from-purple-500/20 to-purple-500/10',
+    subSkills: [
+      { name: 'Prompt Engineering', proficiency: 'Advanced' },
+      { name: 'Reasoning', proficiency: 'Intermediate' },
+      { name: 'Code Generation', proficiency: 'Intermediate' },
+      { name: 'Code Review', proficiency: 'Intermediate' },
+      { name: 'Code Documentation', proficiency: 'Intermediate' },
+      { name: 'Code Testing', proficiency: 'Intermediate' },
+    ],
+  },
+  {
+    name: 'AI Tools',
+    category: 'AI',
+    color: 'bg-gradient-to-br from-purple-500/20 to-purple-500/10',
+    subSkills: [
+      { name: 'Codex', proficiency: 'Basic' },
+      { name: 'Claude Code', proficiency: 'Intermediate' },
+      { name: 'Gemini Code', proficiency: 'Intermediate' },
+      { name: 'NotebookLM', proficiency: 'Intermediate' },
+    ],
+  },
+  {
+    name: 'Agentic AI & Systems',
+    category: 'AI',
+    color: 'bg-gradient-to-br from-purple-500/20 to-purple-500/10',
+    subSkills: [
+      { name: 'Agentic AI', proficiency: 'Basic' },
+      { name: 'MCP Server', proficiency: 'Basic' },
+      { name: 'AI Generation', proficiency: 'Intermediate' },
+      { name: 'SKILLs / Tool Use', proficiency: 'Intermediate' },
+      { name: 'Assistant Development', proficiency: 'Intermediate' },
+    ],
+  },
+];
+
+export const SKILLS: Skill[] = [
+  ...FRONT_END,
+  ...BACK_END,
+  ...DATABASE,
+  ...AI_LLM,
+];
