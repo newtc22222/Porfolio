@@ -1,9 +1,31 @@
+const WORD_MAPPINGS: { [key: string]: string } = {
+  AI: 'AI',
+  LANGCHAIN: 'LangChain',
+  DEVOPS: 'DevOps',
+  MVC: 'MVC',
+  IDE: 'IDE',
+  MICROSERVICES: 'Microservices',
+};
+
 const splitByUnderscoreAndCapitalizeFirstLetter = (str: string) => {
   return str
     .split('_')
-    .map((word) => word.charAt(0).toUpperCase() + word.slice(1).toLowerCase())
+    .map((word) => {
+      // Extract any leading/trailing non-alphanumeric chars (like parentheses)
+      const match = word.match(/^([^a-zA-Z]*)([a-zA-Z]+)([^a-zA-Z]*)$/);
+      if (!match) return word;
+      const [, leading, core, trailing] = match;
+      const upperCore = core.toUpperCase();
+
+      let formattedCore = WORD_MAPPINGS[upperCore];
+      if (!formattedCore) {
+        formattedCore = core.charAt(0).toUpperCase() + core.slice(1).toLowerCase();
+      }
+      return `${leading}${formattedCore}${trailing}`;
+    })
     .join(' ');
 };
+
 
 export const TechStackGroups = ({
   techStack,
