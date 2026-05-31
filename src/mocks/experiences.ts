@@ -1,11 +1,32 @@
 export const EXPERIENCES = [
   {
+    company: 'TMA Solutions',
+    location: 'Ho Chi Minh City, Vietnam',
+    position: 'Software Engineering',
+    teamSize: 6,
+    period: 'Dec 2025 - Present',
+    description: `Focusing on research and development of AI-driven solutions using Large Language Models (LLMs).
+Deep diving into Gemini, ChatGPT, and Claude to build intelligent assistants.
+Exploring Agentic AI, MCP (Model Context Protocol) servers, and AI generation to enhance assistant capabilities and specialized skills.`,
+    techStack: {
+      AI_CHATBOT: ['Gemini', 'ChatGPT', 'Claude'],
+      AI_SYSTEM: ['MCP Server', 'Skills', 'Assistant Development'],
+      TOOLS: ['Codex', 'Claude CLI/Claude Code', 'Gemini CLI/Antigravity'],
+      RESEARCH: [
+        'LLM Deep Dive',
+        'AI Strategy',
+        'System Integration',
+        'Prompt Engineering',
+      ],
+    },
+  },
+  {
     company: 'Freelancer',
     location: 'Home',
     position: 'Fullstack Developer',
     // department: '',
     teamSize: 1,
-    period: 'Apr 2025 - Present',
+    period: 'Apr 2025 - Dec 2025',
     description: `Developing various web applications, focusing on both frontend and backend technologies.
           Engaging in full project lifecycle from requirements gathering to deployment.`,
     techStack: {
@@ -61,7 +82,7 @@ export const EXPERIENCES = [
         'AWS Services (review)',
         'Google Cloud (review)',
       ],
-      'MICROSERVIES_(REVIEWS)': [
+      'MICROSERVICES_(REVIEWS)': [
         'Docker Swarm',
         'Kubernetes',
         'Helm',
@@ -81,7 +102,7 @@ export const EXPERIENCES = [
         'Drizzle ORM (review)',
         'EKS Stack (review)',
       ],
-      'MINDSET_(KEEP GOING)': [
+      'MINDSET_(KEEP_GOING)': [
         'Self-motivation',
         'Continuous learning',
         'Adaptability',
