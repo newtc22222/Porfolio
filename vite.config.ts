@@ -10,11 +10,13 @@ export default defineConfig({
     chunkSizeWarningLimit: 1000, // Increase size limit to 1000kb
     rollupOptions: {
       output: {
-        manualChunks: {
-          vendor: ['react', 'react-dom', 'react-scroll', 'framer-motion'],
-          // Split large dependencies into separate chunks
-          emailjs: ['@emailjs/browser'],
-          particles: ['@tsparticles/react'],
+        codeSplitting: {
+          groups: [
+            { name: 'vendor', test: /node_modules[\\/](react|react-dom|react-scroll|framer-motion)[\\/]/ },
+            // Split large dependencies into separate chunks
+            { name: 'emailjs', test: /node_modules[\\/]@emailjs[\\/]/ },
+            { name: 'particles', test: /node_modules[\\/]@tsparticles[\\/]/ },
+          ],
         },
       },
     },
