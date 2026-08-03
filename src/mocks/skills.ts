@@ -68,7 +68,7 @@ const FRONT_END: Skill[] = [
     subSkills: [
       { name: 'Docusaurus', proficiency: 'Intermediate' },
       { name: 'Next.js', proficiency: 'Intermediate' },
-      { name: 'Vue.js', proficiency: 'Intermediate' },
+      { name: 'Vue.js', proficiency: 'Advanced' },
       // { name: 'Nuxt.js', proficiency: 'Basic' },
       // { name: 'Angular', proficiency: 'Basic' },
       // { name: 'Astro', proficiency: 'Basic' },
@@ -292,6 +292,7 @@ const AI_LLM: Skill[] = [
     category: 'AI',
     color: 'bg-gradient-to-br from-purple-500/20 to-purple-500/10',
     subSkills: [
+      { name: 'Antigravity', proficiency: 'Advanced' },
       { name: 'Codex', proficiency: 'Basic' },
       { name: 'Claude Code', proficiency: 'Intermediate' },
       { name: 'Gemini Code', proficiency: 'Intermediate' },
