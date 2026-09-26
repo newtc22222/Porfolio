@@ -1,5 +1,5 @@
 export const FULLNAME = 'Phi Vo';
-export const JOB_TITLE = 'Software Engineering';
+export const JOB_TITLE = 'Software Engineer';
 export const EMAIL = 'phi.vo.tech@gmail.com';
 
 export const SOCIAL_LINKS = {
