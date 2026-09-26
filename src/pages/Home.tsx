@@ -9,6 +9,17 @@ const particlesInit = async (engine: Engine): Promise<void> => {
   await loadSlim(engine);
 };
 
+// tsparticles needs raw colour strings, so read the brand tokens defined in
+// the Tailwind @theme block. The hex values are only a fallback.
+const readCssColor = (name: string, fallback: string) =>
+  getComputedStyle(document.documentElement).getPropertyValue(name).trim() ||
+  fallback;
+
+const prefersReducedMotion = () =>
+  window.matchMedia('(prefers-reduced-motion: reduce)').matches;
+
+const isSmallScreen = () => window.matchMedia('(max-width: 767px)').matches;
+
 export const Home = () => {
   const [greetingPrefix] = useState(() => {
     const hour = new Date().getHours();
@@ -28,8 +39,12 @@ export const Home = () => {
     return allGreetings[randomIndex];
   });
 
-  const options: ISourceOptions = useMemo(
-    () => ({
+  const [reducedMotion] = useState(prefersReducedMotion);
+
+  const options: ISourceOptions = useMemo(() => {
+    const brand = readCssColor('--color-brand', '#4DA8DA');
+    const brand2 = readCssColor('--color-brand-2', '#80D8C3');
+    return {
       fullScreen: {
         enable: false,
       },
@@ -40,17 +55,17 @@ export const Home = () => {
       },
       particles: {
         number: {
-          value: 200,
+          value: isSmallScreen() ? 60 : 200,
           density: {
             enable: true,
           },
         },
         color: {
-          value: ['#4DA8DA', '#80D8C3'], // primary and secondary colors
+          value: [brand, brand2],
         },
         links: {
           enable: true,
-          color: '#80D8C3',
+          color: brand2,
           opacity: 0.2,
         },
         move: {
@@ -69,9 +84,8 @@ export const Home = () => {
           },
         },
       },
-    }),
-    []
-  );
+    };
+  }, []);
 
   return (
     <Element name="#home">
@@ -80,11 +94,13 @@ export const Home = () => {
         className="bg-background-light dark:bg-background-dark relative mt-[64px] flex min-h-screen items-center justify-center overflow-hidden"
       >
         <ParticlesProvider init={particlesInit}>
-          <Particles
-            id="tsparticles"
-            options={options}
-            className="absolute inset-0 h-full w-full"
-          />
+          {!reducedMotion && (
+            <Particles
+              id="tsparticles"
+              options={options}
+              className="absolute inset-0 h-full w-full"
+            />
+          )}
           <div className="z-10 text-center">
             <h1 className="text-primary-light dark:text-primary-dark my-2 text-3xl font-bold">
               {greetingPrefix}
