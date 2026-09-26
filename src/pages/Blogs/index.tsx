@@ -45,6 +45,16 @@ export const Blog = () => {
             />
           </div>
 
+          {filteredPosts.length === 0 && (
+            <p
+              role="status"
+              className="text-secondary-light dark:text-secondary-dark mx-auto max-w-md rounded-lg border-2 border-dashed border-gray-300 px-6 py-10 text-center dark:border-gray-700"
+            >
+              No {activeTopic} posts yet. Stay tuned, or check out another topic
+              in the meantime!
+            </p>
+          )}
+
           <motion.div
             className="grid grid-cols-1 gap-6 sm:gap-8 md:grid-cols-2 lg:grid-cols-3"
             initial={{ opacity: 0, y: 20 }}

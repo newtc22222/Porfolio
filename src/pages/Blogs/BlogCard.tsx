@@ -1,20 +1,19 @@
 import type { BlogPost } from './BlogType';
 
 export const BlogCard = ({ post }: { post: BlogPost }) => (
-  <article className="pixel-border transform overflow-hidden rounded-lg bg-white transition-all duration-300 hover:scale-[1.02] dark:bg-gray-800">
+  <article className="transform overflow-hidden rounded-lg bg-white transition-all duration-300 hover:scale-[1.02] dark:bg-gray-800">
     <div className="relative">
       <img
         src={post.thumbnail}
         alt={post.title}
         className="h-48 w-full object-cover"
       />
-      <div className="pixel-overlay absolute inset-0"></div>
     </div>
     <div className="p-4 sm:p-6">
       <h3 className="text-primary-light dark:text-primary-dark mb-2 text-lg font-semibold sm:text-xl">
         {post.title}
       </h3>
-      <p className="mb-4 text-sm text-gray-600 dark:text-gray-300 sm:text-base">
+      <p className="mb-4 text-sm text-gray-600 sm:text-base dark:text-gray-300">
         {post.description}
       </p>
       <a
