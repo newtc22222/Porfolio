@@ -1,8 +1,9 @@
-import { type InputHTMLAttributes } from 'react';
+import { type InputHTMLAttributes, useId } from 'react';
 import { useFormContext, Controller } from 'react-hook-form';
 
-interface InputProps
-  extends InputHTMLAttributes<HTMLInputElement | HTMLTextAreaElement> {
+interface InputProps extends InputHTMLAttributes<
+  HTMLInputElement | HTMLTextAreaElement
+> {
   label: string;
   name: string;
   multiline?: boolean;
@@ -15,12 +16,23 @@ export const Input = ({
   multiline = false,
   rows = 5,
   className = '',
+  id,
   ...props
 }: InputProps) => {
   const {
     formState: { errors },
   } = useFormContext();
   const error = errors[name];
+
+  const generatedId = useId();
+  const inputId = id ?? `${generatedId}-${name}`;
+  const errorId = `${inputId}-error`;
+
+  const a11yProps = {
+    id: inputId,
+    'aria-invalid': error ? true : undefined,
+    'aria-describedby': error ? errorId : undefined,
+  };
 
   const inputStyles = `w-full rounded-md border px-3 py-2 transition-all ${
     error
@@ -30,7 +42,10 @@ export const Input = ({
 
   return (
     <div className="space-y-2">
-      <label className="text-sm font-medium text-gray-700 dark:text-gray-300">
+      <label
+        htmlFor={inputId}
+        className="text-sm font-medium text-gray-700 dark:text-gray-300"
+      >
         {label}
       </label>
       <Controller
@@ -40,16 +55,24 @@ export const Input = ({
             <textarea
               {...field}
               {...props}
+              {...a11yProps}
               rows={rows}
               className={`${inputStyles} resize-none`}
             />
           ) : (
-            <input {...field} {...props} className={inputStyles} />
+            <input
+              {...field}
+              {...props}
+              {...a11yProps}
+              className={inputStyles}
+            />
           )
         }
       />
       {error && (
-        <p className="mt-1 text-sm text-red-500">{error.message as string}</p>
+        <p id={errorId} role="alert" className="mt-1 text-sm text-red-500">
+          {error.message as string}
+        </p>
       )}
     </div>
   );

@@ -1,4 +1,4 @@
-import { useState } from 'react';
+import { useEffect, useRef, useState } from 'react';
 import { Element } from 'react-scroll';
 import { motion } from 'framer-motion';
 import { useForm, FormProvider } from 'react-hook-form';
@@ -24,15 +24,27 @@ const schema = yup
 
 type FormData = yup.InferType<typeof schema>;
 
+const DEFAULT_VALUES: FormData = { name: '', email: '', message: '' };
+
+const STATUS_TIMEOUT_MS = 5000;
+
 const Contact = () => {
   const [isSubmitting, setIsSubmitting] = useState(false);
   const [submitStatus, setSubmitStatus] = useState<'success' | 'error' | null>(
     null
   );
+  const statusTimerRef = useRef<ReturnType<typeof setTimeout> | null>(null);
 
   const methods = useForm<FormData>({
     resolver: yupResolver(schema),
+    defaultValues: DEFAULT_VALUES,
   });
+
+  useEffect(() => {
+    return () => {
+      if (statusTimerRef.current) clearTimeout(statusTimerRef.current);
+    };
+  }, []);
 
   const onSubmit = async (data: FormData) => {
     setIsSubmitting(true);
@@ -49,13 +61,17 @@ const Contact = () => {
         EMAILJS_CONFIG.PUBLIC_KEY
       );
       setSubmitStatus('success');
-      methods.reset({ name: '', email: '', message: '' });
+      methods.reset(DEFAULT_VALUES);
     } catch (error) {
       setSubmitStatus('error');
       console.error('Error sending email:', error);
     } finally {
       setIsSubmitting(false);
-      setTimeout(() => setSubmitStatus(null), 5000);
+      if (statusTimerRef.current) clearTimeout(statusTimerRef.current);
+      statusTimerRef.current = setTimeout(() => {
+        setSubmitStatus(null);
+        statusTimerRef.current = null;
+      }, STATUS_TIMEOUT_MS);
     }
   };
 
@@ -124,9 +140,7 @@ const Contact = () => {
                   <button
                     type="button"
                     disabled={isSubmitting}
-                    onClick={() =>
-                      methods.reset({ name: '', email: '', message: '' })
-                    }
+                    onClick={() => methods.reset(DEFAULT_VALUES)}
                     className="w-full rounded-md border border-gray-300 bg-gray-100 px-3 py-2 font-medium text-gray-600 transition-all duration-200 hover:cursor-pointer hover:bg-gray-200 focus:ring-2 focus:ring-gray-400/20 focus:outline-none disabled:cursor-not-allowed disabled:opacity-50 dark:border-gray-600 dark:bg-gray-700 dark:text-gray-300 dark:hover:bg-gray-600 dark:focus:ring-gray-500/20"
                   >
                     Reset Form
