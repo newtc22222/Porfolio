@@ -10,22 +10,11 @@ import {
 } from 'recharts';
 import type { TooltipContentProps } from 'recharts';
 import { SKILLS } from '../../mocks/skills';
-
-const proficiencyToNumber = (p: string) => {
-  switch (p) {
-    case 'Advanced':
-      return 95;
-    case 'Intermediate':
-      return 70;
-    case 'Basic':
-    default:
-      return 40;
-  }
-};
+import { averageProficiency } from '../../utils/proficiency';
 
 const categoryColors: Record<string, string> = {
-  Frontend: '#4DA8DA',
-  Backend: '#80D8C3',
+  Frontend: 'var(--color-brand)',
+  Backend: 'var(--color-brand-2)',
   Database: '#6C63FF',
   AI: '#ff7900',
 };
@@ -39,24 +28,11 @@ const buildData = (category: string) => {
       : SKILLS.filter((skill) => skill.category === category);
 
   return filtered
-    .map((skill) => {
-      const subs = skill.subSkills || [];
-      const avg =
-        subs.length > 0
-          ? Math.round(
-              subs.reduce(
-                (s, sub) => s + proficiencyToNumber(sub.proficiency),
-                0
-              ) / subs.length
-            )
-          : 0;
-
-      return {
-        name: skill.name,
-        value: avg,
-        category: skill.category,
-      };
-    })
+    .map((skill) => ({
+      name: skill.name,
+      value: averageProficiency(skill.subSkills),
+      category: skill.category,
+    }))
     .sort((a, b) => b.value - a.value);
 };
 
@@ -67,10 +43,7 @@ const truncateTick = (tick: string) => {
   return tick;
 };
 
-const CustomTooltip = ({
-  active,
-  payload,
-}: TooltipContentProps) => {
+const CustomTooltip = ({ active, payload }: TooltipContentProps) => {
   if (active && payload && payload.length) {
     const data = payload[0].payload;
     return (
@@ -81,7 +54,10 @@ const CustomTooltip = ({
         <div className="mt-1 flex items-center gap-2">
           <span
             className="h-2.5 w-2.5 rounded-full"
-            style={{ backgroundColor: categoryColors[data.category] || '#4DA8DA' }}
+            style={{
+              backgroundColor:
+                categoryColors[data.category] || 'var(--color-brand)',
+            }}
           />
           <span className="text-xs text-slate-500 dark:text-gray-400">
             {data.category}:
@@ -124,7 +100,7 @@ export const SkillBar = ({ max = 8 }: { max?: number }) => {
     <div className="rounded-2xl border border-slate-200 bg-white/60 p-6 shadow-xl backdrop-blur-md dark:border-slate-800 dark:bg-slate-900/60">
       <div className="mb-6 flex flex-col gap-4 sm:flex-row sm:items-center sm:justify-between">
         <div>
-          <h3 className="text-lg font-bold text-[#4DA8DA] dark:text-[#80D8C3]">
+          <h3 className="text-brand-strong dark:text-brand-2 text-lg font-bold">
             Skill Proficiency
           </h3>
           <p className="text-xs font-medium text-slate-500 dark:text-slate-400">
@@ -137,7 +113,7 @@ export const SkillBar = ({ max = 8 }: { max?: number }) => {
             aria-haspopup="listbox"
             aria-expanded={isOpen}
             onClick={() => setIsOpen((current) => !current)}
-            className="inline-flex w-full items-center justify-between rounded-full border border-slate-200 bg-white px-4 py-2 text-left text-sm font-semibold text-slate-700 shadow-sm transition hover:bg-slate-50 focus:border-[#4DA8DA] focus:ring-2 focus:ring-[#4DA8DA]/20 focus:outline-none dark:border-slate-800 dark:bg-slate-905 dark:bg-slate-950 dark:text-slate-100 dark:hover:bg-slate-900 dark:focus:border-[#80D8C3] dark:focus:ring-[#80D8C3]/20"
+            className="focus:border-brand focus:ring-brand/20 dark:focus:border-brand-2 dark:focus:ring-brand-2/20 inline-flex w-full items-center justify-between rounded-full border border-slate-200 bg-white px-4 py-2 text-left text-sm font-semibold text-slate-700 shadow-sm transition hover:bg-slate-50 focus:ring-2 focus:outline-none dark:border-slate-800 dark:bg-slate-950 dark:text-slate-100 dark:hover:bg-slate-900"
           >
             <span>{selectedCategory}</span>
             <span className="ml-3 text-slate-500 dark:text-slate-400">▾</span>
@@ -161,7 +137,7 @@ export const SkillBar = ({ max = 8 }: { max?: number }) => {
                   }}
                   className={`cursor-pointer px-4 py-2 text-sm font-medium transition ${
                     selectedCategory === category
-                      ? 'bg-[#4DA8DA]/10 text-[#4DA8DA] dark:bg-[#80D8C3]/10 dark:text-[#80D8C3]'
+                      ? 'bg-brand/10 text-brand-strong dark:bg-brand-2/10 dark:text-brand-2'
                       : 'text-slate-600 hover:bg-slate-50 hover:text-slate-900 dark:text-slate-400 dark:hover:bg-slate-900 dark:hover:text-white'
                   }`}
                 >
@@ -173,7 +149,12 @@ export const SkillBar = ({ max = 8 }: { max?: number }) => {
         </div>
       </div>
 
-      <div style={{ width: '100%', height: Math.max(Math.min(48 * data.length, 360), 200) }}>
+      <div
+        style={{
+          width: '100%',
+          height: Math.max(Math.min(48 * data.length, 360), 200),
+        }}
+      >
         <ResponsiveContainer width="100%" height="100%">
           <BarChart
             layout="vertical"
@@ -188,7 +169,10 @@ export const SkillBar = ({ max = 8 }: { max?: number }) => {
               tickLine={false}
               axisLine={false}
               tickFormatter={truncateTick}
-              tick={{ className: 'fill-slate-600 dark:fill-slate-400 text-[11px] font-semibold' }}
+              tick={{
+                className:
+                  'fill-slate-600 dark:fill-slate-400 text-[11px] font-semibold',
+              }}
             />
             <Tooltip content={CustomTooltip} />
             <Bar dataKey="value" barSize={16} radius={[8, 8, 8, 8]}>
