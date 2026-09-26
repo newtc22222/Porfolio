@@ -2,7 +2,7 @@ export const EXPERIENCES = [
   {
     company: 'TMA Solutions',
     location: 'Ho Chi Minh City, Vietnam',
-    position: 'Software Engineering',
+    position: 'Software Engineer',
     teamSize: 6,
     period: 'Dec 2025 - Present',
     description: `Focusing on research and development of AI-driven solutions using Large Language Models (LLMs).
@@ -115,7 +115,7 @@ Exploring Agentic AI, MCP (Model Context Protocol) servers, and AI generation to
     },
   },
   {
-    company: 'Company X',
+    company: 'CODE88 Company Limited',
     location: 'Ho Chi Minh City, Vietnam',
     position: 'Fresher Fullstack Developer',
     // department: '',
@@ -156,7 +156,7 @@ Exploring Agentic AI, MCP (Model Context Protocol) servers, and AI generation to
     },
   },
   {
-    company: 'Company X',
+    company: 'CODE88 Company Limited',
     location: 'Ho Chi Minh City, Vietnam',
     position: 'Java Developer Intern',
     // department: '',
