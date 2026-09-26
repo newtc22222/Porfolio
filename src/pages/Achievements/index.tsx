@@ -1,6 +1,6 @@
 import { useRef, useState, useEffect, useMemo } from 'react';
 import { Element } from 'react-scroll';
-import { motion, useInView, useReducedMotion } from 'framer-motion';
+import { motion, useReducedMotion } from 'framer-motion';
 import ReactConfetti from 'react-confetti';
 
 import { ACHIEVEMENTS } from '../../mocks/achievements';
@@ -9,8 +9,7 @@ import type { RichAchievement } from './AchievementType';
 import { DetailModal } from './DetailModal';
 
 export const Achievements = () => {
-  const sectionRef = useRef(null);
-  const isInView = useInView(sectionRef);
+  const confettiTimer = useRef<ReturnType<typeof setTimeout>>(undefined);
   const shouldReduceMotion = useReducedMotion();
   const [showConfetti, setShowConfetti] = useState(false);
   const [selected, setSelected] = useState<RichAchievement | null>(null);
@@ -22,17 +21,15 @@ export const Achievements = () => {
     return ['All', ...Array.from(cats)];
   }, []);
 
-  useEffect(() => {
-    if (isInView && !shouldReduceMotion) {
-      const shown = sessionStorage.getItem('achievementsConfettiShown');
-      if (!shown) {
-        setShowConfetti(true);
-        sessionStorage.setItem('achievementsConfettiShown', '1');
-        const timer = setTimeout(() => setShowConfetti(false), 4000);
-        return () => clearTimeout(timer);
-      }
-    }
-  }, [isInView, shouldReduceMotion]);
+  useEffect(() => () => clearTimeout(confettiTimer.current), []);
+
+  const handleViewportEnter = () => {
+    if (shouldReduceMotion) return;
+    if (sessionStorage.getItem('achievementsConfettiShown')) return;
+    sessionStorage.setItem('achievementsConfettiShown', '1');
+    setShowConfetti(true);
+    confettiTimer.current = setTimeout(() => setShowConfetti(false), 4000);
+  };
 
   const open = (a: RichAchievement) => setSelected(a);
   const close = () => setSelected(null);
@@ -43,8 +40,8 @@ export const Achievements = () => {
 
   return (
     <Element name="#achievements">
-      <section
-        ref={sectionRef}
+      <motion.section
+        onViewportEnter={handleViewportEnter}
         id="achievements"
         className="section-background relative overflow-hidden"
       >
@@ -96,7 +93,7 @@ export const Achievements = () => {
         </div>
 
         {selected && <DetailModal achievement={selected} onClose={close} />}
-      </section>
+      </motion.section>
     </Element>
   );
 };
