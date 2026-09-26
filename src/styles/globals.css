@@ -1,44 +1,28 @@
-@keyframes slideIn {
-  from {
-    transform: translateX(-100%);
-    opacity: 0;
-  }
-  to {
-    transform: translateX(0);
-    opacity: 1;
-  }
-}
-
-.tab-switch-enter {
-  animation: slideIn 0.5s ease-in-out forwards;
-}
-
-.tab-switch-exit {
-  animation: slideIn 0.5s ease-in-out reverse forwards;
-}
-
-/* Smooth tab transitions */
-.transition-transform {
-  transition-property: transform;
-  transition-timing-function: cubic-bezier(0.4, 0, 0.2, 1);
-}
-
-/* Optional: Add a subtle hover effect for inactive tabs */
-button:hover:not(.active) {
-  opacity: 0.8;
-}
-
 .retro-grid {
   background-image:
-    linear-gradient(90deg, rgba(77, 168, 218, 0.1) 1px, transparent 1px),
-    linear-gradient(rgba(77, 168, 218, 0.1) 1px, transparent 1px);
+    linear-gradient(
+      90deg,
+      color-mix(in srgb, var(--color-brand) 10%, transparent) 1px,
+      transparent 1px
+    ),
+    linear-gradient(
+      color-mix(in srgb, var(--color-brand) 10%, transparent) 1px,
+      transparent 1px
+    );
   background-size: 20px 20px;
 }
 
 [data-theme='dark'] .retro-grid {
   background-image:
-    linear-gradient(90deg, rgba(128, 216, 195, 0.3) 1px, transparent 1px),
-    linear-gradient(rgba(77, 168, 218, 0.3) 1px, transparent 1px);
+    linear-gradient(
+      90deg,
+      color-mix(in srgb, var(--color-brand-2) 30%, transparent) 1px,
+      transparent 1px
+    ),
+    linear-gradient(
+      color-mix(in srgb, var(--color-brand) 30%, transparent) 1px,
+      transparent 1px
+    );
   background-size: 20px 20px;
   animation: gridPulse 8s ease-in-out infinite;
 }
@@ -46,8 +30,8 @@ button:hover:not(.active) {
 .retro-gradient {
   background: linear-gradient(
     45deg,
-    rgba(77, 168, 218, 0.1) 0%,
-    rgba(128, 216, 195, 0.1) 100%
+    color-mix(in srgb, var(--color-brand) 10%, transparent) 0%,
+    color-mix(in srgb, var(--color-brand-2) 10%, transparent) 100%
   );
 }
 

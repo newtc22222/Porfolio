@@ -39,7 +39,7 @@ export const TabSwitch = ({
                 {isActive && (
                   <motion.div
                     layoutId="active-tab-indicator"
-                    className="from-primary-light/20 to-secondary-light/20 dark:from-primary-dark/20 dark:to-secondary-dark/20 absolute inset-0 -z-10 rounded-lg bg-gradient-to-r shadow-[0_0_15px_rgba(77,168,218,0.3)] backdrop-blur-sm dark:shadow-[0_0_15px_rgba(128,216,195,0.3)]"
+                    className="from-primary-light/20 to-secondary-light/20 dark:from-primary-dark/20 dark:to-secondary-dark/20 shadow-brand/30 dark:shadow-brand-2/30 absolute inset-0 -z-10 rounded-lg bg-gradient-to-r shadow-[0_0_15px] backdrop-blur-sm"
                     transition={{ type: 'spring', bounce: 0.2, duration: 0.6 }}
                   />
                 )}

@@ -3,8 +3,10 @@
 @custom-variant dark (&:where([data-theme=dark], [data-theme=dark] *));
 
 @theme {
-  --color-primary: #2980b9;
-  --color-secondary: #45b7a1;
+  --color-brand: #4da8da;
+  --color-brand-2: #80d8c3;
+  /* darker brand shade for text on light backgrounds (WCAG AA) */
+  --color-brand-strong: #1f6f9c;
   --color-accent: #e6b94d;
   --color-light: #e5e5e5;
   --color-background-light: #f0f0f0;
