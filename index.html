@@ -2,41 +2,70 @@
 <html lang="en">
   <head>
     <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <!--
+      Apply the saved (or OS) theme before first paint to avoid a light-theme
+      flash. Keep the storage key in sync with src/components/ThemeToggle.tsx.
+    -->
+    <script>
+      (function () {
+        var saved = null;
+        try {
+          saved = localStorage.getItem('darkMode');
+        } catch (e) {}
+        var dark =
+          saved !== null
+            ? saved === 'true'
+            : window.matchMedia('(prefers-color-scheme: dark)').matches;
+        document.documentElement.setAttribute(
+          'data-theme',
+          dark ? 'dark' : 'light'
+        );
+      })();
+    </script>
     <link rel="icon" type="image/svg+xml" href="/person-who-gargles.svg" />
+    <link rel="preconnect" href="https://fonts.googleapis.com" />
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
     <link
       href="https://fonts.googleapis.com/css2?family=Architects+Daughter&display=swap"
       rel="stylesheet"
     />
-    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
-    <title>Phi's Portfolio — Fullstack Developer</title>
+    <title>Phi Vo — Software Engineer</title>
     <meta
       name="description"
-      content="Phi's portfolio — fullstack developer specializing in React, Node.js, and scalable web applications. Browse projects, experience, and contact information."
+      content="Portfolio of Phi Vo, a software engineer specializing in React, Node.js, and scalable web applications. Browse projects, experience, and contact information."
     />
-    <link rel="canonical" href="https://your-domain.example/" />
+    <link rel="canonical" href="https://porfolio-seven-dun.vercel.app/" />
     <!-- Open Graph -->
-    <meta property="og:title" content="Phi's Portfolio — Fullstack Developer" />
+    <meta property="og:title" content="Phi Vo — Software Engineer" />
     <meta
       property="og:description"
-      content="Phi's portfolio — fullstack developer specializing in React, Node.js, and scalable web applications. Browse projects, experience, and contact information."
+      content="Portfolio of Phi Vo, a software engineer specializing in React, Node.js, and scalable web applications. Browse projects, experience, and contact information."
     />
     <meta property="og:type" content="website" />
-    <meta property="og:url" content="https://your-domain.example/" />
-    <meta property="og:image" content="/assets/og-image.png" />
+    <meta property="og:url" content="https://porfolio-seven-dun.vercel.app/" />
+    <!-- Preview image: put a 1200x630 PNG at public/assets/og-image.png -->
+    <meta
+      property="og:image"
+      content="https://porfolio-seven-dun.vercel.app/assets/og-image.png"
+    />
+    <meta property="og:image:width" content="1200" />
+    <meta property="og:image:height" content="630" />
+    <meta property="og:image:alt" content="Phi Vo — Software Engineer" />
     <!-- Twitter Card -->
     <meta name="twitter:card" content="summary_large_image" />
     <meta
-      name="twitter:title"
-      content="Phi's Portfolio — Fullstack Developer"
+      name="twitter:image"
+      content="https://porfolio-seven-dun.vercel.app/assets/og-image.png"
     />
+    <meta name="twitter:title" content="Phi Vo — Software Engineer" />
     <meta
       name="twitter:description"
-      content="Phi's portfolio — fullstack developer specializing in React, Node.js, and scalable web applications."
+      content="Portfolio of Phi Vo, a software engineer specializing in React, Node.js, and scalable web applications."
     />
-    <meta name="twitter:image" content="/assets/og-image.png" />
     <meta
       name="keywords"
-      content="Phi, portfolio, fullstack, React, Node.js, developer, projects"
+      content="Phi Vo, portfolio, software engineer, fullstack, React, Node.js, developer, projects"
     />
     <link
       rel="sitemap"
@@ -45,18 +74,23 @@
       href="/sitemap.xml"
     />
 
-    <!-- JSON-LD structured data (Person / Website) -->
+    <!-- JSON-LD structured data (Person) -->
     <script type="application/ld+json">
       {
         "@context": "https://schema.org",
         "@type": "Person",
-        "name": "Phi",
-        "url": "https://your-domain.example/",
-        "sameAs": [],
-        "jobTitle": "Fullstack Developer",
+        "name": "Phi Vo",
+        "url": "https://porfolio-seven-dun.vercel.app/",
+        "sameAs": [
+          "https://www.linkedin.com/in/phi-vo-tech/",
+          "https://github.com/newtc22222",
+          "https://gitlab.com/newtc22222",
+          "https://www.facebook.com/fee.fight"
+        ],
+        "jobTitle": "Software Engineer",
         "mainEntityOfPage": {
           "@type": "WebPage",
-          "@id": "https://your-domain.example/"
+          "@id": "https://porfolio-seven-dun.vercel.app/"
         }
       }
     </script>
