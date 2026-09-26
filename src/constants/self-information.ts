@@ -1,4 +1,10 @@
 export const FULLNAME = 'Phi Vo';
+// Used for the monogram in the header and footer.
+export const INITIALS = FULLNAME.split(/\s+/)
+  .map((word) => word[0])
+  .join('')
+  .slice(0, 2)
+  .toUpperCase();
 export const JOB_TITLE = 'Software Engineer';
 export const EMAIL = 'phi.vo.tech@gmail.com';
 

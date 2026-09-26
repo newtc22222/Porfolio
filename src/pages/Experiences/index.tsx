@@ -7,17 +7,17 @@ export const Experiences = () => {
     <Element name="#experience">
       <section
         id="experience"
-        className="relative overflow-hidden bg-white py-20 transition-colors dark:bg-gray-900"
+        className="bg-background-light relative overflow-hidden py-20 transition-colors dark:bg-gray-900"
       >
         <div className="mx-auto max-w-5xl px-4">
           <h2 className="mb-8 text-3xl font-bold text-gray-900 dark:text-white">
             Experiences
           </h2>
 
-          <ol className="relative border-s border-gray-200 dark:border-gray-700">
+          <ol className="relative border-s border-gray-400 dark:border-gray-700">
             {EXPERIENCES.map((exp, idx) => (
               <li key={idx} className="ms-4 mb-10">
-                <div className="absolute -start-1.5 mt-1.5 h-3 w-3 rounded-full border border-white bg-gray-200 dark:border-gray-900 dark:bg-gray-700"></div>
+                <div className="absolute -start-1.5 mt-1.5 h-3 w-3 rounded-full border border-gray-400 bg-gray-300 dark:border-gray-900 dark:bg-gray-700"></div>
                 <time className="text-brand-strong dark:text-brand-2 mb-2 block text-lg font-bold">
                   {exp.period}
                 </time>

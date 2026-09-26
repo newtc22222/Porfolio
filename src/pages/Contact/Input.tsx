@@ -38,7 +38,7 @@ export const Input = ({
     error
       ? 'border-red-500 focus:border-red-500'
       : 'border-gray-300 dark:border-gray-700 focus:border-primary-light dark:focus:border-primary-dark'
-  } bg-white text-gray-900 placeholder-gray-500 dark:bg-gray-900 dark:text-gray-100 dark:placeholder-gray-400 focus:outline-none ${className}`;
+  } bg-surface-light text-gray-900 placeholder-gray-500 dark:bg-gray-900 dark:text-gray-100 dark:placeholder-gray-400 focus:outline-none ${className}`;
 
   return (
     <div className="space-y-2">

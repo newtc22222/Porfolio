@@ -13,7 +13,7 @@ export const SkillNote = ({
   return (
     <div
       className={`relative mb-6 p-5 ${
-        color || 'bg-white dark:bg-gray-800'
+        color || 'bg-surface-light dark:bg-gray-800'
       } font-sketch cursor-pointer shadow-[4px_4px_0_0_rgba(0,0,0,0.1)] transition-all duration-300 before:absolute before:inset-0 before:-z-10 before:rotate-[-0.5deg] before:transform before:rounded-lg before:border-2 before:border-gray-800/80 after:absolute after:inset-0 after:-z-20 after:rotate-[1deg] after:transform after:rounded-lg after:border-2 after:border-gray-800/60 hover:scale-[1.02] dark:shadow-[4px_4px_0_0_rgba(255,255,255,0.1)] dark:before:border-gray-200/80 dark:after:border-gray-200/60`}
       onClick={toggleExpanded}
     >

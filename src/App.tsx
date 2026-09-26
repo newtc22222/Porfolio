@@ -1,5 +1,6 @@
 import { Navigation } from './layout/Navigation';
 import { Footer } from './layout/Footer';
+import { ContactBubble } from './layout/ContactBubble';
 import { Home, Projects, Blog, About, Experiences, Education } from './pages';
 import { lazy, Suspense } from 'react';
 import { Element } from 'react-scroll';
@@ -14,7 +15,6 @@ const Skills = lazy(() =>
 const Badges = lazy(() =>
   import('./pages/Badges').then((m) => ({ default: m.Badges }))
 );
-const Contact = lazy(() => import('./pages/Contact'));
 
 // Keeps the react-scroll anchor (and the section id) in the DOM while a lazy
 // section's chunk is loading, so nav links and scroll spy still work.
@@ -42,10 +42,8 @@ function App() {
           <Badges />
         </Suspense>
       )}
-      <Suspense fallback={<SectionPlaceholder id="contact" />}>
-        <Contact />
-      </Suspense>
       <Footer />
+      <ContactBubble />
     </>
   );
 }

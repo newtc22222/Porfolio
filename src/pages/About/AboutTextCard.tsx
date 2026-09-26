@@ -7,7 +7,7 @@ export const AboutTextCard = () => (
     whileInView={{ opacity: 1, x: 0 }}
     viewport={{ once: true }}
     transition={{ duration: 0.5, delay: 0.4 }}
-    className="border-primary-light/20 dark:border-primary-dark/20 rounded-lg border-2 border-dashed bg-white p-6 shadow-lg dark:bg-gray-800/50"
+    className="border-primary-light/20 dark:border-primary-dark/20 bg-surface-light rounded-lg border-2 border-dashed p-6 shadow-lg dark:bg-gray-800/50"
   >
     <div className="mb-4 flex items-center">
       <div className="flex space-x-2">

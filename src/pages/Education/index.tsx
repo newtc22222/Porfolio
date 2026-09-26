@@ -4,9 +4,9 @@ import { DEGREES } from '../../mocks/education';
 export const DegreesBoard = () => {
   return DEGREES.map((degree, index) => (
     <div key={index} className="w-full">
-      <div className="flex h-full flex-col justify-center rounded-md border border-gray-100 bg-white p-6 dark:border-gray-700 dark:bg-gray-800">
+      <div className="bg-surface-light/90 border-education-rule-light dark:border-education-rule-dark flex h-full flex-col justify-center rounded-md border p-6 shadow-sm dark:bg-[#132427]">
         <div className="mb-4">
-          <span className="inline-block rounded-full bg-gray-100 px-3 py-1 text-sm font-medium text-gray-700 dark:bg-gray-700 dark:text-gray-200">
+          <span className="bg-education-light dark:bg-education-dark inline-block rounded-full px-3 py-1 text-sm font-medium text-gray-700 dark:text-gray-200">
             Degree
           </span>
         </div>
@@ -32,13 +32,13 @@ export const Education = () => {
     <Element name="#education">
       <section
         id="education"
-        className="bg-white py-20 transition-colors dark:bg-gray-900"
+        className="education-background transition-colors"
       >
         <div className="mx-auto max-w-6xl px-4">
           <h2 className="mb-8 text-3xl font-bold text-gray-900 dark:text-white">
             Education
           </h2>
-          <div className="relative overflow-hidden rounded-xl border border-gray-200 bg-gradient-to-b from-white/90 to-white/70 p-6 shadow-lg dark:border-gray-700 dark:from-gray-900/80 dark:to-gray-900/60">
+          <div className="border-education-rule-light bg-education-light/70 dark:border-education-rule-dark dark:bg-education-dark/70 relative overflow-hidden rounded-xl border p-6 shadow-lg backdrop-blur-[1px]">
             {/* stickers - updated positions */}
             <div className="absolute top-4 left-2 z-10 -rotate-8">
               <div className="rounded-lg bg-yellow-300 px-3 py-1 text-xs font-semibold shadow-sm dark:bg-yellow-500">

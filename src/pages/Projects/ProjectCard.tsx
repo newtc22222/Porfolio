@@ -7,7 +7,7 @@ export const ProjectCard = ({
   link,
   image,
 }: ProjectProps) => (
-  <div className="group hover:border-primary-light dark:hover:border-primary-dark relative overflow-hidden rounded-xl border border-gray-200 bg-white transition-all duration-300 hover:shadow-xl dark:border-gray-700 dark:bg-gray-800">
+  <div className="group hover:border-primary-light dark:hover:border-primary-dark bg-surface-light relative overflow-hidden rounded-xl border border-gray-200 transition-all duration-300 hover:shadow-xl dark:border-gray-700 dark:bg-gray-800">
     {image && (
       <div className="min-h-[247px] w-full overflow-hidden bg-gray-100 dark:bg-gray-900">
         <img

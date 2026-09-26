@@ -1,16 +1,32 @@
 import { useEffect, useRef, useState } from 'react';
 import { Link } from 'react-scroll';
-import { AnimatePresence, motion } from 'framer-motion';
+import {
+  AnimatePresence,
+  MotionConfig,
+  motion,
+  useScroll,
+  useSpring,
+} from 'framer-motion';
 import { NavItem } from './NavItem';
 
 import { NAV_PAGES } from '../../mocks/pages';
+import { FULLNAME, INITIALS } from '../../constants/self-information';
 import { ThemeToggle } from '../../components/ThemeToggle';
 
 const MOBILE_MENU_ID = 'mobile-nav-menu';
 
 export const Navigation = () => {
   const [menuOpen, setMenuOpen] = useState(false);
+  const [activeHref, setActiveHref] = useState(NAV_PAGES[0].href);
   const menuButtonRef = useRef<HTMLButtonElement>(null);
+
+  // Hairline along the bottom edge that fills as the page is read.
+  const { scrollYProgress } = useScroll();
+  const progress = useSpring(scrollYProgress, {
+    stiffness: 200,
+    damping: 40,
+    restDelta: 0.001,
+  });
 
   const closeMenu = () => setMenuOpen(false);
 
@@ -38,85 +54,114 @@ export const Navigation = () => {
   }, [menuOpen]);
 
   return (
-    <nav
-      aria-label="Main"
-      className="bg-background-light/80 dark:bg-background-dark/80 border-primary-light/20 dark:border-primary-dark/20 fixed top-0 right-0 left-0 z-50 border-b backdrop-blur-sm"
-    >
-      <div className="container mx-auto px-4">
-        <div className="flex h-16 items-center justify-between">
-          <Link
-            spy
-            to="#home"
-            href="#home"
-            smooth
-            duration={500}
-            onClick={closeMenu}
-            className="nav-item text-xl font-bold transition-all"
-          >
-            Portfolio
-          </Link>
-          <div className="hidden items-center space-x-6 lg:flex">
-            {NAV_PAGES.map((page) => (
-              <NavItem key={page.href} href={page.href} label={page.label} />
-            ))}
-            <ThemeToggle />
-          </div>
-          <button
-            ref={menuButtonRef}
-            type="button"
-            className="text-primary-light dark:text-primary-dark hover:text-brand-strong dark:hover:text-brand-2 focus-visible:ring-brand rounded-lg p-2 transition-colors hover:cursor-pointer focus-visible:ring-2 focus-visible:outline-none lg:hidden"
-            aria-label={menuOpen ? 'Close menu' : 'Open menu'}
-            aria-expanded={menuOpen}
-            aria-controls={MOBILE_MENU_ID}
-            onClick={() => setMenuOpen((open) => !open)}
-          >
-            <svg
-              aria-hidden="true"
-              className="h-6 w-6"
-              fill="none"
-              stroke="currentColor"
-              strokeWidth={2}
-              strokeLinecap="round"
-              viewBox="0 0 24 24"
+    <MotionConfig reducedMotion="user">
+      <nav
+        aria-label="Main"
+        className="bg-background-light/85 dark:bg-background-dark/85 fixed top-0 right-0 left-0 z-50 backdrop-blur-md"
+      >
+        <div className="container mx-auto px-4">
+          <div className="flex h-16 items-center justify-between gap-4">
+            <Link
+              to="#home"
+              href="#home"
+              smooth
+              duration={500}
+              onClick={closeMenu}
+              aria-label={`${FULLNAME}, back to top`}
+              className="group focus-visible:ring-brand/50 dark:focus-visible:ring-brand-2/50 flex shrink-0 cursor-pointer items-center gap-2.5 rounded-lg focus-visible:ring-2 focus-visible:outline-none"
             >
-              {menuOpen ? (
-                <path d="M6 6l12 12M18 6L6 18" />
-              ) : (
-                <path d="M4 7h16M4 12h16M4 17h16" />
-              )}
-            </svg>
-          </button>
-        </div>
-      </div>
-      <AnimatePresence initial={false}>
-        {menuOpen && (
-          <motion.div
-            id={MOBILE_MENU_ID}
-            key="mobile-menu"
-            initial={{ height: 0, opacity: 0 }}
-            animate={{ height: 'auto', opacity: 1 }}
-            exit={{ height: 0, opacity: 0 }}
-            transition={{ duration: 0.2 }}
-            className="bg-background-light dark:bg-background-dark border-primary-light/20 dark:border-primary-dark/20 overflow-hidden border-t lg:hidden"
-          >
-            <ul className="container mx-auto flex flex-col px-4 py-2">
+              <span
+                aria-hidden="true"
+                className="bg-brand-strong dark:bg-brand-2 dark:text-background-dark flex h-9 w-9 items-center justify-center rounded-full rounded-bl-md text-sm font-extrabold tracking-tight text-white transition-transform duration-200 group-hover:-rotate-6 motion-reduce:transition-none motion-reduce:group-hover:rotate-0"
+              >
+                {INITIALS}
+              </span>
+              <span className="text-primary-light dark:text-primary-dark text-lg font-bold tracking-tight lg:hidden xl:inline">
+                {FULLNAME}
+              </span>
+            </Link>
+
+            <ul className="hidden items-center gap-0.5 lg:flex">
               {NAV_PAGES.map((page) => (
                 <li key={page.href}>
                   <NavItem
                     href={page.href}
                     label={page.label}
-                    onClick={closeMenu}
-                    className="block py-3"
+                    isActive={activeHref === page.href}
+                    onActive={setActiveHref}
                   />
                 </li>
               ))}
-              <li className="py-3">
-                <ThemeToggle />
-              </li>
             </ul>
-          </motion.div>
-        )}
-      </AnimatePresence>
-    </nav>
+
+            <div className="flex items-center gap-1">
+              <ThemeToggle />
+              <button
+                ref={menuButtonRef}
+                type="button"
+                className="text-primary-light dark:text-primary-dark hover:bg-primary-light/10 dark:hover:bg-primary-dark/10 focus-visible:ring-brand/50 dark:focus-visible:ring-brand-2/50 flex h-9 w-9 items-center justify-center rounded-full transition-colors hover:cursor-pointer focus-visible:ring-2 focus-visible:outline-none lg:hidden"
+                aria-label={menuOpen ? 'Close menu' : 'Open menu'}
+                aria-expanded={menuOpen}
+                aria-controls={MOBILE_MENU_ID}
+                onClick={() => setMenuOpen((open) => !open)}
+              >
+                <svg
+                  aria-hidden="true"
+                  className="h-5 w-5"
+                  fill="none"
+                  stroke="currentColor"
+                  strokeWidth={2}
+                  strokeLinecap="round"
+                  viewBox="0 0 24 24"
+                >
+                  {menuOpen ? (
+                    <path d="M6 6l12 12M18 6L6 18" />
+                  ) : (
+                    <path d="M4 8h16M4 16h10" />
+                  )}
+                </svg>
+              </button>
+            </div>
+          </div>
+        </div>
+
+        <AnimatePresence initial={false}>
+          {menuOpen && (
+            <motion.div
+              id={MOBILE_MENU_ID}
+              key="mobile-menu"
+              initial={{ height: 0, opacity: 0 }}
+              animate={{ height: 'auto', opacity: 1 }}
+              exit={{ height: 0, opacity: 0 }}
+              transition={{ duration: 0.2 }}
+              className="overflow-hidden lg:hidden"
+            >
+              <ul className="container mx-auto grid grid-cols-2 gap-x-4 px-4 pt-1 pb-4">
+                {NAV_PAGES.map((page) => (
+                  <li key={page.href}>
+                    <NavItem
+                      href={page.href}
+                      label={page.label}
+                      isActive={activeHref === page.href}
+                      onActive={setActiveHref}
+                      onClick={closeMenu}
+                      variant="menu"
+                    />
+                  </li>
+                ))}
+              </ul>
+            </motion.div>
+          )}
+        </AnimatePresence>
+
+        {/* Track and fill for the reading-progress hairline. */}
+        <div className="bg-primary-light/10 dark:bg-primary-dark/10 absolute inset-x-0 bottom-0 h-px" />
+        <motion.div
+          aria-hidden="true"
+          style={{ scaleX: progress }}
+          className="bg-brand-strong dark:bg-brand-2 absolute inset-x-0 bottom-0 h-0.5 origin-left"
+        />
+      </nav>
+    </MotionConfig>
   );
 };

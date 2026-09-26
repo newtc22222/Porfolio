@@ -18,6 +18,7 @@ export const TabSwitch = ({
           options={topics}
           value={activeTopic}
           onChange={setActiveTopic}
+          label="Topic"
         />
       </div>
 

@@ -1,63 +1,31 @@
-import { useEffect, useSyncExternalStore } from 'react';
-
-// Keep in sync with the inline pre-paint script in index.html.
-const STORAGE_KEY = 'darkMode';
-const DARK_QUERY = '(prefers-color-scheme: dark)';
-
-const readSavedPreference = (): boolean | null => {
-  try {
-    const saved = localStorage.getItem(STORAGE_KEY);
-    return saved === null ? null : saved === 'true';
-  } catch {
-    return null;
-  }
-};
+import { useEffect } from 'react';
+import {
+  DARK_QUERY,
+  THEME_STORAGE_KEY,
+  getIsDarkMode,
+  readSavedPreference,
+  useIsDarkMode,
+} from '../hooks/useIsDarkMode';
 
 const savePreference = (dark: boolean) => {
   try {
-    localStorage.setItem(STORAGE_KEY, JSON.stringify(dark));
+    localStorage.setItem(THEME_STORAGE_KEY, JSON.stringify(dark));
   } catch {
     // Storage unavailable (private mode, blocked site data): theme still applies for this page view.
   }
 };
 
-const systemPrefersDark = () => window.matchMedia(DARK_QUERY).matches;
-
 const applyTheme = (dark: boolean) => {
   document.documentElement.setAttribute('data-theme', dark ? 'dark' : 'light');
 };
 
-// The data-theme attribute on <html> is the single source of truth, so every
-// ThemeToggle instance (desktop and mobile menu) stays in sync.
-const subscribe = (onChange: () => void) => {
-  const observer = new MutationObserver(onChange);
-  observer.observe(document.documentElement, {
-    attributes: true,
-    attributeFilter: ['data-theme'],
-  });
-  return () => observer.disconnect();
-};
-
-const getSnapshot = () => {
-  const attr = document.documentElement.getAttribute('data-theme');
-  if (attr === 'dark') return true;
-  if (attr === 'light') return false;
-  return readSavedPreference() ?? systemPrefersDark();
-};
-
-const getServerSnapshot = () => false;
-
 export const ThemeToggle = () => {
-  const darkMode = useSyncExternalStore(
-    subscribe,
-    getSnapshot,
-    getServerSnapshot
-  );
+  const darkMode = useIsDarkMode();
 
   useEffect(() => {
     // Make sure the attribute is set even if the inline script did not run.
     if (!document.documentElement.hasAttribute('data-theme')) {
-      applyTheme(getSnapshot());
+      applyTheme(getIsDarkMode());
     }
 
     // Follow OS changes only while the user has not picked a theme explicitly.
@@ -80,12 +48,31 @@ export const ThemeToggle = () => {
   return (
     <button
       type="button"
-      className="dark:bg-background-dark rounded-lg border p-2 transition-colors duration-200 hover:cursor-pointer dark:border-white"
+      className="text-primary-light dark:text-primary-dark hover:bg-primary-light/10 dark:hover:bg-primary-dark/10 focus-visible:ring-brand/50 dark:focus-visible:ring-brand-2/50 flex h-9 w-9 items-center justify-center rounded-full transition-colors duration-200 hover:cursor-pointer focus-visible:ring-2 focus-visible:outline-none"
       onClick={toggleTheme}
       aria-label={title}
       title={title}
     >
-      {darkMode ? '😎' : '🌚'}
+      {/* Shows the theme you will switch to. */}
+      <svg
+        aria-hidden="true"
+        viewBox="0 0 24 24"
+        fill="none"
+        stroke="currentColor"
+        strokeWidth={2}
+        strokeLinecap="round"
+        strokeLinejoin="round"
+        className="h-5 w-5"
+      >
+        {darkMode ? (
+          <>
+            <circle cx="12" cy="12" r="4" />
+            <path d="M12 2v2M12 20v2M4.93 4.93l1.41 1.41M17.66 17.66l1.41 1.41M2 12h2M20 12h2M4.93 19.07l1.41-1.41M17.66 6.34l1.41-1.41" />
+          </>
+        ) : (
+          <path d="M21 12.79A9 9 0 1 1 11.21 3 7 7 0 0 0 21 12.79z" />
+        )}
+      </svg>
     </button>
   );
 };

@@ -1,4 +1,4 @@
-import { useEffect, useMemo, useRef, useState } from 'react';
+import { useMemo, useState } from 'react';
 import {
   BarChart,
   Bar,
@@ -10,6 +10,7 @@ import {
 } from 'recharts';
 import type { TooltipContentProps } from 'recharts';
 import { SKILLS } from '../../mocks/skills';
+import { CustomSelect } from '../../components/CustomSelect';
 import { averageProficiency } from '../../utils/proficiency';
 
 const categoryColors: Record<string, string> = {
@@ -74,23 +75,6 @@ const CustomTooltip = ({ active, payload }: TooltipContentProps) => {
 
 export const SkillBar = ({ max = 8 }: { max?: number }) => {
   const [selectedCategory, setSelectedCategory] = useState('All');
-  const [isOpen, setIsOpen] = useState(false);
-  const dropdownRef = useRef<HTMLDivElement | null>(null);
-
-  useEffect(() => {
-    const handleClickOutside = (event: MouseEvent) => {
-      if (
-        dropdownRef.current &&
-        !dropdownRef.current.contains(event.target as Node)
-      ) {
-        setIsOpen(false);
-      }
-    };
-
-    document.addEventListener('mousedown', handleClickOutside);
-    return () => document.removeEventListener('mousedown', handleClickOutside);
-  }, []);
-
   const data = useMemo(
     () => buildData(selectedCategory).slice(0, max),
     [selectedCategory, max]
@@ -107,45 +91,13 @@ export const SkillBar = ({ max = 8 }: { max?: number }) => {
             Filter by category to compare strengths.
           </p>
         </div>
-        <div ref={dropdownRef} className="relative w-full sm:w-auto">
-          <button
-            type="button"
-            aria-haspopup="listbox"
-            aria-expanded={isOpen}
-            onClick={() => setIsOpen((current) => !current)}
-            className="focus:border-brand focus:ring-brand/20 dark:focus:border-brand-2 dark:focus:ring-brand-2/20 inline-flex w-full items-center justify-between rounded-full border border-slate-200 bg-white px-4 py-2 text-left text-sm font-semibold text-slate-700 shadow-sm transition hover:bg-slate-50 focus:ring-2 focus:outline-none dark:border-slate-800 dark:bg-slate-950 dark:text-slate-100 dark:hover:bg-slate-900"
-          >
-            <span>{selectedCategory}</span>
-            <span className="ml-3 text-slate-500 dark:text-slate-400">▾</span>
-          </button>
-
-          {isOpen && (
-            <ul
-              role="listbox"
-              aria-label="Select skill category"
-              tabIndex={-1}
-              className="absolute right-0 z-20 mt-2 w-full min-w-[172px] rounded-2xl border border-slate-200 bg-white shadow-xl dark:border-slate-800 dark:bg-slate-950"
-            >
-              {categories.map((category) => (
-                <li
-                  key={category}
-                  role="option"
-                  aria-selected={selectedCategory === category}
-                  onClick={() => {
-                    setSelectedCategory(category);
-                    setIsOpen(false);
-                  }}
-                  className={`cursor-pointer px-4 py-2 text-sm font-medium transition ${
-                    selectedCategory === category
-                      ? 'bg-brand/10 text-brand-strong dark:bg-brand-2/10 dark:text-brand-2'
-                      : 'text-slate-600 hover:bg-slate-50 hover:text-slate-900 dark:text-slate-400 dark:hover:bg-slate-900 dark:hover:text-white'
-                  }`}
-                >
-                  {category}
-                </li>
-              ))}
-            </ul>
-          )}
+        <div className="w-full sm:w-48">
+          <CustomSelect
+            options={categories}
+            value={selectedCategory}
+            onChange={setSelectedCategory}
+            label="Skill category"
+          />
         </div>
       </div>
 

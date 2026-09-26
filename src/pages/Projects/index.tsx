@@ -5,7 +5,7 @@ import { PROJECTS } from '../../mocks/projects';
 
 export const Projects = () => (
   <Element name="#projects">
-    <section id="projects" className="section-background">
+    <section id="projects" className="projects-background">
       <div className="container mx-auto px-4">
         <motion.div
           initial={{ opacity: 0, y: 20 }}
