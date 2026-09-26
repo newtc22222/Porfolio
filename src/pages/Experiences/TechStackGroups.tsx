@@ -19,13 +19,13 @@ const splitByUnderscoreAndCapitalizeFirstLetter = (str: string) => {
 
       let formattedCore = WORD_MAPPINGS[upperCore];
       if (!formattedCore) {
-        formattedCore = core.charAt(0).toUpperCase() + core.slice(1).toLowerCase();
+        formattedCore =
+          core.charAt(0).toUpperCase() + core.slice(1).toLowerCase();
       }
       return `${leading}${formattedCore}${trailing}`;
     })
     .join(' ');
 };
-
 
 export const TechStackGroups = ({
   techStack,
@@ -37,9 +37,9 @@ export const TechStackGroups = ({
       {Object.entries(techStack).map(([cat, techs]) => (
         <div
           key={cat}
-          className="min-w-[200px] flex-1 rounded bg-blue-50 p-4 shadow dark:bg-blue-900"
+          className="bg-brand/10 dark:bg-brand-2/10 min-w-[200px] flex-1 rounded p-4 shadow"
         >
-          <span className="mb-2 block text-lg font-bold text-blue-700 dark:text-blue-300">
+          <span className="text-brand-strong dark:text-brand-2 mb-2 block text-lg font-bold">
             {splitByUnderscoreAndCapitalizeFirstLetter(cat)}:
           </span>
           <div className="flex flex-wrap gap-2">
