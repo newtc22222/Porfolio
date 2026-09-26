@@ -2,7 +2,6 @@ import { Element } from 'react-scroll';
 import { useState } from 'react';
 import { motion } from 'framer-motion';
 import { TabSwitch } from '../../components/TabSwitch';
-import '../../styles/globals.css';
 
 import { BLOG_POSTS } from '../../mocks/blogs';
 import { BlogCard } from './BlogCard';
