@@ -4,6 +4,7 @@ import Particles, { ParticlesProvider } from '@tsparticles/react';
 import { loadSlim } from '@tsparticles/slim';
 import type { Engine, ISourceOptions } from '@tsparticles/engine';
 import { FULLNAME, JOB_TITLE, GREETINGS } from '../constants/self-information';
+import { useIsDarkMode } from '../hooks/useIsDarkMode';
 
 const particlesInit = async (engine: Engine): Promise<void> => {
   await loadSlim(engine);
@@ -40,10 +41,20 @@ export const Home = () => {
   });
 
   const [reducedMotion] = useState(prefersReducedMotion);
+  const isDark = useIsDarkMode();
 
+  // Bright brand dots glow on the dark background but wash out on the light
+  // one, so light mode draws slate dots and lines instead.
   const options: ISourceOptions = useMemo(() => {
-    const brand = readCssColor('--color-brand', '#4DA8DA');
-    const brand2 = readCssColor('--color-brand-2', '#80D8C3');
+    const dotColors = isDark
+      ? [
+          readCssColor('--color-brand', '#4DA8DA'),
+          readCssColor('--color-brand-2', '#80D8C3'),
+        ]
+      : [readCssColor('--color-primary-light', '#2B3138')];
+    const linkColor = isDark
+      ? readCssColor('--color-brand-2', '#80D8C3')
+      : readCssColor('--color-primary-light', '#2B3138');
     return {
       fullScreen: {
         enable: false,
@@ -60,13 +71,20 @@ export const Home = () => {
             enable: true,
           },
         },
-        color: {
-          value: [brand, brand2],
+        // tsparticles v4 reads particle colours from `paint`, not `color`.
+        paint: {
+          color: {
+            value: dotColors,
+          },
+          fill: {
+            enable: true,
+            opacity: isDark ? 1 : 0.75,
+          },
         },
         links: {
           enable: true,
-          color: brand2,
-          opacity: 0.2,
+          color: linkColor,
+          opacity: isDark ? 0.2 : 0.45,
         },
         move: {
           enable: true,
@@ -85,7 +103,7 @@ export const Home = () => {
         },
       },
     };
-  }, []);
+  }, [isDark]);
 
   return (
     <Element name="#home">

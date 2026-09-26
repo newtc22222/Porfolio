@@ -9,7 +9,6 @@ const ALL_PAGES = [
   { href: '#education', label: 'Education' },
   { href: '#about', label: 'About' },
   { href: '#badges', label: 'Badges' },
-  { href: '#contact', label: 'Contact' },
 ];
 
 // The Badges section is only rendered once there is at least one badge.

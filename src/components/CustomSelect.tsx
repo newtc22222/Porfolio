@@ -1,17 +1,28 @@
-import { useState, useRef, useEffect } from 'react';
+import { useState, useRef, useEffect, useId, type KeyboardEvent } from 'react';
 import { motion, AnimatePresence } from 'framer-motion';
 
+// A single-select listbox. Focus stays on the trigger and the highlighted
+// option is announced through aria-activedescendant, so arrow keys, Home/End,
+// Enter/Space and Escape all work without moving focus into the list.
 export const CustomSelect = ({
   options,
   value,
   onChange,
+  label,
 }: {
   options: string[];
   value: string;
   onChange: (value: string) => void;
+  label?: string;
 }) => {
   const [isOpen, setIsOpen] = useState(false);
+  const [activeIndex, setActiveIndex] = useState(() =>
+    Math.max(0, options.indexOf(value))
+  );
   const containerRef = useRef<HTMLDivElement>(null);
+  const baseId = useId();
+  const listId = `${baseId}-list`;
+  const optionId = (index: number) => `${baseId}-option-${index}`;
 
   // Close when clicking outside
   useEffect(() => {
@@ -27,58 +38,157 @@ export const CustomSelect = ({
     return () => document.removeEventListener('mousedown', handleOutsideClick);
   }, []);
 
+  // Keep the highlighted option in view while navigating with the keyboard.
+  useEffect(() => {
+    if (!isOpen) return;
+    document
+      .getElementById(`${baseId}-option-${activeIndex}`)
+      ?.scrollIntoView({ block: 'nearest' });
+  }, [isOpen, activeIndex, baseId]);
+
+  const open = () => {
+    setActiveIndex(Math.max(0, options.indexOf(value)));
+    setIsOpen(true);
+  };
+
+  const select = (index: number) => {
+    onChange(options[index]);
+    setIsOpen(false);
+  };
+
+  const handleKeyDown = (e: KeyboardEvent<HTMLButtonElement>) => {
+    if (!isOpen) {
+      if (['ArrowDown', 'ArrowUp', 'Enter', ' '].includes(e.key)) {
+        e.preventDefault();
+        open();
+      }
+      return;
+    }
+    switch (e.key) {
+      case 'ArrowDown':
+        e.preventDefault();
+        setActiveIndex((i) => Math.min(options.length - 1, i + 1));
+        break;
+      case 'ArrowUp':
+        e.preventDefault();
+        setActiveIndex((i) => Math.max(0, i - 1));
+        break;
+      case 'Home':
+        e.preventDefault();
+        setActiveIndex(0);
+        break;
+      case 'End':
+        e.preventDefault();
+        setActiveIndex(options.length - 1);
+        break;
+      case 'Enter':
+      case ' ':
+        e.preventDefault();
+        select(activeIndex);
+        break;
+      case 'Escape':
+      case 'Tab':
+        setIsOpen(false);
+        break;
+    }
+  };
+
   return (
     <div className="relative w-full" ref={containerRef}>
       <button
         type="button"
-        onClick={() => setIsOpen(!isOpen)}
-        className="focus:border-primary-light focus:ring-primary-light dark:focus:border-primary-dark dark:focus:ring-primary-dark flex w-full items-center justify-between rounded-xl border-2 border-white/10 bg-white/5 px-4 py-3 text-sm font-medium text-gray-700 shadow-lg backdrop-blur-sm transition-all duration-300 hover:border-white/20 focus:ring-1 focus:outline-none dark:border-gray-700/20 dark:bg-gray-800/5 dark:text-gray-200 dark:hover:border-gray-600/30"
+        onClick={() => (isOpen ? setIsOpen(false) : open())}
+        onKeyDown={handleKeyDown}
+        aria-haspopup="listbox"
+        aria-expanded={isOpen}
+        aria-controls={listId}
+        aria-label={label ? `${label}: ${value}` : undefined}
+        aria-activedescendant={isOpen ? optionId(activeIndex) : undefined}
+        className={`group bg-surface-light dark:bg-surface-dark text-primary-light dark:text-primary-dark focus-visible:ring-brand/40 dark:focus-visible:ring-brand-2/40 relative flex w-full items-center justify-between overflow-hidden rounded-2xl border py-3 pr-3 pl-5 text-left text-base font-semibold shadow-sm transition-colors duration-200 hover:cursor-pointer focus-visible:ring-4 focus-visible:outline-none ${
+          isOpen
+            ? 'border-brand-strong dark:border-brand-2'
+            : 'border-primary-light/15 hover:border-primary-light/35 dark:border-primary-dark/15 dark:hover:border-primary-dark/35'
+        }`}
       >
-        <span>{value}</span>
-        <motion.svg
-          animate={{ rotate: isOpen ? 180 : 0 }}
-          transition={{ duration: 0.2 }}
-          className="text-secondary-light dark:text-secondary-dark h-4 w-4 fill-current"
-          viewBox="0 0 20 20"
+        <span className="truncate">{value}</span>
+        <span
+          aria-hidden="true"
+          className={`ml-3 flex h-8 w-8 shrink-0 items-center justify-center rounded-full transition-colors duration-200 ${
+            isOpen
+              ? 'bg-brand-strong dark:bg-brand-2 dark:text-background-dark text-white'
+              : 'bg-primary-light/5 text-secondary-light group-hover:bg-primary-light/10 dark:bg-primary-dark/5 dark:text-secondary-dark dark:group-hover:bg-primary-dark/10'
+          }`}
         >
-          <path
-            fillRule="evenodd"
-            d="M5.293 7.293a1 1 0 011.414 0L10 10.586l3.293-3.293a1 1 0 111.414 1.414l-4 4a1 1 0 01-1.414 0l-4-4a1 1 0 010-1.414z"
-            clipRule="evenodd"
-          />
-        </motion.svg>
+          <motion.svg
+            animate={{ rotate: isOpen ? 180 : 0 }}
+            transition={{ duration: 0.2 }}
+            className="h-4 w-4 fill-current"
+            viewBox="0 0 20 20"
+          >
+            <path
+              fillRule="evenodd"
+              d="M5.293 7.293a1 1 0 011.414 0L10 10.586l3.293-3.293a1 1 0 111.414 1.414l-4 4a1 1 0 01-1.414 0l-4-4a1 1 0 010-1.414z"
+              clipRule="evenodd"
+            />
+          </motion.svg>
+        </span>
       </button>
 
       <AnimatePresence>
         {isOpen && (
-          <motion.div
-            initial={{ opacity: 0, y: -10 }}
-            animate={{ opacity: 1, y: 0 }}
-            exit={{ opacity: 0, y: -10 }}
-            transition={{ duration: 0.2 }}
-            className="absolute left-0 top-full z-[100] mt-2 w-full overflow-hidden rounded-xl border border-gray-200 bg-white shadow-xl dark:border-gray-700 dark:bg-gray-800"
+          <motion.ul
+            id={listId}
+            role="listbox"
+            aria-label={label}
+            initial={{ opacity: 0, y: -6, scale: 0.98 }}
+            animate={{ opacity: 1, y: 0, scale: 1 }}
+            exit={{ opacity: 0, y: -6, scale: 0.98 }}
+            transition={{ duration: 0.15 }}
+            className="bg-surface-light dark:bg-surface-dark border-primary-light/15 dark:border-primary-dark/15 absolute top-full left-0 z-[100] mt-2 max-h-64 w-full origin-top overflow-y-auto rounded-2xl border p-1.5 shadow-xl shadow-black/10 dark:shadow-black/50"
           >
-            <ul className="max-h-60 overflow-y-auto py-1">
-              {options.map((option) => (
-                <li key={option}>
-                  <button
-                    type="button"
-                    onClick={() => {
-                      onChange(option);
-                      setIsOpen(false);
-                    }}
-                    className={`hover:bg-primary-light/10 dark:hover:bg-primary-dark/10 w-full px-4 py-3 text-left text-sm transition-colors duration-150 ${
-                      value === option
-                        ? 'text-primary-light dark:text-primary-dark bg-primary-light/5 dark:bg-primary-dark/5 font-semibold'
-                        : 'text-gray-700 dark:text-gray-200'
-                    }`}
-                  >
-                    {option}
-                  </button>
+            {options.map((option, index) => {
+              const isSelected = option === value;
+              const isActive = index === activeIndex;
+              return (
+                <li
+                  key={option}
+                  id={optionId(index)}
+                  role="option"
+                  aria-selected={isSelected}
+                  onMouseEnter={() => setActiveIndex(index)}
+                  onClick={() => select(index)}
+                  className={`relative flex cursor-pointer items-center justify-between rounded-xl py-2.5 pr-3 pl-5 text-sm transition-colors duration-100 ${
+                    isActive ? 'bg-brand/10 dark:bg-brand-2/10' : ''
+                  } ${
+                    isSelected
+                      ? 'text-brand-strong dark:text-brand-2 font-semibold'
+                      : 'text-primary-light dark:text-primary-dark'
+                  }`}
+                >
+                  {isSelected && (
+                    <span
+                      aria-hidden="true"
+                      className="bg-brand-strong dark:bg-brand-2 absolute inset-y-2 left-2 w-1 rounded-full"
+                    />
+                  )}
+                  <span className="truncate">{option}</span>
+                  {isSelected && (
+                    <svg
+                      aria-hidden="true"
+                      viewBox="0 0 20 20"
+                      className="h-4 w-4 shrink-0 fill-current"
+                    >
+                      <path
+                        fillRule="evenodd"
+                        d="M16.704 5.29a1 1 0 010 1.414l-7.5 7.5a1 1 0 01-1.414 0l-3.5-3.5a1 1 0 111.414-1.414L8.5 12.086l6.79-6.796a1 1 0 011.414 0z"
+                        clipRule="evenodd"
+                      />
+                    </svg>
+                  )}
                 </li>
-              ))}
-            </ul>
-          </motion.div>
+              );
+            })}
+          </motion.ul>
         )}
       </AnimatePresence>
     </div>

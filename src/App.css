@@ -9,9 +9,21 @@
   --color-brand-strong: #1f6f9c;
   --color-accent: #e6b94d;
   --color-light: #e5e5e5;
-  --color-background-light: #f0f0f0;
+  /* Light mode is a cool, low-glare "mist" rather than white. Surfaces
+     (cards, inputs, popovers) sit one step lighter than the section behind. */
+  --color-background-light: #e1e6ea;
   --color-background-dark: #121212;
-  --color-primary-light: #333333;
+  --color-surface-light: #eef1f3;
+  --color-surface-dark: #1b1f23;
+  /* Projects gets its own tone so it reads as a separate band from Home. */
+  --color-projects-light: #d3dde4;
+  --color-projects-dark: #161c22;
+  /* Education: ruled "notebook paper" in sage (light) and teal ink (dark). */
+  --color-education-light: #dbe4dd;
+  --color-education-dark: #0f1b1d;
+  --color-education-rule-light: #c3d2c8;
+  --color-education-rule-dark: #1b2d30;
+  --color-primary-light: #2b3138;
   --color-primary-dark: #f0f0f0;
   --color-secondary-light: #666666;
   --color-secondary-dark: #b0b0b0;
@@ -20,12 +32,8 @@
   --font-sketch: 'Architects Daughter', cursive;
 }
 
-.nav-item {
-  @apply cursor-pointer;
-  @apply text-primary-light hover:text-secondary-light;
-  @variant dark {
-    @apply text-primary-dark hover:text-secondary-dark;
-  }
+body {
+  @apply bg-background-light dark:bg-background-dark;
 }
 
 .section-background {
@@ -35,6 +43,31 @@
   @apply from-background-light/90 to-background-light/70;
   @variant dark {
     @apply from-background-dark/90 to-background-dark/70;
+  }
+}
+
+.projects-background {
+  @apply bg-projects-light dark:bg-projects-dark py-20;
+}
+
+/* Faint horizontal rules, like the lines on notebook paper. */
+.education-background {
+  @apply bg-education-light dark:bg-education-dark py-20;
+  background-image: repeating-linear-gradient(
+    to bottom,
+    transparent 0,
+    transparent 31px,
+    var(--color-education-rule-light) 31px,
+    var(--color-education-rule-light) 32px
+  );
+  @variant dark {
+    background-image: repeating-linear-gradient(
+      to bottom,
+      transparent 0,
+      transparent 31px,
+      var(--color-education-rule-dark) 31px,
+      var(--color-education-rule-dark) 32px
+    );
   }
 }
 

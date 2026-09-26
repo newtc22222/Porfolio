@@ -37,7 +37,7 @@ export const TechStackGroups = ({
       {Object.entries(techStack).map(([cat, techs]) => (
         <div
           key={cat}
-          className="bg-brand/10 dark:bg-brand-2/10 min-w-[200px] flex-1 rounded p-4 shadow"
+          className="bg-brand/10 min-w-[200px] flex-1 rounded border border-transparent p-4 shadow dark:border-white/5 dark:bg-black/30 dark:shadow-black/40"
         >
           <span className="text-brand-strong dark:text-brand-2 mb-2 block text-lg font-bold">
             {splitByUnderscoreAndCapitalizeFirstLetter(cat)}:
@@ -46,7 +46,7 @@ export const TechStackGroups = ({
             {techs?.map((tech, techIdx) => (
               <span
                 key={techIdx}
-                className="inline-block rounded bg-gray-200 px-4 py-2 text-base font-medium text-gray-700 dark:bg-gray-800 dark:text-gray-300"
+                className="bg-surface-light inline-block rounded px-4 py-2 text-base font-medium text-gray-700 dark:bg-white/5 dark:text-gray-300"
               >
                 {tech}
               </span>

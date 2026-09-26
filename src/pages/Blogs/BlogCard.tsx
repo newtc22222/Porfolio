@@ -1,7 +1,7 @@
 import type { BlogPost } from './BlogType';
 
 export const BlogCard = ({ post }: { post: BlogPost }) => (
-  <article className="transform overflow-hidden rounded-lg bg-white transition-all duration-300 hover:scale-[1.02] dark:bg-gray-800">
+  <article className="bg-surface-light transform overflow-hidden rounded-lg transition-all duration-300 hover:scale-[1.02] dark:bg-gray-800">
     <div className="relative">
       <img
         src={post.thumbnail}

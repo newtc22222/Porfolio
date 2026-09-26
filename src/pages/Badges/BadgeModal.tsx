@@ -68,7 +68,7 @@ export const BadgeModal = ({
         role="dialog"
         aria-modal="true"
         aria-labelledby={titleId}
-        className="max-h-[90vh] w-full max-w-3xl overflow-auto rounded-lg bg-white text-gray-800 shadow-lg dark:bg-gray-900 dark:text-gray-100"
+        className="bg-surface-light max-h-[90vh] w-full max-w-3xl overflow-auto rounded-lg text-gray-800 shadow-lg dark:bg-gray-900 dark:text-gray-100"
         onClick={(e) => e.stopPropagation()}
       >
         {/* Header (antd-style) */}
@@ -148,17 +148,6 @@ export const BadgeModal = ({
               Verify credential ↗
             </a>
           )}
-        </div>
-
-        {/* Footer (antd-style) */}
-        <div className="flex justify-end gap-3 bg-white px-6 py-3 dark:bg-gray-900">
-          <button
-            type="button"
-            onClick={onClose}
-            className="rounded border border-gray-300 px-3 py-1 text-sm hover:bg-gray-100 dark:border-gray-700 dark:hover:bg-gray-800"
-          >
-            Close
-          </button>
         </div>
       </div>
     </div>
