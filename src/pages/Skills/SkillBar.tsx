@@ -8,6 +8,7 @@ import {
   ResponsiveContainer,
   Cell,
 } from 'recharts';
+import type { TooltipContentProps } from 'recharts';
 import { SKILLS } from '../../mocks/skills';
 
 const proficiencyToNumber = (p: string) => {
@@ -66,7 +67,10 @@ const truncateTick = (tick: string) => {
   return tick;
 };
 
-const CustomTooltip = ({ active, payload }: any) => {
+const CustomTooltip = ({
+  active,
+  payload,
+}: TooltipContentProps) => {
   if (active && payload && payload.length) {
     const data = payload[0].payload;
     return (
@@ -186,7 +190,7 @@ export const SkillBar = ({ max = 8 }: { max?: number }) => {
               tickFormatter={truncateTick}
               tick={{ className: 'fill-slate-600 dark:fill-slate-400 text-[11px] font-semibold' }}
             />
-            <Tooltip content={<CustomTooltip />} />
+            <Tooltip content={CustomTooltip} />
             <Bar dataKey="value" barSize={16} radius={[8, 8, 8, 8]}>
               {data.map((entry, index) => (
                 <Cell

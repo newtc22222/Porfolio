@@ -8,6 +8,7 @@ import {
   ResponsiveContainer,
   Tooltip,
 } from 'recharts';
+import type { TooltipContentProps } from 'recharts';
 import { SKILLS } from '../../mocks/skills';
 
 const proficiencyToNumber = (p: string) => {
@@ -43,7 +44,10 @@ const getCategoryAvg = (catName: string, defaultVal: number) => {
   return count > 0 ? Math.round(sum / count) : defaultVal;
 };
 
-const CustomTooltip = ({ active, payload }: any) => {
+const CustomTooltip = ({
+  active,
+  payload,
+}: TooltipContentProps) => {
   if (active && payload && payload.length) {
     const data = payload[0].payload;
     return (
@@ -104,7 +108,7 @@ export const SkillRadarChart = () => {
               tick={{ fill: 'transparent' }}
               axisLine={false}
             />
-            <Tooltip content={<CustomTooltip />} />
+            <Tooltip content={CustomTooltip} />
             <Radar
               name="Proficiency"
               dataKey="score"
