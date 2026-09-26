@@ -13,6 +13,12 @@ const pinColors = [
   'bg-orange-400',
 ];
 
+// Randomized once per page load so pins don't reshuffle on re-render
+const pinStyles = CERTIFICATIONS.map(() => ({
+  color: pinColors[Math.floor(Math.random() * pinColors.length)],
+  rotate: Math.floor(Math.random() * 18 - 9),
+}));
+
 export const DegreesBoard = () => {
   return DEGREES.map((degree, index) => (
     <div key={index} className="w-full flex-shrink-0 md:w-1/4">
@@ -48,9 +54,7 @@ const CertificationsBoard = () => {
         </div>
         <div className="flex flex-wrap gap-6">
           {CERTIFICATIONS.map((c, i) => {
-            const color =
-              pinColors[Math.floor(Math.random() * pinColors.length)];
-            const rotate = Math.floor(Math.random() * 18 - 9);
+            const { color, rotate } = pinStyles[i];
             return (
               <div
                 key={i}
