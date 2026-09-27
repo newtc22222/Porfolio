@@ -31,29 +31,24 @@ export const TechStackGroups = ({
   techStack,
 }: {
   techStack: { [key: string]: string[] | undefined };
-}) => {
-  return (
-    <div className="mt-4 flex flex-wrap gap-4">
-      {Object.entries(techStack).map(([cat, techs]) => (
-        <div
-          key={cat}
-          className="bg-brand/10 min-w-[200px] flex-1 rounded border border-transparent p-4 shadow dark:border-white/5 dark:bg-black/30 dark:shadow-black/40"
-        >
-          <span className="text-brand-strong dark:text-brand-2 mb-2 block text-lg font-bold">
-            {splitByUnderscoreAndCapitalizeFirstLetter(cat)}:
-          </span>
-          <div className="flex flex-wrap gap-2">
-            {techs?.map((tech, techIdx) => (
-              <span
-                key={techIdx}
-                className="bg-surface-light inline-block rounded px-4 py-2 text-base font-medium text-gray-700 dark:bg-white/5 dark:text-gray-300"
-              >
-                {tech}
-              </span>
-            ))}
-          </div>
-        </div>
-      ))}
-    </div>
-  );
-};
+}) => (
+  <dl className="grid gap-x-8 gap-y-4 sm:grid-cols-2">
+    {Object.entries(techStack).map(([cat, techs]) => (
+      <div key={cat}>
+        <dt className="text-primary-light dark:text-primary-dark text-sm font-semibold">
+          {splitByUnderscoreAndCapitalizeFirstLetter(cat)}
+        </dt>
+        <dd className="mt-1.5 flex flex-wrap gap-1.5">
+          {techs?.map((tech) => (
+            <span
+              key={tech}
+              className="bg-surface-light text-primary-light/85 dark:text-primary-dark/85 rounded px-2 py-0.5 text-sm dark:bg-white/5"
+            >
+              {tech}
+            </span>
+          ))}
+        </dd>
+      </div>
+    ))}
+  </dl>
+);

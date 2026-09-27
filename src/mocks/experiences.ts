@@ -23,7 +23,7 @@ Building the AI services with Python and Gemini, and applying agentic AI tooling
     },
   },
   {
-    company: 'Freelancer',
+    company: 'Self-employed',
     location: 'Home',
     position: 'Fullstack Developer',
     // department: '',
