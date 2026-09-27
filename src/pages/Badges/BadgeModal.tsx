@@ -1,4 +1,6 @@
 import { useEffect, useId, useRef } from 'react';
+import { createPortal } from 'react-dom';
+import { motion, useReducedMotion } from 'framer-motion';
 import type { Badge } from './BadgeType';
 import { formatDate } from './formatDate';
 
@@ -15,6 +17,24 @@ export const BadgeModal = ({
   const titleId = useId();
   const panelRef = useRef<HTMLDivElement>(null);
   const closeButtonRef = useRef<HTMLButtonElement>(null);
+  const reduceMotion = useReducedMotion();
+
+  // Lock page scroll while open. Pad by the scrollbar's width so the page
+  // behind doesn't shift sideways when the scrollbar disappears.
+  useEffect(() => {
+    const { documentElement: html, body } = document;
+    const scrollbarWidth = window.innerWidth - html.clientWidth;
+    const previous = {
+      overflow: html.style.overflow,
+      paddingRight: body.style.paddingRight,
+    };
+    html.style.overflow = 'hidden';
+    if (scrollbarWidth > 0) body.style.paddingRight = `${scrollbarWidth}px`;
+    return () => {
+      html.style.overflow = previous.overflow;
+      body.style.paddingRight = previous.paddingRight;
+    };
+  }, []);
 
   // Move focus into the dialog on open and restore it to the trigger on close.
   useEffect(() => {
@@ -58,17 +78,25 @@ export const BadgeModal = ({
     return () => window.removeEventListener('keydown', onKey);
   }, [onClose]);
 
-  return (
-    <div
-      className="fixed inset-0 z-50 flex items-center justify-center bg-black/60 p-4"
+  return createPortal(
+    <motion.div
+      initial={{ opacity: 0 }}
+      animate={{ opacity: 1 }}
+      exit={{ opacity: 0 }}
+      transition={{ duration: reduceMotion ? 0 : 0.2 }}
+      className="fixed inset-0 z-[60] flex items-center justify-center bg-black/35 p-4 backdrop-blur-md dark:bg-black/55"
       onClick={onClose}
     >
-      <div
+      <motion.div
         ref={panelRef}
         role="dialog"
         aria-modal="true"
         aria-labelledby={titleId}
-        className="bg-surface-light max-h-[90vh] w-full max-w-3xl overflow-auto rounded-lg text-gray-800 shadow-lg dark:bg-gray-900 dark:text-gray-100"
+        initial={reduceMotion ? false : { opacity: 0, scale: 0.96, y: 12 }}
+        animate={{ opacity: 1, scale: 1, y: 0 }}
+        exit={reduceMotion ? { opacity: 0 } : { opacity: 0, scale: 0.98, y: 8 }}
+        transition={{ duration: reduceMotion ? 0 : 0.22, ease: 'easeOut' }}
+        className="bg-surface-light max-h-[90vh] w-full max-w-3xl overflow-auto overscroll-contain rounded-lg text-gray-800 shadow-2xl dark:bg-gray-900 dark:text-gray-100"
         onClick={(e) => e.stopPropagation()}
       >
         {/* Header (antd-style) */}
@@ -149,8 +177,9 @@ export const BadgeModal = ({
             </a>
           )}
         </div>
-      </div>
-    </div>
+      </motion.div>
+    </motion.div>,
+    document.body
   );
 };
 

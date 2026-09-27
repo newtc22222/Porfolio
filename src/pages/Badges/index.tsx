@@ -1,18 +1,25 @@
 import { useRef, useState, useEffect } from 'react';
 import { Element } from 'react-scroll';
-import { motion, useReducedMotion } from 'framer-motion';
+import { AnimatePresence, motion, useReducedMotion } from 'framer-motion';
 import ReactConfetti from 'react-confetti';
 
 import { BADGES } from '../../mocks/badges';
 import { BadgeCard } from './BadgeCard';
 import type { Badge } from './BadgeType';
 import { BadgeModal } from './BadgeModal';
+import { IssuerFilter, type IssuerOption } from './IssuerFilter';
 
 // Newest first. ISO YYYY-MM-DD strings sort correctly as plain strings.
 const SORTED_BADGES = [...BADGES].sort((a, b) =>
   b.issuedOn.localeCompare(a.issuedOn)
 );
-const ISSUERS = ['All', ...new Set(SORTED_BADGES.map((b) => b.issuer))];
+const ISSUERS: IssuerOption[] = [
+  { label: 'All', count: SORTED_BADGES.length },
+  ...[...new Set(SORTED_BADGES.map((b) => b.issuer))].map((issuer) => ({
+    label: issuer,
+    count: SORTED_BADGES.filter((b) => b.issuer === issuer).length,
+  })),
+];
 
 export const Badges = () => {
   const confettiTimer = useRef<ReturnType<typeof setTimeout>>(undefined);
@@ -40,7 +47,7 @@ export const Badges = () => {
       <motion.section
         onViewportEnter={handleViewportEnter}
         id="badges"
-        className="section-background relative overflow-hidden"
+        className="badges-background overflow-hidden"
       >
         {showConfetti && (
           <ReactConfetti
@@ -65,23 +72,11 @@ export const Badges = () => {
           </p>
 
           {ISSUERS.length > 2 && (
-            <div className="mb-8 flex flex-wrap items-center justify-center gap-3">
-              {ISSUERS.map((issuer) => (
-                <button
-                  key={issuer}
-                  type="button"
-                  onClick={() => setFilter(issuer)}
-                  aria-pressed={filter === issuer}
-                  className={`rounded-md px-3 py-1 text-sm transition-colors ${
-                    filter === issuer
-                      ? 'bg-brand text-white'
-                      : 'hover:bg-brand-2/20 bg-white/10 hover:cursor-pointer dark:bg-black/10 dark:text-white'
-                  }`}
-                >
-                  {issuer}
-                </button>
-              ))}
-            </div>
+            <IssuerFilter
+              options={ISSUERS}
+              value={filter}
+              onChange={setFilter}
+            />
           )}
 
           <div className="flex flex-wrap justify-center gap-8 px-4">
@@ -96,9 +91,15 @@ export const Badges = () => {
           </div>
         </div>
 
-        {selected && (
-          <BadgeModal badge={selected} onClose={() => setSelected(null)} />
-        )}
+        <AnimatePresence>
+          {selected && (
+            <BadgeModal
+              key={selected.id}
+              badge={selected}
+              onClose={() => setSelected(null)}
+            />
+          )}
+        </AnimatePresence>
       </motion.section>
     </Element>
   );

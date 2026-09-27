@@ -77,6 +77,51 @@ body {
   }
 }
 
+/* Badges picks up where the Education notebook ends: it starts in the same
+   sage with the same rules, then both fade into the regular background. */
+.badges-background {
+  @apply relative py-20;
+  background: linear-gradient(
+    to bottom,
+    var(--color-education-light) 0,
+    var(--color-background-light) 280px
+  );
+  @variant dark {
+    background: linear-gradient(
+      to bottom,
+      var(--color-education-dark) 0,
+      var(--color-background-dark) 280px
+    );
+  }
+}
+
+.badges-background::before {
+  content: '';
+  position: absolute;
+  inset: 0 0 auto;
+  height: 280px;
+  pointer-events: none;
+  background-image: repeating-linear-gradient(
+    to bottom,
+    transparent 0,
+    transparent 31px,
+    var(--color-education-rule-light) 31px,
+    var(--color-education-rule-light) 32px
+  );
+  mask-image: linear-gradient(to bottom, black, transparent);
+}
+
+/* The dark custom variant can't target a pseudo-element, so select it here. */
+[data-theme='dark'] .badges-background::before {
+  background-image: repeating-linear-gradient(
+    to bottom,
+    transparent 0,
+    transparent 31px,
+    var(--color-education-rule-dark) 31px,
+    var(--color-education-rule-dark) 32px
+  );
+}
+
 /* Dot grid, like a diagramming canvas. */
 .skills-background {
   @apply bg-background-light dark:bg-background-dark py-20;
