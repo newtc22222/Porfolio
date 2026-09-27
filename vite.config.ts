@@ -12,9 +12,9 @@ export default defineConfig({
       output: {
         codeSplitting: {
           // Groups also pull in their dependencies, and higher priority wins.
-          // `vendor` goes first so react/react-dom stay in it (recharts would
-          // otherwise drag react-dom into `charts`). Its regex is narrow, so it
-          // cannot swallow the library-specific groups below.
+          // `vendor` goes first so react/react-dom stay in it rather than being
+          // pulled into a library group. Its regex is narrow, so it cannot
+          // swallow the library-specific groups below.
           groups: [
             {
               name: 'vendor',
@@ -30,12 +30,6 @@ export default defineConfig({
             {
               name: 'particles',
               test: /node_modules[\\/]@tsparticles[\\/]/,
-              priority: 10,
-            },
-            // recharts and its runtime deps (d3 via victory-vendor, redux stack)
-            {
-              name: 'charts',
-              test: /node_modules[\\/](recharts|victory-vendor|d3-[^\\/]+|internmap|@reduxjs|redux|react-redux|redux-thunk|reselect|immer|decimal\.js-light|eventemitter3|es-toolkit|tiny-invariant)[\\/]/,
               priority: 10,
             },
             {
