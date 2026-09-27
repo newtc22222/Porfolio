@@ -11,7 +11,7 @@ export const Experiences = () => {
       >
         <div className="mx-auto max-w-5xl px-4">
           <h2 className="mb-8 text-3xl font-bold text-gray-900 dark:text-white">
-            Experiences
+            Experience
           </h2>
 
           <ol className="relative border-s border-gray-400 dark:border-gray-700">

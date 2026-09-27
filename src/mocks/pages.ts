@@ -3,12 +3,12 @@ import { BADGES } from './badges';
 const ALL_PAGES = [
   { href: '#home', label: 'Home' },
   { href: '#projects', label: 'Projects' },
+  { href: '#experience', label: 'Experience' },
   { href: '#skills', label: 'Skills' },
-  { href: '#blog', label: 'Blogs' },
-  { href: '#experience', label: 'Experiences' },
   { href: '#education', label: 'Education' },
-  { href: '#about', label: 'About' },
   { href: '#badges', label: 'Badges' },
+  { href: '#blog', label: 'Blog' },
+  { href: '#about', label: 'About' },
 ];
 
 // The Badges section is only rendered once there is at least one badge.

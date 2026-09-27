@@ -30,18 +30,18 @@ function App() {
       <Navigation />
       <Home />
       <Projects />
+      <Experiences />
       <Suspense fallback={<SectionPlaceholder id="skills" />}>
         <Skills />
       </Suspense>
-      <Blog />
-      <Experiences />
       <Education />
-      <About />
       {BADGES.length > 0 && (
         <Suspense fallback={<SectionPlaceholder id="badges" />}>
           <Badges />
         </Suspense>
       )}
+      <Blog />
+      <About />
       <Footer />
       <ContactBubble />
     </>
