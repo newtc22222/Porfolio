@@ -23,6 +23,12 @@
   --color-education-dark: #0f1b1d;
   --color-education-rule-light: #c3d2c8;
   --color-education-rule-dark: #1b2d30;
+  /* Skills: a dotted whiteboard canvas, with one ink per stack layer
+     (Frontend and Backend use brand and brand-2). */
+  --color-skills-dot-light: #c3ced7;
+  --color-skills-dot-dark: #262e35;
+  --color-layer-data: #6c63ff;
+  --color-layer-ai: #f08a24;
   --color-primary-light: #2b3138;
   --color-primary-dark: #f0f0f0;
   --color-secondary-light: #666666;
@@ -69,6 +75,36 @@ body {
       var(--color-education-rule-dark) 32px
     );
   }
+}
+
+/* Dot grid, like a diagramming canvas. */
+.skills-background {
+  @apply bg-background-light dark:bg-background-dark py-20;
+  background-image: radial-gradient(
+    var(--color-skills-dot-light) 1.2px,
+    transparent 1.2px
+  );
+  background-size: 22px 22px;
+  @variant dark {
+    background-image: radial-gradient(
+      var(--color-skills-dot-dark) 1.2px,
+      transparent 1.2px
+    );
+  }
+}
+
+/* Uneven corner radii make a box look drawn with a marker. */
+.sketch-box {
+  border-radius: 255px 18px 225px 18px / 18px 225px 18px 255px;
+}
+
+/* Diagonal marker hatching in the element's --layer color. */
+.hachure {
+  background-image: repeating-linear-gradient(
+    -45deg,
+    color-mix(in srgb, var(--layer) 40%, transparent) 0 2px,
+    transparent 2px 8px
+  );
 }
 
 .pin-note {

@@ -319,3 +319,30 @@ export const SKILLS: Skill[] = [
   ...DATABASE,
   ...AI_LLM,
 ];
+
+/**
+ * The boxes in the Skills stack diagram, in drawing order. `id` must match a
+ * `category` above. `highlights` are the few tools named on each box.
+ */
+export const SKILL_LAYERS = [
+  {
+    id: 'Frontend',
+    role: 'Runs in the browser',
+    highlights: ['React', 'Vue.js', 'Tailwind CSS'],
+  },
+  {
+    id: 'Backend',
+    role: 'Serves the API',
+    highlights: ['Spring Boot', 'Node.js', 'TypeScript'],
+  },
+  {
+    id: 'Database',
+    role: 'Keeps the data',
+    highlights: ['MySQL', 'PostgreSQL', 'Redis'],
+  },
+  {
+    id: 'AI',
+    role: 'Helps me build all of it',
+    highlights: ['Claude Code', 'Prompt engineering', 'MCP'],
+  },
+] as const;
