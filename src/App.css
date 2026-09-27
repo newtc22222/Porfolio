@@ -18,6 +18,11 @@
   /* Projects gets its own tone so it reads as a separate band from Home. */
   --color-projects-light: #d3dde4;
   --color-projects-dark: #161c22;
+  /* Projects is a gallery wall: framed prints in a mat, lit from above. */
+  --color-frame-light: #2b3138;
+  --color-frame-dark: #3a444e;
+  --color-mat-light: #f4f6f7;
+  --color-mat-dark: #20262c;
   /* Education: ruled "notebook paper" in sage (light) and teal ink (dark). */
   --color-education-light: #dbe4dd;
   --color-education-dark: #0f1b1d;
@@ -36,6 +41,10 @@
   --color-accent-light: #333333;
   --color-accent-dark: #b0b0b0;
   --font-sketch: 'Architects Daughter', cursive;
+  /* Bricolage Grotesque is the site-wide face (Tailwind's preflight and the
+     :root rule in index.css both read --font-sans). */
+  --font-sans:
+    'Bricolage Grotesque', system-ui, Avenir, Helvetica, Arial, sans-serif;
 }
 
 body {
@@ -53,7 +62,32 @@ body {
 }
 
 .projects-background {
-  @apply bg-projects-light dark:bg-projects-dark py-20;
+  @apply bg-projects-light dark:bg-projects-dark py-24;
+}
+
+/* A picture light: a soft pool of light on the wall, brightest where the
+   lamp sits on the frame's top edge and fading out before the box edges. */
+.picture-light {
+  --picture-light: rgb(255 255 255 / 0.7);
+  position: absolute;
+  inset: -4rem -10% -2rem;
+  pointer-events: none;
+  background: radial-gradient(
+    45% 65% at 50% 4rem,
+    var(--picture-light),
+    transparent
+  );
+  mask-image: linear-gradient(to bottom, transparent, black 3.5rem);
+}
+
+[data-theme='dark'] .picture-light {
+  --picture-light: rgb(200 225 240 / 0.14);
+}
+
+/* The lamp fixture: a short bar resting on the top edge of the frame. */
+.picture-lamp {
+  @apply bg-frame-light dark:bg-frame-dark absolute left-1/2 z-10 h-1.5 w-[min(9rem,30%)] -translate-x-1/2 rounded-full;
+  top: -0.5rem;
 }
 
 /* Faint horizontal rules, like the lines on notebook paper. */
