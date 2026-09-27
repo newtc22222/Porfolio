@@ -1,56 +1,27 @@
-.retro-grid {
+/* Engineering-pad graph paper, used for the Blog sheet. */
+.graph-paper {
   background-image:
     linear-gradient(
       90deg,
-      color-mix(in srgb, var(--color-brand) 10%, transparent) 1px,
+      color-mix(in srgb, var(--color-brand) 14%, transparent) 1px,
       transparent 1px
     ),
     linear-gradient(
-      color-mix(in srgb, var(--color-brand) 10%, transparent) 1px,
+      color-mix(in srgb, var(--color-brand) 14%, transparent) 1px,
       transparent 1px
     );
   background-size: 20px 20px;
 }
 
-[data-theme='dark'] .retro-grid {
+[data-theme='dark'] .graph-paper {
   background-image:
     linear-gradient(
       90deg,
-      color-mix(in srgb, var(--color-brand-2) 30%, transparent) 1px,
+      color-mix(in srgb, var(--color-brand-2) 9%, transparent) 1px,
       transparent 1px
     ),
     linear-gradient(
-      color-mix(in srgb, var(--color-brand) 30%, transparent) 1px,
+      color-mix(in srgb, var(--color-brand) 9%, transparent) 1px,
       transparent 1px
     );
-  background-size: 20px 20px;
-  animation: gridPulse 8s ease-in-out infinite;
-}
-
-.retro-gradient {
-  background: linear-gradient(
-    45deg,
-    color-mix(in srgb, var(--color-brand) 10%, transparent) 0%,
-    color-mix(in srgb, var(--color-brand-2) 10%, transparent) 100%
-  );
-}
-
-[data-theme='dark'] .retro-gradient {
-  background: linear-gradient(
-    45deg,
-    rgba(18, 18, 18, 0.95) 0%,
-    rgba(24, 24, 24, 0.95) 100%
-  );
-}
-
-@keyframes gridPulse {
-  0% {
-    opacity: 0.2;
-  }
-  50% {
-    opacity: 0.4;
-  }
-  100% {
-    opacity: 0.2;
-  }
 }

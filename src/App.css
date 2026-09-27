@@ -34,6 +34,16 @@
   --color-skills-dot-dark: #262e35;
   --color-layer-data: #6c63ff;
   --color-layer-ai: #f08a24;
+  /* Blog: a cool blue drafting desk under the graph-paper sheet, with
+     inactive topic tabs one step lighter than the desk. */
+  --color-blog-light: #d2dbe6;
+  --color-blog-dark: #141b25;
+  --color-blog-tab-light: #e0e7ee;
+  --color-blog-tab-dark: #1c2532;
+  /* About is a terminal screen: pale "paper" terminal in light mode and a
+     deep slate-blue one in dark mode. */
+  --color-term-light: #e6ecef;
+  --color-term-dark: #0e1a22;
   --color-primary-light: #2b3138;
   --color-primary-dark: #f0f0f0;
   --color-secondary-light: #666666;
@@ -41,6 +51,7 @@
   --color-accent-light: #333333;
   --color-accent-dark: #b0b0b0;
   --font-sketch: 'Architects Daughter', cursive;
+  --font-mono: 'Martian Mono', ui-monospace, monospace;
   /* Bricolage Grotesque is the site-wide face (Tailwind's preflight and the
      :root rule in index.css both read --font-sans). */
   --font-sans:
@@ -88,6 +99,23 @@ body {
 .picture-lamp {
   @apply bg-frame-light dark:bg-frame-dark absolute left-1/2 z-10 h-1.5 w-[min(9rem,30%)] -translate-x-1/2 rounded-full;
   top: -0.5rem;
+}
+
+/* The block cursor at the end of the About terminal session. */
+.term-cursor {
+  animation: term-blink 1.1s steps(1) infinite;
+}
+
+@keyframes term-blink {
+  50% {
+    opacity: 0;
+  }
+}
+
+@media (prefers-reduced-motion: reduce) {
+  .term-cursor {
+    animation: none;
+  }
 }
 
 /* Faint horizontal rules, like the lines on notebook paper. */
