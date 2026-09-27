@@ -6,7 +6,16 @@ import { TabSwitch } from '../../components/TabSwitch';
 import { BLOG_POSTS } from '../../mocks/blogs';
 import { BlogCard } from './BlogCard';
 
-const TOPICS = ['All', 'Frontend', 'Backend', 'Database', 'Principle'];
+const TOPICS = [
+  'All',
+  'Project Docs',
+  'Frontend',
+  'Backend',
+  'Database',
+  'DevOps',
+  'AI',
+  'Principle',
+];
 
 export const Blog = () => {
   const [activeTopic, setActiveTopic] = useState('All');

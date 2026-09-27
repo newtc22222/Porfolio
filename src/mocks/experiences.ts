@@ -2,21 +2,23 @@ export const EXPERIENCES = [
   {
     company: 'TMA Solutions',
     location: 'Ho Chi Minh City, Vietnam',
-    position: 'Software Engineer',
-    teamSize: 6,
+    position: 'Full-stack Developer',
+    teamSize: '3–6',
     period: 'Dec 2025 - Present',
-    description: `Focusing on research and development of AI-driven solutions using Large Language Models (LLMs).
-Deep diving into Gemini, ChatGPT, and Claude to build intelligent assistants.
-Exploring Agentic AI, MCP (Model Context Protocol) servers, and AI generation to enhance assistant capabilities and specialized skills.`,
+    description: `Working across frontend, backend and AI on a healthcare application that builds forms and collects patients' feedback about their health status.
+Owning the form-builder library, a reusable TypeScript + React package that powers the app's forms.
+Building the AI services with Python and Gemini, and applying agentic AI tooling (MCP servers, skills, coding agents) to the team's workflow.`,
     techStack: {
-      AI_CHATBOT: ['Gemini', 'ChatGPT', 'Claude'],
-      AI_SYSTEM: ['MCP Server', 'Skills', 'Assistant Development'],
-      TOOLS: ['Codex', 'Claude CLI/Claude Code', 'Gemini CLI/Antigravity'],
-      RESEARCH: [
-        'LLM Deep Dive',
-        'AI Strategy',
-        'System Integration',
-        'Prompt Engineering',
+      FRONTEND: ['JavaScript', 'Vue 2'],
+      FORM_BUILDER_LIBRARY: ['TypeScript', 'React'],
+      BACKEND: ['Java', 'Spring Boot'],
+      AI_SERVICES: ['Python', 'Gemini', 'Prompt Engineering'],
+      AI_TOOLING: [
+        'MCP Server',
+        'Skills',
+        'Codex',
+        'Claude Code',
+        'Gemini CLI/Antigravity',
       ],
     },
   },

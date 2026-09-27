@@ -5,7 +5,7 @@ export const INITIALS = FULLNAME.split(/\s+/)
   .join('')
   .slice(0, 2)
   .toUpperCase();
-export const JOB_TITLE = 'Software Engineer';
+export const JOB_TITLE = 'Software Engineer · AI';
 export const EMAIL = 'phi.vo.tech@gmail.com';
 
 export const SOCIAL_LINKS = {

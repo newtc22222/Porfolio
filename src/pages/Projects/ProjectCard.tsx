@@ -2,10 +2,12 @@ import type { ProjectProps } from './ProjectType';
 
 export const ProjectCard = ({
   title,
+  period,
   description,
   technologies,
   link,
   image,
+  imageDark,
 }: ProjectProps) => (
   <div className="group hover:border-primary-light dark:hover:border-primary-dark bg-surface-light relative overflow-hidden rounded-xl border border-gray-200 transition-all duration-300 hover:shadow-xl dark:border-gray-700 dark:bg-gray-800">
     {image && (
@@ -14,14 +16,29 @@ export const ProjectCard = ({
           src={image}
           alt={`${title} screenshot`}
           loading="lazy"
-          className="h-full w-full object-cover transition-transform duration-300"
+          className={`h-full w-full object-cover transition-transform duration-300 ${imageDark ? 'dark:hidden' : ''}`}
         />
+        {imageDark && (
+          <img
+            src={imageDark}
+            alt={`${title} screenshot`}
+            loading="lazy"
+            className="hidden h-full w-full object-cover transition-transform duration-300 dark:block"
+          />
+        )}
       </div>
     )}
     <div className="p-6">
-      <h3 className="group-hover:text-primary-light dark:group-hover:text-primary-dark mb-3 text-2xl font-semibold text-gray-800 transition-colors duration-300 dark:text-white">
+      <h3
+        className={`group-hover:text-primary-light dark:group-hover:text-primary-dark text-2xl font-semibold text-gray-800 transition-colors duration-300 dark:text-white ${period ? 'mb-1' : 'mb-3'}`}
+      >
         {title}
       </h3>
+      {period && (
+        <p className="mb-3 text-sm font-medium text-gray-500 dark:text-gray-400">
+          {period}
+        </p>
+      )}
       <p className="mb-4 text-gray-600 dark:text-gray-300">{description}</p>
       <div className="mb-6 flex flex-wrap gap-2">
         {technologies.map((tech) => (
