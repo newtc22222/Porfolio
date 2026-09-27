@@ -9,6 +9,7 @@ import { TopicTabs } from './TopicTabs';
 const ALL = 'All';
 const PANEL_ID = 'blog-posts';
 
+// Tab order. Topics without posts are hidden rather than shown as empty tabs.
 const TOPICS = [
   ALL,
   'Project Docs',
@@ -18,14 +19,16 @@ const TOPICS = [
   'DevOps',
   'AI',
   'Principle',
-].map((name) => ({
-  name,
-  id: `blog-tab-${name.toLowerCase().replace(/\s+/g, '-')}`,
-  count:
-    name === ALL
-      ? BLOG_POSTS.length
-      : BLOG_POSTS.filter((post) => post.topic === name).length,
-}));
+]
+  .map((name) => ({
+    name,
+    id: `blog-tab-${name.toLowerCase().replace(/\s+/g, '-')}`,
+    count:
+      name === ALL
+        ? BLOG_POSTS.length
+        : BLOG_POSTS.filter((post) => post.topic === name).length,
+  }))
+  .filter((topic) => topic.count > 0);
 
 export const Blog = () => {
   const [activeTopic, setActiveTopic] = useState(ALL);
