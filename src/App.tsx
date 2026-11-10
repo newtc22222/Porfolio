@@ -1,4 +1,5 @@
 import { useEffect } from 'react';
+import { Analytics } from '@vercel/analytics/react';
 import { MotionConfig } from 'framer-motion';
 import { Route, Routes, useLocation } from 'react-router';
 import { Navigation } from './layout/Navigation';
@@ -40,6 +41,7 @@ function App() {
       </main>
       <Footer />
       <ContactBubble />
+      <Analytics />
     </MotionConfig>
   );
 }

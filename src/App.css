@@ -248,7 +248,22 @@ body {
   transform: translateY(-6px) rotate(0deg);
 }
 
+/* The status lamp's "live" dot breathes slowly. */
+.status-dot-live {
+  animation: status-pulse 2.4s ease-in-out infinite;
+}
+
+@keyframes status-pulse {
+  50% {
+    opacity: 0.45;
+  }
+}
+
 @media (prefers-reduced-motion: reduce) {
+  .status-dot-live {
+    animation: none;
+  }
+
   .js .reveal {
     opacity: 1;
     transform: none;
