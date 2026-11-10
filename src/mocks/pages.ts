@@ -1,17 +1,7 @@
-import { BADGES } from './badges';
-
-const ALL_PAGES = [
-  { href: '#home', label: 'Home' },
-  { href: '#projects', label: 'Projects' },
-  { href: '#experience', label: 'Experience' },
-  { href: '#skills', label: 'Skills' },
-  { href: '#education', label: 'Education' },
-  { href: '#badges', label: 'Badges' },
-  { href: '#blog', label: 'Blog' },
+// The navbar links. Each href is a section id on the home page.
+export const NAV_PAGES = [
+  { href: '#products', label: 'Products' },
+  { href: '#experience', label: 'Work' },
+  { href: '#blog', label: 'Notes' },
   { href: '#about', label: 'About' },
 ];
-
-// The Badges section is only rendered once there is at least one badge.
-export const NAV_PAGES = ALL_PAGES.filter(
-  (page) => page.href !== '#badges' || BADGES.length > 0
-);

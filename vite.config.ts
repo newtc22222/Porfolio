@@ -18,7 +18,7 @@ export default defineConfig({
           groups: [
             {
               name: 'vendor',
-              test: /node_modules[\\/](react|react-dom|react-scroll|framer-motion)[\\/]/,
+              test: /node_modules[\\/](react|react-dom|react-router|react-scroll|framer-motion)[\\/]/,
               priority: 20,
             },
             // Split large dependencies into separate chunks

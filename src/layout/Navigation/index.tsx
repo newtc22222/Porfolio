@@ -1,5 +1,6 @@
 import { useEffect, useRef, useState } from 'react';
 import { Link } from 'react-scroll';
+import { Link as RouterLink, useLocation } from 'react-router';
 import {
   AnimatePresence,
   MotionConfig,
@@ -19,6 +20,7 @@ export const Navigation = () => {
   const [menuOpen, setMenuOpen] = useState(false);
   const [activeHref, setActiveHref] = useState(NAV_PAGES[0].href);
   const menuButtonRef = useRef<HTMLButtonElement>(null);
+  const onHome = useLocation().pathname === '/';
 
   // Hairline along the bottom edge that fills as the page is read.
   const { scrollYProgress } = useScroll();
@@ -61,25 +63,44 @@ export const Navigation = () => {
       >
         <div className="container mx-auto px-4">
           <div className="flex h-16 items-center justify-between gap-4">
-            <Link
-              to="#home"
-              href="#home"
-              smooth
-              duration={500}
-              onClick={closeMenu}
-              aria-label={`${FULLNAME}, back to top`}
-              className="group focus-visible:ring-brand/50 dark:focus-visible:ring-brand-2/50 flex shrink-0 cursor-pointer items-center gap-2.5 rounded-lg focus-visible:ring-2 focus-visible:outline-none"
-            >
-              <span
-                aria-hidden="true"
-                className="bg-brand-strong dark:bg-brand-2 dark:text-background-dark flex h-9 w-9 items-center justify-center rounded-full rounded-bl-md text-sm font-extrabold tracking-tight text-white transition-transform duration-200 group-hover:-rotate-6 motion-reduce:transition-none motion-reduce:group-hover:rotate-0"
+            {onHome ? (
+              <Link
+                to="#home"
+                href="#home"
+                smooth
+                duration={500}
+                onClick={closeMenu}
+                aria-label={`${FULLNAME}, back to top`}
+                className="group focus-visible:ring-brand/50 dark:focus-visible:ring-brand-2/50 flex shrink-0 cursor-pointer items-center gap-2.5 rounded-lg focus-visible:ring-2 focus-visible:outline-none"
               >
-                {INITIALS}
-              </span>
-              <span className="text-primary-light dark:text-primary-dark text-lg font-bold tracking-tight lg:hidden xl:inline">
-                {FULLNAME}
-              </span>
-            </Link>
+                <span
+                  aria-hidden="true"
+                  className="bg-brand-strong dark:bg-brand-2 dark:text-background-dark flex h-9 w-9 items-center justify-center rounded-full rounded-bl-md text-sm font-extrabold tracking-tight text-white transition-transform duration-200 group-hover:-rotate-6 motion-reduce:transition-none motion-reduce:group-hover:rotate-0"
+                >
+                  {INITIALS}
+                </span>
+                <span className="text-primary-light dark:text-primary-dark text-lg font-bold tracking-tight lg:hidden xl:inline">
+                  {FULLNAME}
+                </span>
+              </Link>
+            ) : (
+              <RouterLink
+                to="/"
+                onClick={closeMenu}
+                aria-label={`${FULLNAME}, back to the home page`}
+                className="group focus-visible:ring-brand/50 dark:focus-visible:ring-brand-2/50 flex shrink-0 cursor-pointer items-center gap-2.5 rounded-lg focus-visible:ring-2 focus-visible:outline-none"
+              >
+                <span
+                  aria-hidden="true"
+                  className="bg-brand-strong dark:bg-brand-2 dark:text-background-dark flex h-9 w-9 items-center justify-center rounded-full rounded-bl-md text-sm font-extrabold tracking-tight text-white transition-transform duration-200 group-hover:-rotate-6 motion-reduce:transition-none motion-reduce:group-hover:rotate-0"
+                >
+                  {INITIALS}
+                </span>
+                <span className="text-primary-light dark:text-primary-dark text-lg font-bold tracking-tight lg:hidden xl:inline">
+                  {FULLNAME}
+                </span>
+              </RouterLink>
+            )}
 
             <ul className="hidden items-center gap-0.5 lg:flex">
               {NAV_PAGES.map((page) => (
@@ -87,8 +108,9 @@ export const Navigation = () => {
                   <NavItem
                     href={page.href}
                     label={page.label}
-                    isActive={activeHref === page.href}
+                    isActive={onHome && activeHref === page.href}
                     onActive={setActiveHref}
+                    onHome={onHome}
                   />
                 </li>
               ))}
@@ -142,8 +164,9 @@ export const Navigation = () => {
                     <NavItem
                       href={page.href}
                       label={page.label}
-                      isActive={activeHref === page.href}
+                      isActive={onHome && activeHref === page.href}
                       onActive={setActiveHref}
+                      onHome={onHome}
                       onClick={closeMenu}
                       variant="menu"
                     />
