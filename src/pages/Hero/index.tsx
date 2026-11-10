@@ -1,8 +1,7 @@
 import { Element } from 'react-scroll';
-import { Pickup } from '../../components/motion';
 import { HERO_LINE, JOB_TITLE } from '../../constants/self-information';
 import { PRODUCTS } from '../../mocks/products';
-import { ProductShot } from '../Products/ProductShot';
+import { ToySlot } from '../../toys/ToySlot';
 
 const COUNT_WORDS = ['No', 'One', 'Two', 'Three', 'Four', 'Five'];
 const productCount = COUNT_WORDS[PRODUCTS.length] ?? String(PRODUCTS.length);
@@ -32,12 +31,10 @@ export const Hero = () => (
             return (
               <div key={product.slug} data-toy-slot={product.slug}>
                 <div className="h-[26rem]">
-                  <Pickup
+                  <ToySlot
+                    product={product}
                     rotate={index % 2 === 0 ? -1.5 : 1.5}
-                    className="h-full"
-                  >
-                    <ProductShot product={product} />
-                  </Pickup>
+                  />
                 </div>
                 <div className="mt-5 flex flex-wrap items-baseline justify-between gap-x-6 gap-y-1">
                   <h2 className="text-primary-light dark:text-primary-dark text-xl font-bold tracking-tight">
