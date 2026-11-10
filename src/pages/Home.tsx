@@ -4,6 +4,7 @@ import Particles, { ParticlesProvider } from '@tsparticles/react';
 import { loadSlim } from '@tsparticles/slim';
 import type { Engine, ISourceOptions } from '@tsparticles/engine';
 import { FULLNAME, JOB_TITLE, GREETINGS } from '../constants/self-information';
+import { useIsClient } from '../hooks/useIsClient';
 import { useIsDarkMode } from '../hooks/useIsDarkMode';
 
 const particlesInit = async (engine: Engine): Promise<void> => {
@@ -13,7 +14,8 @@ const particlesInit = async (engine: Engine): Promise<void> => {
 // tsparticles needs raw colour strings, so read the brand tokens defined in
 // the Tailwind @theme block. The hex values are only a fallback.
 const readCssColor = (name: string, fallback: string) =>
-  getComputedStyle(document.documentElement).getPropertyValue(name).trim() ||
+  (typeof document !== 'undefined' &&
+    getComputedStyle(document.documentElement).getPropertyValue(name).trim()) ||
   fallback;
 
 const prefersReducedMotion = () =>
@@ -22,6 +24,7 @@ const prefersReducedMotion = () =>
 const isSmallScreen = () => window.matchMedia('(max-width: 767px)').matches;
 
 export const Home = () => {
+  const isClient = useIsClient();
   const [greetingPrefix] = useState(() => {
     const hour = new Date().getHours();
     let timeGreeting: string;
@@ -40,7 +43,7 @@ export const Home = () => {
     return allGreetings[randomIndex];
   });
 
-  const [reducedMotion] = useState(prefersReducedMotion);
+  const reducedMotion = isClient && prefersReducedMotion();
   const isDark = useIsDarkMode();
 
   // Bright brand dots glow on the dark background but wash out on the light
@@ -66,7 +69,7 @@ export const Home = () => {
       },
       particles: {
         number: {
-          value: isSmallScreen() ? 60 : 200,
+          value: isClient && isSmallScreen() ? 60 : 200,
           density: {
             enable: true,
           },
@@ -103,7 +106,7 @@ export const Home = () => {
         },
       },
     };
-  }, [isDark]);
+  }, [isDark, isClient]);
 
   return (
     <Element name="#home">
@@ -112,7 +115,7 @@ export const Home = () => {
         className="bg-background-light dark:bg-background-dark relative mt-[64px] flex min-h-screen items-center justify-center overflow-hidden"
       >
         <ParticlesProvider init={particlesInit}>
-          {!reducedMotion && (
+          {isClient && !reducedMotion && (
             <Particles
               id="tsparticles"
               options={options}
@@ -121,7 +124,7 @@ export const Home = () => {
           )}
           <div className="z-10 text-center">
             <h1 className="text-primary-light dark:text-primary-dark my-2 text-3xl font-bold">
-              {greetingPrefix}
+              {isClient ? greetingPrefix : GREETINGS[0]}
             </h1>
             <p className="text-primary-light dark:text-primary-dark my-4 text-5xl font-bold">
               I&apos;m {FULLNAME}

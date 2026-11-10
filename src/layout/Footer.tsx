@@ -1,5 +1,6 @@
 import { useEffect, useRef, useState } from 'react';
 import { animateScroll } from 'react-scroll';
+import { BUILD_DATE } from '../lib/buildDate';
 import { AnimatePresence, motion } from 'framer-motion';
 import {
   EMAIL,
@@ -141,7 +142,7 @@ export const Footer = () => {
 
         <div className="flex flex-col-reverse gap-4 border-t border-white/10 pt-6 sm:flex-row sm:items-center sm:justify-between">
           <p className="text-sm text-white/55">
-            © {new Date().getFullYear()} {FULLNAME}. Built with React and
+            © {BUILD_DATE.getFullYear()} {FULLNAME}. Built with React and
             Tailwind CSS.
           </p>
           <ul className="-ml-2.5 flex items-center gap-1 sm:mr-20 sm:ml-0">
