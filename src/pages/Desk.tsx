@@ -12,9 +12,6 @@ import { Products } from './Products';
 import { Projects } from './Projects';
 
 // Use dynamic imports for heavy components
-const Skills = lazy(() =>
-  import('./Skills').then((m) => ({ default: m.Skills }))
-);
 const Badges = lazy(() =>
   import('./Badges').then((m) => ({ default: m.Badges }))
 );
@@ -52,9 +49,6 @@ export const Desk = () => {
       <Products />
       <Projects />
       <Experiences />
-      <Suspense fallback={<SectionPlaceholder id="skills" />}>
-        {isClient ? <Skills /> : <SectionPlaceholder id="skills" />}
-      </Suspense>
       <Education />
       {BADGES.length > 0 && (
         <Suspense fallback={<SectionPlaceholder id="badges" />}>

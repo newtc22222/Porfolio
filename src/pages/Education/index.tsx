@@ -32,10 +32,10 @@ export const Education = () => {
     <Element name="#education">
       <section
         id="education"
-        className="education-background transition-colors"
+        className="education-background py-12! transition-colors"
       >
-        <div className="mx-auto max-w-6xl px-4">
-          <h2 className="mb-8 text-3xl font-bold text-gray-900 dark:text-white">
+        <div className="mx-auto max-w-5xl px-4 sm:px-6">
+          <h2 className="mb-6 text-2xl font-bold text-gray-900 dark:text-white">
             Education
           </h2>
           <div className="border-education-rule-light bg-education-light/70 dark:border-education-rule-dark dark:bg-education-dark/70 relative overflow-hidden rounded-xl border p-6 shadow-lg backdrop-blur-[1px]">
