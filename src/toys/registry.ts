@@ -6,5 +6,5 @@ import type { ToyKey } from '../pages/Products/ProductType';
 // fills its slot (the slot sets the size) and makes no network calls.
 export const TOYS: Record<ToyKey, LazyExoticComponent<ComponentType>> = {
   receipt: lazy(() => import('./receipt/Receipt')),
-  flashcards: lazy(() => import('./ToyStub')),
+  flashcards: lazy(() => import('./flashcards/Flashcards')),
 };
