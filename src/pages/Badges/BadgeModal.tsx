@@ -1,6 +1,6 @@
 import { useEffect, useId, useRef } from 'react';
 import { createPortal } from 'react-dom';
-import { motion, useReducedMotion } from 'framer-motion';
+import { m, useReducedMotion } from 'framer-motion';
 import type { Badge } from './BadgeType';
 import { formatDate } from './formatDate';
 
@@ -79,7 +79,7 @@ export const BadgeModal = ({
   }, [onClose]);
 
   return createPortal(
-    <motion.div
+    <m.div
       initial={{ opacity: 0 }}
       animate={{ opacity: 1 }}
       exit={{ opacity: 0 }}
@@ -87,7 +87,7 @@ export const BadgeModal = ({
       className="fixed inset-0 z-[60] flex items-center justify-center bg-black/35 p-4 backdrop-blur-md dark:bg-black/55"
       onClick={onClose}
     >
-      <motion.div
+      <m.div
         ref={panelRef}
         role="dialog"
         aria-modal="true"
@@ -177,8 +177,8 @@ export const BadgeModal = ({
             </a>
           )}
         </div>
-      </motion.div>
-    </motion.div>,
+      </m.div>
+    </m.div>,
     document.body
   );
 };

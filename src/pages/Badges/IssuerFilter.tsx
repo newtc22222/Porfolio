@@ -1,4 +1,4 @@
-import { motion, useReducedMotion } from 'framer-motion';
+import { m, useReducedMotion } from 'framer-motion';
 
 export interface IssuerOption {
   label: string;
@@ -42,7 +42,7 @@ export const IssuerFilter = ({
               }`}
             >
               {isOn && (
-                <motion.span
+                <m.span
                   layoutId="issuer-filter-marker"
                   aria-hidden="true"
                   className="bg-primary-light dark:bg-primary-dark absolute inset-0 rounded-full"

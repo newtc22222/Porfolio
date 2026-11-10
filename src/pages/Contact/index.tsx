@@ -1,5 +1,5 @@
 import { useEffect, useRef, useState } from 'react';
-import { motion } from 'framer-motion';
+import { m } from 'framer-motion';
 import { useForm, FormProvider } from 'react-hook-form';
 import { yupResolver } from '@hookform/resolvers/yup';
 import * as yup from 'yup';
@@ -115,7 +115,7 @@ const Contact = () => {
         </div>
 
         {submitStatus && (
-          <motion.div
+          <m.div
             role="status"
             initial={{ opacity: 0 }}
             animate={{ opacity: 1 }}
@@ -128,7 +128,7 @@ const Contact = () => {
             {submitStatus === 'success'
               ? 'Message sent. I will get back to you soon.'
               : `Message not sent. Try again, or email ${EMAIL} directly.`}
-          </motion.div>
+          </m.div>
         )}
       </form>
     </FormProvider>

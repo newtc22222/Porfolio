@@ -1,4 +1,4 @@
-import { motion, useReducedMotion } from 'framer-motion';
+import { m, useReducedMotion } from 'framer-motion';
 import type { Badge } from './BadgeType';
 import { formatDate } from './formatDate';
 
@@ -14,7 +14,7 @@ export const BadgeCard = ({
   const shouldReduce = useReducedMotion();
 
   return (
-    <motion.div
+    <m.div
       initial={{ opacity: 0, y: 20 }}
       whileInView={{ opacity: 1, y: 0 }}
       transition={{ duration: 0.5, delay: index * 0.1 }}
@@ -66,6 +66,6 @@ export const BadgeCard = ({
           ))}
         </ul>
       )}
-    </motion.div>
+    </m.div>
   );
 };

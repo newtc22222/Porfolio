@@ -1,4 +1,4 @@
-import { motion, type Variants } from 'framer-motion';
+import { m, type Variants } from 'framer-motion';
 import type { ComponentProps, ReactNode } from 'react';
 
 // The typing effect of the About terminal.
@@ -35,16 +35,16 @@ const shown = ({ outputAt }: Step): Variants => ({
 
 export const Command = ({ prompt, step }: { prompt: string; step: Step }) => (
   <>
-    <motion.span
+    <m.span
       aria-hidden="true"
       className="text-brand-strong dark:text-brand-2"
       variants={shown({ ...step, outputAt: step.start })}
     >
       {prompt}
-    </motion.span>{' '}
-    <motion.span className="inline-block" variants={typed(step)}>
+    </m.span>{' '}
+    <m.span className="inline-block" variants={typed(step)}>
       {step.text}
-    </motion.span>
+    </m.span>
   </>
 );
 
@@ -52,8 +52,8 @@ export const Output = ({
   step,
   children,
   ...props
-}: { step: Step; children: ReactNode } & ComponentProps<typeof motion.div>) => (
-  <motion.div variants={shown(step)} {...props}>
+}: { step: Step; children: ReactNode } & ComponentProps<typeof m.div>) => (
+  <m.div variants={shown(step)} {...props}>
     {children}
-  </motion.div>
+  </m.div>
 );

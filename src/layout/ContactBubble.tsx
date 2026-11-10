@@ -1,5 +1,5 @@
 import { lazy, Suspense, useEffect, useId, useRef, useState } from 'react';
-import { AnimatePresence, motion, useReducedMotion } from 'framer-motion';
+import { AnimatePresence, m, useReducedMotion } from 'framer-motion';
 import { EMAIL } from '../constants/self-information';
 import { CONTACT_OPEN_EVENT } from './contactEvents';
 
@@ -71,7 +71,7 @@ export const ContactBubble = () => {
     <div className="fixed right-4 bottom-4 z-40 flex flex-col items-end gap-3 sm:right-6 sm:bottom-6">
       <AnimatePresence>
         {open && (
-          <motion.div
+          <m.div
             ref={panelRef}
             id={PANEL_ID}
             role="dialog"
@@ -134,7 +134,7 @@ export const ContactBubble = () => {
                 <Contact />
               </Suspense>
             </div>
-          </motion.div>
+          </m.div>
         )}
       </AnimatePresence>
 

@@ -1,6 +1,6 @@
 import { Element } from 'react-scroll';
 import { useState } from 'react';
-import { motion, useReducedMotion } from 'framer-motion';
+import { m, useReducedMotion } from 'framer-motion';
 
 import { BLOG_POSTS } from '../../mocks/blogs';
 import { BlogEntry } from './BlogEntry';
@@ -73,7 +73,7 @@ export const Blog = () => {
             ) : (
               <ul className="[&>li]:border-frame-light/15 dark:[&>li]:border-frame-dark/60 grid gap-x-16 lg:grid-cols-2 [&>li]:border-t [&>li:first-child]:border-t-0 lg:[&>li:nth-child(2)]:border-t-0">
                 {filteredPosts.map((post) => (
-                  <motion.li
+                  <m.li
                     key={post.title}
                     layout={reducedMotion ? false : 'position'}
                     initial={reducedMotion ? false : { opacity: 0 }}
@@ -81,7 +81,7 @@ export const Blog = () => {
                     transition={{ duration: 0.25 }}
                   >
                     <BlogEntry post={post} />
-                  </motion.li>
+                  </m.li>
                 ))}
               </ul>
             )}

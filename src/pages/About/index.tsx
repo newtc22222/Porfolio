@@ -1,5 +1,5 @@
 import { Element } from 'react-scroll';
-import { motion, useReducedMotion, type Variants } from 'framer-motion';
+import { m, useReducedMotion, type Variants } from 'framer-motion';
 import { FULLNAME, JOB_TITLE } from '../../constants/self-information';
 import { FACTS, FUN_FACTS } from '../../mocks/facts';
 import { Command, Output, type Step } from '../../components/motion';
@@ -36,7 +36,7 @@ export const About = () => {
         id="about"
         className="bg-term-light dark:bg-term-dark py-24 font-mono"
       >
-        <motion.div
+        <m.div
           className="text-primary-light dark:text-primary-dark mx-auto max-w-4xl px-4 text-[0.875rem] leading-7 sm:px-6 sm:text-[0.9375rem]"
           variants={session}
           initial={reducedMotion ? false : 'hidden'}
@@ -112,7 +112,7 @@ export const About = () => {
               <span className="term-cursor bg-primary-light dark:bg-primary-dark inline-block h-[1.1em] w-[0.6em] translate-y-[0.2em]" />
             </p>
           </Output>
-        </motion.div>
+        </m.div>
       </section>
     </Element>
   );

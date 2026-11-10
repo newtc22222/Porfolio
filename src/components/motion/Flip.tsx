@@ -1,5 +1,5 @@
 import type { ReactNode } from 'react';
-import { motion, useReducedMotion } from 'framer-motion';
+import { m, useReducedMotion } from 'framer-motion';
 
 const face =
   'absolute inset-0 [backface-visibility:hidden] [-webkit-backface-visibility:hidden]';
@@ -22,7 +22,7 @@ export const Flip = ({
 
   return (
     <div className={`[perspective:1000px] ${className}`}>
-      <motion.div
+      <m.div
         className="relative h-full w-full [transform-style:preserve-3d]"
         initial={false}
         animate={{ rotateY: flipped ? 180 : 0 }}
@@ -42,7 +42,7 @@ export const Flip = ({
         >
           {back}
         </div>
-      </motion.div>
+      </m.div>
     </div>
   );
 };
