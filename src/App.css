@@ -50,6 +50,18 @@
   --color-secondary-dark: #b0b0b0;
   --color-accent-light: #333333;
   --color-accent-dark: #b0b0b0;
+  /* The desk: the surface behind the objects, receipt paper and flashcards.
+     Receipt paper stays pale in dark mode, so its ink stays dark too. */
+  --color-desk-light: #d8dee3;
+  --color-desk-dark: #15191d;
+  --color-receipt-light: #fbfaf5;
+  --color-receipt-dark: #dcd8cb;
+  --color-receipt-ink-light: #2b3138;
+  --color-receipt-ink-dark: #23282e;
+  --color-card-light: #f7f8f9;
+  --color-card-dark: #232a31;
+  --color-card-edge-light: #c3ccd3;
+  --color-card-edge-dark: #37424c;
   --font-sketch: 'Architects Daughter', cursive;
   --font-mono: 'Martian Mono', ui-monospace, monospace;
   /* Bricolage Grotesque is the site-wide face (Tailwind's preflight and the
@@ -220,4 +232,63 @@ body {
   @apply bg-gradient-to-br;
   @apply shadow-md;
   @apply absolute;
+}
+
+/* The desk surface: a flat colour with a faint grain drawn by gradients. */
+.desk-surface {
+  @apply bg-desk-light dark:bg-desk-dark;
+  background-image:
+    repeating-linear-gradient(
+      92deg,
+      rgb(0 0 0 / 0.02) 0 2px,
+      transparent 2px 7px
+    ),
+    repeating-linear-gradient(
+      88deg,
+      rgb(255 255 255 / 0.035) 0 1px,
+      transparent 1px 11px
+    );
+}
+
+/* Reveal (components/motion/Reveal.tsx). Content is only hidden when
+   JavaScript is running (`html.js` is set by the inline script in
+   index.html), so the prerendered page reads fine without it. */
+.js .reveal {
+  opacity: 0;
+  transform: translateY(16px);
+  transition:
+    opacity 0.5s ease,
+    transform 0.5s ease;
+}
+
+.js .reveal.is-visible {
+  opacity: 1;
+  transform: none;
+}
+
+/* Pickup (components/motion/Pickup.tsx): a desk object that rests at an
+   angle and lifts when hovered or focused. */
+.pickup {
+  transform: rotate(var(--pickup-rotate, 0deg));
+  transition: transform 0.25s cubic-bezier(0.2, 0.8, 0.2, 1);
+}
+
+.pickup:hover,
+.pickup:focus-within {
+  transform: translateY(-6px) rotate(0deg);
+}
+
+@media (prefers-reduced-motion: reduce) {
+  .js .reveal {
+    opacity: 1;
+    transform: none;
+    transition: none;
+  }
+
+  .pickup,
+  .pickup:hover,
+  .pickup:focus-within {
+    transform: rotate(var(--pickup-rotate, 0deg));
+    transition: none;
+  }
 }

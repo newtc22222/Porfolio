@@ -1,4 +1,5 @@
 import { Link, useParams } from 'react-router';
+import { Reveal, ScrollSteps } from '../../components/motion';
 import { PRODUCTS, findProduct } from '../../mocks/products';
 import { NotFound } from '../NotFound';
 
@@ -55,90 +56,86 @@ export const ProductPage = () => {
       </header>
 
       {story.why.length > 0 && (
-        <section className="mx-auto mt-20 max-w-4xl px-4 sm:px-6">
-          <h2 className={heading}>Why I built it</h2>
-          <div className="text-primary-light/90 dark:text-primary-dark/85 mt-6 max-w-2xl space-y-4 text-lg leading-relaxed">
-            {story.why.map((paragraph) => (
-              <p key={paragraph}>{paragraph}</p>
-            ))}
-          </div>
-        </section>
+        <Reveal className="mx-auto mt-20 max-w-4xl px-4 sm:px-6">
+          <section>
+            <h2 className={heading}>Why I built it</h2>
+            <div className="text-primary-light/90 dark:text-primary-dark/85 mt-6 max-w-2xl space-y-4 text-lg leading-relaxed">
+              {story.why.map((paragraph) => (
+                <p key={paragraph}>{paragraph}</p>
+              ))}
+            </div>
+          </section>
+        </Reveal>
       )}
 
       {story.steps.length > 0 && (
         <section className="mx-auto mt-20 max-w-6xl px-4 sm:px-6">
           <h2 className={`${heading} mx-auto max-w-4xl`}>How it works</h2>
-          <ol className="mt-8 space-y-12">
-            {story.steps.map((step, stepIndex) => (
-              <li
-                key={step.title}
-                className="grid items-center gap-6 md:grid-cols-2 md:gap-12"
-              >
-                <div>
-                  <p className="text-secondary-light dark:text-secondary-dark font-mono text-sm">
-                    Step {stepIndex + 1}
-                  </p>
-                  <h3 className="text-primary-light dark:text-primary-dark mt-1 text-2xl font-bold tracking-tight">
-                    {step.title}
-                  </h3>
-                  <p className="text-primary-light/90 dark:text-primary-dark/85 mt-3 leading-relaxed">
-                    {step.text}
-                  </p>
-                </div>
-                <div className="border-frame-light dark:border-frame-dark aspect-video overflow-hidden border-[6px]">
-                  <img
-                    src={step.image}
-                    alt=""
-                    loading="lazy"
-                    className={`h-full w-full object-cover object-top ${step.imageDark ? 'dark:hidden' : ''}`}
-                  />
-                  {step.imageDark && (
+          <div className="mt-4">
+            <ScrollSteps
+              steps={story.steps.map((step) => ({
+                title: step.title,
+                text: step.text,
+                media: (
+                  <div className="border-frame-light dark:border-frame-dark aspect-video overflow-hidden border-[6px]">
                     <img
-                      src={step.imageDark}
+                      src={step.image}
                       alt=""
                       loading="lazy"
-                      className="hidden h-full w-full object-cover object-top dark:block"
+                      className={`h-full w-full object-cover object-top ${step.imageDark ? 'dark:hidden' : ''}`}
                     />
-                  )}
-                </div>
-              </li>
-            ))}
-          </ol>
+                    {step.imageDark && (
+                      <img
+                        src={step.imageDark}
+                        alt=""
+                        loading="lazy"
+                        className="hidden h-full w-full object-cover object-top dark:block"
+                      />
+                    )}
+                  </div>
+                ),
+              }))}
+            />
+          </div>
         </section>
       )}
 
       {story.stack.length > 0 && (
-        <section className="mx-auto mt-20 max-w-4xl px-4 sm:px-6">
-          <h2 className={heading}>Built with</h2>
-          <ul className="mt-6 flex flex-wrap gap-2">
-            {story.stack.map((tech) => (
-              <li
-                key={tech}
-                className="bg-surface-light dark:bg-surface-dark text-primary-light dark:text-primary-dark rounded-full px-3 py-1 text-sm"
-              >
-                {tech}
-              </li>
-            ))}
-          </ul>
-        </section>
+        <Reveal className="mx-auto mt-20 max-w-4xl px-4 sm:px-6">
+          <section>
+            <h2 className={heading}>Built with</h2>
+            <ul className="mt-6 flex flex-wrap gap-2">
+              {story.stack.map((tech) => (
+                <li
+                  key={tech}
+                  className="bg-surface-light dark:bg-surface-dark text-primary-light dark:text-primary-dark rounded-full px-3 py-1 text-sm"
+                >
+                  {tech}
+                </li>
+              ))}
+            </ul>
+          </section>
+        </Reveal>
       )}
 
       {story.changelog.length > 0 && (
-        <section className="mx-auto mt-20 max-w-4xl px-4 sm:px-6">
-          <h2 className={heading}>Changelog</h2>
-          <ol className="mt-6 space-y-3">
-            {story.changelog.map((entry) => (
-              <li key={entry.date + entry.text} className="flex gap-4">
-                <span className="text-secondary-light dark:text-secondary-dark w-24 shrink-0 font-mono text-sm leading-7">
-                  {entry.date}
-                </span>
-                <span className="text-primary-light/90 dark:text-primary-dark/85 leading-7">
-                  {entry.text}
-                </span>
-              </li>
-            ))}
-          </ol>
-        </section>
+        <Reveal className="mx-auto mt-20 max-w-4xl px-4 sm:px-6">
+          <section>
+            <h2 className={heading}>Changelog</h2>
+            <ol className="mt-6 space-y-3">
+              {story.changelog.map((entry) => (
+                <li key={entry.date + entry.text} className="flex gap-4">
+                  <span className="text-secondary-light dark:text-secondary-dark w-24 shrink-0 font-mono text-sm leading-7">
+                    {entry.date}
+                  </span>
+                  <span className="text-primary-light/90 dark:text-primary-dark/85 leading-7">
+                    {entry.text}
+                  </span>
+                </li>
+              ))}
+            </ol>
+          </section>
+        </Reveal>
       )}
 
       <footer className="mx-auto mt-20 flex max-w-4xl flex-wrap items-center justify-between gap-6 px-4 sm:px-6">

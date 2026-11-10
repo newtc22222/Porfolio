@@ -1,4 +1,5 @@
 import { useEffect } from 'react';
+import { MotionConfig } from 'framer-motion';
 import { Route, Routes, useLocation } from 'react-router';
 import { Navigation } from './layout/Navigation';
 import { Footer } from './layout/Footer';
@@ -28,7 +29,7 @@ function App() {
   usePageChange();
 
   return (
-    <>
+    <MotionConfig reducedMotion="user">
       <Navigation />
       <main>
         <Routes>
@@ -39,7 +40,7 @@ function App() {
       </main>
       <Footer />
       <ContactBubble />
-    </>
+    </MotionConfig>
   );
 }
 

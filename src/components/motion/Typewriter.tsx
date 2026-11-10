@@ -1,7 +1,8 @@
 import { motion, type Variants } from 'framer-motion';
 import type { ComponentProps, ReactNode } from 'react';
 
-// One command in the About session: when it starts typing, how long it
+// The typing effect of the About terminal.
+// One command in the session: when it starts typing, how long it
 // types for, and when its output appears (all in seconds).
 export interface Step {
   text: string;
