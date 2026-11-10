@@ -5,6 +5,6 @@ import type { ToyKey } from '../pages/Products/ProductType';
 // chunk, loaded by ToySlot when the slot comes near the viewport. A toy
 // fills its slot (the slot sets the size) and makes no network calls.
 export const TOYS: Record<ToyKey, LazyExoticComponent<ComponentType>> = {
-  receipt: lazy(() => import('./ToyStub')),
+  receipt: lazy(() => import('./receipt/Receipt')),
   flashcards: lazy(() => import('./ToyStub')),
 };
