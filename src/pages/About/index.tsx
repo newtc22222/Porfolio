@@ -2,7 +2,7 @@ import { Element } from 'react-scroll';
 import { motion, useReducedMotion, type Variants } from 'framer-motion';
 import { FULLNAME, JOB_TITLE } from '../../constants/self-information';
 import { FACTS, FUN_FACTS } from '../../mocks/facts';
-import { Command, Output, type Step } from './Terminal';
+import { Command, Output, type Step } from '../../components/motion';
 
 const PROMPT = `${FULLNAME.split(/\s+/)[0].toLowerCase()}@portfolio:~$`;
 
