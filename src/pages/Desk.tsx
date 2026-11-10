@@ -1,6 +1,7 @@
 import { lazy, Suspense, useEffect } from 'react';
 import { useLocation } from 'react-router';
 import { Element } from 'react-scroll';
+import { useIsClient } from '../hooks/useIsClient';
 import { BADGES } from '../mocks/badges';
 import { About } from './About';
 import { Blog } from './Blogs';
@@ -41,6 +42,9 @@ const useScrollToHash = () => {
 
 export const Desk = () => {
   useScrollToHash();
+  // Lazy sections are left out of the prerendered HTML (a placeholder holds
+  // their anchor) and load in the browser.
+  const isClient = useIsClient();
 
   return (
     <>
@@ -49,12 +53,12 @@ export const Desk = () => {
       <Projects />
       <Experiences />
       <Suspense fallback={<SectionPlaceholder id="skills" />}>
-        <Skills />
+        {isClient ? <Skills /> : <SectionPlaceholder id="skills" />}
       </Suspense>
       <Education />
       {BADGES.length > 0 && (
         <Suspense fallback={<SectionPlaceholder id="badges" />}>
-          <Badges />
+          {isClient ? <Badges /> : <SectionPlaceholder id="badges" />}
         </Suspense>
       )}
       <Blog />

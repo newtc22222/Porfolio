@@ -6,6 +6,10 @@ import tailwindcss from '@tailwindcss/vite';
 export default defineConfig({
   plugins: [react(), tailwindcss()],
   base: '/',
+  define: {
+    // Day only, so the client and server builds get the same value.
+    __BUILD_DATE__: JSON.stringify(new Date().toISOString().slice(0, 10)),
+  },
   build: {
     chunkSizeWarningLimit: 1000, // Increase size limit to 1000kb
     rollupOptions: {

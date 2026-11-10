@@ -1,3 +1,5 @@
+import { BUILD_DATE } from '../../lib/buildDate';
+
 // Helpers for the "Mon YYYY - Present" period strings used in the mocks.
 
 export interface Span {
@@ -32,7 +34,7 @@ const parseMonth = (text: string) => {
   return new Date(Number(year), month, 1);
 };
 
-export const parsePeriod = (period: string, now = new Date()): Span => {
+export const parsePeriod = (period: string, now = BUILD_DATE): Span => {
   const [from, to = 'Present'] = period.split(/\s+-\s+/);
   const ongoing = /present/i.test(to);
   return {

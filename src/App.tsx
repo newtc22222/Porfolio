@@ -6,20 +6,26 @@ import { ContactBubble } from './layout/ContactBubble';
 import { Desk } from './pages/Desk';
 import { NotFound } from './pages/NotFound';
 import { ProductPage } from './pages/ProductPage';
+import { getMeta } from './seo/meta';
 
 import './App.css';
 
 // A new page starts at the top, unless the address carries a section hash
 // (the Desk scrolls to that itself).
-const useScrollToTopOnNavigate = () => {
+const usePageChange = () => {
   const { pathname, hash } = useLocation();
   useEffect(() => {
     if (!hash) window.scrollTo({ top: 0, behavior: 'auto' });
   }, [pathname, hash]);
+  // Each prerendered page ships its own <title>; keep it right after
+  // client-side navigation too.
+  useEffect(() => {
+    document.title = getMeta(pathname).title;
+  }, [pathname]);
 };
 
 function App() {
-  useScrollToTopOnNavigate();
+  usePageChange();
 
   return (
     <>
