@@ -1,49 +1,5 @@
+// The two products live in ./products.ts. These are the other projects.
 export const PROJECTS = [
-  {
-    title: 'LinguFlow',
-    period: 'Jul 2026 - Present',
-    description:
-      'Keyboard-driven flashcards with SM-2 spaced repetition and timed mock exams for TOEIC, IELTS, HSK and JLPT, with practice drills, TOEIC listening and an optional AI tutor.',
-    technologies: [
-      'Vue 3',
-      'Pinia',
-      'Vue Router',
-      'vue-i18n',
-      'FastAPI',
-      'SQLAlchemy 2.0',
-      'Alembic',
-      'PostgreSQL',
-      'Gemini',
-      'Cloudflare R2',
-      'Vercel',
-      'Railway',
-    ],
-    link: 'https://lingu-flow.vercel.app',
-    image: '/assets/projects/lingu-flow-light.png',
-    imageDark: '/assets/projects/lingu-flow-dark.png',
-  },
-  {
-    title: 'FF RESTaurent',
-    period: 'Jul 2026 - Present',
-    description:
-      'Group bill-splitting and restaurant tracker for a shared dining group, running on Google Cloud Run and Cloud SQL.',
-    technologies: [
-      'React',
-      'React Router 7',
-      'TypeScript',
-      'Tailwind CSS',
-      'Fastify',
-      'Prisma',
-      'PostgreSQL',
-      'Supabase Storage',
-      'Docker',
-      'Cloud Run',
-      'Cloud SQL',
-    ],
-    link: 'https://app.ff-restaurent.com',
-    image: '/assets/projects/ff-restaurent-light.png',
-    imageDark: '/assets/projects/ff-restaurent-dark.png',
-  },
   {
     title: 'Laptech Store',
     period: 'Feb 2023 - Present',

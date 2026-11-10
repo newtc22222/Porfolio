@@ -1,5 +1,6 @@
 import { Element } from 'react-scroll';
 import { EXPERIENCES } from '../../mocks/experiences';
+import { PRODUCTS } from '../../mocks/products';
 import { PROJECTS } from '../../mocks/projects';
 import { Overview } from './Overview';
 import { RoleEntry } from './RoleEntry';
@@ -11,7 +12,13 @@ const ROLES = EXPERIENCES.map((exp, index) => ({
   span: parsePeriod(exp.period),
 }));
 
-const SIDE_PROJECTS = PROJECTS.map((project) => ({
+const SIDE_PROJECTS = [
+  ...PRODUCTS.map((product) => ({
+    title: product.name,
+    period: product.period,
+  })),
+  ...PROJECTS,
+].map((project) => ({
   title: project.title,
   span: parsePeriod(project.period),
 }));

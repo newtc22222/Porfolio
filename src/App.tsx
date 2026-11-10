@@ -1,47 +1,36 @@
+import { useEffect } from 'react';
+import { Route, Routes, useLocation } from 'react-router';
 import { Navigation } from './layout/Navigation';
 import { Footer } from './layout/Footer';
 import { ContactBubble } from './layout/ContactBubble';
-import { Home, Projects, Blog, About, Experiences, Education } from './pages';
-import { lazy, Suspense } from 'react';
-import { Element } from 'react-scroll';
-import { BADGES } from './mocks/badges';
+import { Desk } from './pages/Desk';
+import { NotFound } from './pages/NotFound';
+import { ProductPage } from './pages/ProductPage';
 
 import './App.css';
 
-// Use dynamic imports for heavy components
-const Skills = lazy(() =>
-  import('./pages/Skills').then((m) => ({ default: m.Skills }))
-);
-const Badges = lazy(() =>
-  import('./pages/Badges').then((m) => ({ default: m.Badges }))
-);
-
-// Keeps the react-scroll anchor (and the section id) in the DOM while a lazy
-// section's chunk is loading, so nav links and scroll spy still work.
-const SectionPlaceholder = ({ id }: { id: string }) => (
-  <Element name={`#${id}`}>
-    <section id={id} aria-busy="true" className="min-h-screen" />
-  </Element>
-);
+// A new page starts at the top, unless the address carries a section hash
+// (the Desk scrolls to that itself).
+const useScrollToTopOnNavigate = () => {
+  const { pathname, hash } = useLocation();
+  useEffect(() => {
+    if (!hash) window.scrollTo({ top: 0, behavior: 'auto' });
+  }, [pathname, hash]);
+};
 
 function App() {
+  useScrollToTopOnNavigate();
+
   return (
     <>
       <Navigation />
-      <Home />
-      <Projects />
-      <Experiences />
-      <Suspense fallback={<SectionPlaceholder id="skills" />}>
-        <Skills />
-      </Suspense>
-      <Education />
-      {BADGES.length > 0 && (
-        <Suspense fallback={<SectionPlaceholder id="badges" />}>
-          <Badges />
-        </Suspense>
-      )}
-      <Blog />
-      <About />
+      <main>
+        <Routes>
+          <Route path="/" element={<Desk />} />
+          <Route path="/products/:slug" element={<ProductPage />} />
+          <Route path="*" element={<NotFound />} />
+        </Routes>
+      </main>
       <Footer />
       <ContactBubble />
     </>
