@@ -4,7 +4,7 @@ import { Link as RouterLink, useLocation } from 'react-router';
 import {
   AnimatePresence,
   MotionConfig,
-  motion,
+  m,
   useScroll,
   useSpring,
 } from 'framer-motion';
@@ -149,7 +149,7 @@ export const Navigation = () => {
 
         <AnimatePresence initial={false}>
           {menuOpen && (
-            <motion.div
+            <m.div
               id={MOBILE_MENU_ID}
               key="mobile-menu"
               initial={{ height: 0, opacity: 0 }}
@@ -173,13 +173,13 @@ export const Navigation = () => {
                   </li>
                 ))}
               </ul>
-            </motion.div>
+            </m.div>
           )}
         </AnimatePresence>
 
         {/* Track and fill for the reading-progress hairline. */}
         <div className="bg-primary-light/10 dark:bg-primary-dark/10 absolute inset-x-0 bottom-0 h-px" />
-        <motion.div
+        <m.div
           aria-hidden="true"
           style={{ scaleX: progress }}
           className="bg-brand-strong dark:bg-brand-2 absolute inset-x-0 bottom-0 h-0.5 origin-left"

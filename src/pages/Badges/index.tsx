@@ -1,6 +1,6 @@
 import { useRef, useState, useEffect } from 'react';
 import { Element } from 'react-scroll';
-import { AnimatePresence, motion, useReducedMotion } from 'framer-motion';
+import { AnimatePresence, m, useReducedMotion } from 'framer-motion';
 import ReactConfetti from 'react-confetti';
 
 import { BADGES } from '../../mocks/badges';
@@ -44,7 +44,7 @@ export const Badges = () => {
 
   return (
     <Element name="#badges">
-      <motion.section
+      <m.section
         onViewportEnter={handleViewportEnter}
         id="badges"
         className="badges-background overflow-hidden"
@@ -59,14 +59,14 @@ export const Badges = () => {
         )}
 
         <div className="relative z-10 container mx-auto">
-          <motion.h2
+          <m.h2
             initial={{ opacity: 0, y: 20 }}
             whileInView={{ opacity: 1, y: 0 }}
             transition={{ duration: 0.5 }}
             className="text-primary-light dark:text-primary-dark mb-2 text-center text-4xl font-bold"
           >
             🎖️ Badges 🎖️
-          </motion.h2>
+          </m.h2>
           <p className="text-secondary-light dark:text-secondary-dark mb-6 text-center">
             Courses and certifications I&apos;ve completed.
           </p>
@@ -100,7 +100,7 @@ export const Badges = () => {
             />
           )}
         </AnimatePresence>
-      </motion.section>
+      </m.section>
     </Element>
   );
 };

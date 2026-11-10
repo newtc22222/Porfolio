@@ -27,10 +27,28 @@
     <link rel="icon" type="image/svg+xml" href="/person-who-gargles.svg" />
     <link rel="preconnect" href="https://fonts.googleapis.com" />
     <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
+    <!--
+      Load the font stylesheet without blocking the first paint: it starts as
+      a print stylesheet and switches to all media once it has loaded. Text
+      shows in the fallback font until then (the fonts use display=swap).
+    -->
+    <link
+      rel="preload"
+      as="style"
+      href="https://fonts.googleapis.com/css2?family=Bricolage+Grotesque:opsz,wght@12..96,200..800&family=Martian+Mono:wght@400;600&display=swap"
+    />
     <link
       href="https://fonts.googleapis.com/css2?family=Bricolage+Grotesque:opsz,wght@12..96,200..800&family=Martian+Mono:wght@400;600&display=swap"
       rel="stylesheet"
+      media="print"
+      onload="this.media = 'all'"
     />
+    <noscript>
+      <link
+        href="https://fonts.googleapis.com/css2?family=Bricolage+Grotesque:opsz,wght@12..96,200..800&family=Martian+Mono:wght@400;600&display=swap"
+        rel="stylesheet"
+      />
+    </noscript>
     <!--app-head-->
     <link
       rel="sitemap"

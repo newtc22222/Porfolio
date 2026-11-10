@@ -1,5 +1,5 @@
 import type { ReactNode } from 'react';
-import { motion, useReducedMotion } from 'framer-motion';
+import { m, useReducedMotion } from 'framer-motion';
 
 // How far apart torn pieces sit, in px. The container always reserves this
 // room, so tearing never moves the content below it.
@@ -26,7 +26,7 @@ export const Tear = ({
       style={{ paddingBottom: Math.max(pieces.length - 1, 0) * GAP }}
     >
       {pieces.map((piece, index) => (
-        <motion.div
+        <m.div
           key={index}
           initial={{ y: 0, rotate: 0 }}
           animate={
@@ -49,7 +49,7 @@ export const Tear = ({
           }
         >
           {piece}
-        </motion.div>
+        </m.div>
       ))}
     </div>
   );

@@ -1,5 +1,5 @@
 import type { CSSProperties } from 'react';
-import { motion, useReducedMotion } from 'framer-motion';
+import { m, useReducedMotion } from 'framer-motion';
 import { monthsBetween, type Span } from './period';
 
 export interface Role {
@@ -132,7 +132,7 @@ export const Overview = ({
               {roles
                 .filter((role) => role.company === company)
                 .map((role) => (
-                  <motion.a
+                  <m.a
                     key={role.id}
                     href={`#${role.id}`}
                     style={bar(role.span)}
@@ -147,7 +147,7 @@ export const Overview = ({
                       , {monthLabel(role.span.start)} to{' '}
                       {role.span.ongoing ? 'now' : monthLabel(role.span.end)}
                     </span>
-                  </motion.a>
+                  </m.a>
                 ))}
             </div>
           </div>
@@ -162,7 +162,7 @@ export const Overview = ({
               {project.title}
             </span>
             <div className={trackClass}>
-              <motion.div
+              <m.div
                 style={bar(project.span)}
                 {...grow()}
                 className="border-brand-strong/60 bg-brand/25 dark:border-brand-2/60 dark:bg-brand-2/20 absolute top-1/2 h-2.5 origin-left -translate-y-1/2 rounded-sm border"
@@ -170,7 +170,7 @@ export const Overview = ({
                 <span className="sr-only">
                   {project.title}, since {monthLabel(project.span.start)}
                 </span>
-              </motion.div>
+              </m.div>
             </div>
           </div>
         ))}

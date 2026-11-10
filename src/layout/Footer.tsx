@@ -1,7 +1,7 @@
 import { useEffect, useRef, useState } from 'react';
 import { animateScroll } from 'react-scroll';
 import { BUILD_DATE } from '../lib/buildDate';
-import { AnimatePresence, motion } from 'framer-motion';
+import { AnimatePresence, m } from 'framer-motion';
 import {
   EMAIL,
   FULLNAME,
@@ -122,7 +122,7 @@ export const Footer = () => {
               className="focus-visible:ring-brand-2/60 relative inline-flex h-9 min-w-[5.5rem] items-center justify-center gap-1.5 overflow-hidden rounded-full border border-white/20 px-3 text-sm font-medium text-white/85 transition-colors hover:cursor-pointer hover:border-white/40 hover:text-white focus-visible:ring-2 focus-visible:outline-none"
             >
               <AnimatePresence mode="wait" initial={false}>
-                <motion.span
+                <m.span
                   key={copied ? 'copied' : 'copy'}
                   initial={{ opacity: 0, y: 8 }}
                   animate={{ opacity: 1, y: 0 }}
@@ -131,7 +131,7 @@ export const Footer = () => {
                   className={copied ? 'text-brand-2' : undefined}
                 >
                   {copied ? 'Copied' : 'Copy'}
-                </motion.span>
+                </m.span>
               </AnimatePresence>
             </button>
             <span role="status" className="sr-only">

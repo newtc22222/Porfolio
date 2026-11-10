@@ -1,6 +1,6 @@
 import { Link } from 'react-scroll';
 import { Link as RouterLink } from 'react-router';
-import { motion } from 'framer-motion';
+import { m } from 'framer-motion';
 
 // The active item is marked by a brand "speech bubble" (one squared corner,
 // like the contact bubble) that slides between items via a shared layoutId.
@@ -59,7 +59,7 @@ export const NavItem = ({
     >
       {isActive &&
         (variant === 'bar' ? (
-          <motion.span
+          <m.span
             layoutId="nav-active-bubble"
             aria-hidden="true"
             className="bg-brand-strong dark:bg-brand-2 absolute inset-0 -z-10 rounded-full rounded-bl-md"

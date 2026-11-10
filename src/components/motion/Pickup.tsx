@@ -1,5 +1,5 @@
 import type { CSSProperties, ReactNode } from 'react';
-import { motion, useReducedMotion } from 'framer-motion';
+import { m, useReducedMotion } from 'framer-motion';
 
 // A desk object. It rests slightly rotated, and lifts and straightens when
 // hovered or when something inside it has keyboard focus (CSS, see
@@ -31,7 +31,7 @@ export const Pickup = ({
   }
 
   return (
-    <motion.div
+    <m.div
       drag
       dragSnapToOrigin
       dragElastic={0.6}
@@ -44,7 +44,7 @@ export const Pickup = ({
       <div className="pickup" style={style}>
         {children}
       </div>
-    </motion.div>
+    </m.div>
   );
 };
 

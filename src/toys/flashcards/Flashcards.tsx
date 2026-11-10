@@ -1,5 +1,5 @@
 import { useState, type KeyboardEvent } from 'react';
-import { motion, useReducedMotion } from 'framer-motion';
+import { m, useReducedMotion } from 'framer-motion';
 import { Flip } from '../../components/motion';
 import { rate, type Rating } from './queue';
 import { CARDS, type Card } from './sample';
@@ -112,7 +112,7 @@ const Flashcards = () => {
             aria-hidden="true"
             className="bg-card-light dark:bg-card-dark border-card-edge-light dark:border-card-edge-dark absolute inset-0 translate-x-1.5 translate-y-1.5 rotate-1 rounded-xl border"
           />
-          <motion.div
+          <m.div
             key={card.id}
             className="absolute inset-0 touch-pan-y drop-shadow-[0_10px_10px_rgb(0_0_0/0.18)]"
             initial={reducedMotion ? false : { opacity: 0, y: 12 }}
@@ -131,7 +131,7 @@ const Flashcards = () => {
               front={<Face card={card} side="front" />}
               back={<Face card={card} side="back" />}
             />
-          </motion.div>
+          </m.div>
         </div>
 
         <div className="mt-8 flex items-center justify-center gap-2">

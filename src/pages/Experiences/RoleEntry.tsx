@@ -1,5 +1,5 @@
 import { useId, useState } from 'react';
-import { AnimatePresence, motion, useReducedMotion } from 'framer-motion';
+import { AnimatePresence, m, useReducedMotion } from 'framer-motion';
 import { TechStackGroups } from './TechStackGroups';
 import { formatDuration, type Span } from './period';
 
@@ -128,7 +128,7 @@ export const RoleEntry = ({
           </button>
           <AnimatePresence initial={false}>
             {open && (
-              <motion.div
+              <m.div
                 id={panelId}
                 initial={reducedMotion ? false : { height: 0, opacity: 0 }}
                 animate={{ height: 'auto', opacity: 1 }}
@@ -139,7 +139,7 @@ export const RoleEntry = ({
                 <div className="pt-4">
                   <TechStackGroups techStack={techStack} />
                 </div>
-              </motion.div>
+              </m.div>
             )}
           </AnimatePresence>
         </div>

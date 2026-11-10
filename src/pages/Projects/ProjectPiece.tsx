@@ -1,4 +1,4 @@
-import { motion, useReducedMotion } from 'framer-motion';
+import { m, useReducedMotion } from 'framer-motion';
 import type { ProjectProps } from './ProjectType';
 
 interface ProjectPieceProps extends ProjectProps {
@@ -35,7 +35,7 @@ export const ProjectPiece = ({
       }
     >
       <div className={`relative ${featured ? 'lg:col-span-7' : ''}`}>
-        <motion.div
+        <m.div
           aria-hidden="true"
           className="picture-light"
           initial={reducedMotion ? false : { opacity: 0 }}
