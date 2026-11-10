@@ -15,18 +15,6 @@ export const SOCIAL_LINKS = {
   FACEBOOK: 'https://www.facebook.com/fee.fight',
 } as const;
 
-export const GREETINGS = [
-  'Hi there! 👋',
-  'Welcome! 🎉',
-  'Hello! ✨',
-  'Hey there! ⚡',
-  "Glad you're here! 😊",
-  'Greetings! 🤝',
-  'Howdy! 🤠',
-  'Hey, high five! 🖐️',
-  "Look who's here! 👀",
-  'Welcome to my digital playground! 🌐',
-  'Hello, fellow human! 👽',
-  'Ready to see some cool stuff? 🚀',
-  'Ahoy! ⛵',
-] as const;
+// The one sentence at the top of the home page, also used on the share card.
+// DRAFT: Phi to review
+export const HERO_LINE = 'Phi Vo builds small tools that teams use every day.';
