@@ -1,6 +1,7 @@
 // This file is also imported by the Vercel function in api/status.ts, so it
-// must import types only.
-import type { Product } from '../pages/Products/ProductType';
+// must import types only, and with the `.js` extension that function's
+// compiler asks for.
+import type { Product } from '../pages/Products/ProductType.js';
 
 export const PRODUCTS: Product[] = [
   {
