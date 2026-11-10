@@ -7,7 +7,7 @@ import { About } from './About';
 import { Blog } from './Blogs';
 import { Education } from './Education';
 import { Experiences } from './Experiences';
-import { Home } from './Home';
+import { Hero } from './Hero';
 import { Products } from './Products';
 import { Projects } from './Projects';
 
@@ -48,7 +48,7 @@ export const Desk = () => {
 
   return (
     <>
-      <Home />
+      <Hero />
       <Products />
       <Projects />
       <Experiences />

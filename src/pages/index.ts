@@ -5,5 +5,5 @@ export { About } from './About';
 export { Blog } from './Blogs';
 export { Education } from './Education';
 export { Experiences } from './Experiences';
-export { Home } from './Home';
+export { Hero } from './Hero';
 export { Projects } from './Projects';

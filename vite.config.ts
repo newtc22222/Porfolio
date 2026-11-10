@@ -32,11 +32,6 @@ export default defineConfig({
               priority: 10,
             },
             {
-              name: 'particles',
-              test: /node_modules[\\/]@tsparticles[\\/]/,
-              priority: 10,
-            },
-            {
               name: 'confetti',
               test: /node_modules[\\/](react-confetti|tween-functions)[\\/]/,
               priority: 10,
