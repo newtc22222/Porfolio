@@ -30,7 +30,7 @@ export const Hero = () => (
             const primary = product.links.find((link) => link.primary);
             return (
               <div key={product.slug} data-toy-slot={product.slug}>
-                <div className="h-[26rem]">
+                <div className="h-[29rem]">
                   <ToySlot
                     product={product}
                     rotate={index % 2 === 0 ? -1.5 : 1.5}

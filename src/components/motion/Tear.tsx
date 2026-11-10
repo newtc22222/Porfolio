@@ -6,8 +6,9 @@ import { motion, useReducedMotion } from 'framer-motion';
 const GAP = 14;
 
 // A sheet made of pieces stacked top to bottom. They sit flush until
-// `torn`, then drift apart with a slight alternating tilt. With reduced
-// motion they are simply shown apart.
+// `torn`, then drift apart with a slight alternating tilt (also when the
+// sheet mounts already torn). With reduced motion they are simply shown
+// apart.
 export const Tear = ({
   torn,
   pieces,
@@ -27,7 +28,7 @@ export const Tear = ({
       {pieces.map((piece, index) => (
         <motion.div
           key={index}
-          initial={false}
+          initial={{ y: 0, rotate: 0 }}
           animate={
             torn
               ? {

@@ -250,6 +250,17 @@ body {
     );
 }
 
+/* A torn, zigzag bottom edge for receipt paper. */
+.receipt-edge {
+  mask: conic-gradient(
+      from -45deg at bottom,
+      #0000,
+      #000 1deg 89deg,
+      #0000 90deg
+    )
+    50% / 12px 100%;
+}
+
 /* Reveal (components/motion/Reveal.tsx). Content is only hidden when
    JavaScript is running (`html.js` is set by the inline script in
    index.html), so the prerendered page reads fine without it. */
