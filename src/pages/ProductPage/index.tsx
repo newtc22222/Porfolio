@@ -1,5 +1,6 @@
 import { Link, useParams } from 'react-router';
 import { Reveal, ScrollSteps } from '../../components/motion';
+import { StatusLamp } from '../../components/StatusLamp';
 import { PRODUCTS, findProduct } from '../../mocks/products';
 import { NotFound } from '../NotFound';
 
@@ -22,8 +23,9 @@ export const ProductPage = () => {
   return (
     <article className="bg-background-light dark:bg-background-dark mt-16 pb-24">
       <header className="mx-auto max-w-4xl px-4 pt-20 sm:px-6">
-        <p className="text-secondary-light dark:text-secondary-dark text-sm">
+        <p className="text-secondary-light dark:text-secondary-dark flex flex-wrap items-center gap-x-4 text-sm">
           {product.period}
+          <StatusLamp slug={product.slug} />
         </p>
         <h1 className="text-primary-light dark:text-primary-dark mt-2 text-5xl leading-none font-bold tracking-tight sm:text-6xl">
           {product.name}
