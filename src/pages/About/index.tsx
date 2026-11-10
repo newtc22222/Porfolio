@@ -3,6 +3,7 @@ import { motion, useReducedMotion, type Variants } from 'framer-motion';
 import { FULLNAME, JOB_TITLE } from '../../constants/self-information';
 import { FACTS, FUN_FACTS } from '../../mocks/facts';
 import { Command, Output, type Step } from '../../components/motion';
+import { openContact } from '../../layout/contactEvents';
 
 const PROMPT = `${FULLNAME.split(/\s+/)[0].toLowerCase()}@portfolio:~$`;
 
@@ -84,7 +85,26 @@ export const About = () => {
             <p className="text-secondary-light dark:text-secondary-dark">]</p>
           </Output>
 
-          <Output step={idle} className="mt-10" aria-hidden="true">
+          {/* Not part of the typed session: it is there from the start, so
+              it can always be reached with the keyboard. */}
+          <p className="mt-10">
+            <span
+              aria-hidden="true"
+              className="text-brand-strong dark:text-brand-2"
+            >
+              {PROMPT}
+            </span>{' '}
+            <span aria-hidden="true">contact --open</span>{' '}
+            <button
+              type="button"
+              onClick={openContact}
+              className="border-brand-strong text-brand-strong dark:border-brand-2 dark:text-brand-2 focus-visible:outline-brand ms-2 cursor-pointer rounded-sm border px-2 py-0.5 font-semibold hover:underline focus-visible:outline-2 focus-visible:outline-offset-2"
+            >
+              Write to me
+            </button>
+          </p>
+
+          <Output step={idle} className="mt-6" aria-hidden="true">
             <p>
               <span className="text-brand-strong dark:text-brand-2">
                 {PROMPT}

@@ -1,6 +1,7 @@
 import { lazy, Suspense, useEffect, useId, useRef, useState } from 'react';
 import { AnimatePresence, motion, useReducedMotion } from 'framer-motion';
 import { EMAIL } from '../constants/self-information';
+import { CONTACT_OPEN_EVENT } from './contactEvents';
 
 // The form (and EmailJS with it) is its own chunk. Start fetching it as soon
 // as the visitor points at or focuses the bubble, so it is ready on click.
@@ -15,6 +16,19 @@ export const ContactBubble = () => {
   const bubbleRef = useRef<HTMLButtonElement>(null);
   const panelRef = useRef<HTMLDivElement>(null);
   const reduceMotion = useReducedMotion();
+  // Set when the panel was opened from elsewhere on the page, so focus
+  // moves into it.
+  const focusPanel = useRef(false);
+
+  useEffect(() => {
+    const onOpen = () => {
+      loadContact();
+      focusPanel.current = true;
+      setOpen(true);
+    };
+    window.addEventListener(CONTACT_OPEN_EVENT, onOpen);
+    return () => window.removeEventListener(CONTACT_OPEN_EVENT, onOpen);
+  }, []);
 
   const close = () => {
     setOpen(false);
@@ -23,6 +37,10 @@ export const ContactBubble = () => {
 
   useEffect(() => {
     if (!open) return;
+    if (focusPanel.current) {
+      focusPanel.current = false;
+      panelRef.current?.focus();
+    }
     const onKey = (e: KeyboardEvent) => {
       if (e.key === 'Escape') {
         setOpen(false);
@@ -57,12 +75,13 @@ export const ContactBubble = () => {
             ref={panelRef}
             id={PANEL_ID}
             role="dialog"
+            tabIndex={-1}
             aria-labelledby={titleId}
             initial={{ opacity: 0, y: offset, scale: reduceMotion ? 1 : 0.96 }}
             animate={{ opacity: 1, y: 0, scale: 1 }}
             exit={{ opacity: 0, y: offset, scale: reduceMotion ? 1 : 0.96 }}
             transition={{ duration: 0.18 }}
-            className="bg-surface-light dark:bg-surface-dark border-primary-light/15 dark:border-primary-dark/15 max-h-[calc(100dvh-7rem)] w-[min(24rem,calc(100vw-2rem))] origin-bottom-right overflow-y-auto rounded-2xl rounded-br-md border shadow-2xl shadow-black/20 dark:shadow-black/60"
+            className="bg-surface-light dark:bg-surface-dark border-primary-light/15 dark:border-primary-dark/15 max-h-[calc(100dvh-7rem)] w-[min(24rem,calc(100vw-2rem))] origin-bottom-right overflow-y-auto rounded-2xl rounded-br-md border shadow-2xl shadow-black/20 outline-none dark:shadow-black/60"
           >
             <div className="flex items-start justify-between gap-4 px-5 pt-5 pb-3">
               <div>

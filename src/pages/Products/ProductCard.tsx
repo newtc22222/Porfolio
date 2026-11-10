@@ -8,7 +8,7 @@ export const ProductCard = ({ product }: { product: Product }) => {
   const primary = product.links.find((link) => link.primary);
 
   return (
-    <article className="bg-surface-light dark:bg-surface-dark flex flex-col rounded-lg p-6 shadow-[0_18px_30px_-22px_rgb(0_0_0/0.45)] sm:p-8">
+    <article className="bg-surface-light dark:bg-surface-dark flex h-full flex-col rounded-lg p-6 shadow-[0_18px_30px_-22px_rgb(0_0_0/0.45)] sm:p-8">
       <h3 className="text-primary-light dark:text-primary-dark text-3xl leading-tight font-bold tracking-tight">
         {product.name}
       </h3>
