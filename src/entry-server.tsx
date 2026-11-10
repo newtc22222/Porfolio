@@ -8,6 +8,7 @@ import App from './App';
 import { PRODUCTS } from './mocks/products';
 
 export { getMeta, SITE_URL } from './seo/meta';
+export { HERO_LINE } from './constants/self-information';
 export { PRODUCTS };
 
 export const render = (url: string): string =>
